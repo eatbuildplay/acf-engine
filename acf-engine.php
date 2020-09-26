@@ -18,8 +18,16 @@ namespace AcfEngine;
 define( 'ACF_ENGINE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ACF_ENGINE_URL', plugin_dir_url( __FILE__ ) );
 define( 'ACF_ENGINE_VERSION', '1.0.0' );
+define( 'ACF_ENGINE_TEXT_DOMAIN', 'acf-engine');
 
 class Plugin {
+
+  public function __construct() {
+
+    require(ACF_ENGINE_PATH . 'src/AdminMenu.php');
+    new AdminMenu();
+
+  }
 
 }
 
