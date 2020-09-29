@@ -1,6 +1,6 @@
 <?php
 
-namespace AcfEngine;
+namespace AcfEngine\Core;
 
 if ( ! defined( 'ABSPATH' ) ) {
   exit;
@@ -33,11 +33,29 @@ class AdminMenu {
    );
 
    \add_submenu_page(
-     'saber-dashboard',
+     ACF_ENGINE_TEXT_DOMAIN,
      'ACF Engine',
      'Dashboard',
      'edit_posts',
      ACF_ENGINE_TEXT_DOMAIN
+   );
+
+   \add_submenu_page(
+     ACF_ENGINE_TEXT_DOMAIN,
+     'Post Types',
+     'Post Types',
+     'edit_posts',
+     ACF_ENGINE_TEXT_DOMAIN . '-post-types',
+     [$this, 'pagePostTypes']
+   );
+
+   \add_submenu_page(
+     ACF_ENGINE_TEXT_DOMAIN,
+     'Taxonomies',
+     'Taxonomies',
+     'edit_posts',
+     ACF_ENGINE_TEXT_DOMAIN . '-taxonomies',
+     [$this, 'pageTaxonomies']
    );
 
   }

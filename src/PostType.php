@@ -1,18 +1,17 @@
 <?php
 
-namespace AcfEngine\PostTypes;
+namespace AcfEngine\Core;
 
 if (!defined('ABSPATH')) {
 	exit;
 }
 
-class PostType {
+abstract class PostType {
 
 	protected $prefix = 'acfeng-';
 
 	public function init() {
 
-		$this->loadUserSettings();
 		$this->register();
 
 	}

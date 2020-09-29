@@ -14,6 +14,8 @@
  */
 
 namespace AcfEngine;
+use AcfEngine\Core\AdminMenu;
+use AcfEngine\Core\PostTypePostType;
 
 define( 'ACF_ENGINE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ACF_ENGINE_URL', plugin_dir_url( __FILE__ ) );
@@ -24,8 +26,25 @@ class Plugin {
 
   public function __construct() {
 
-    require(ACF_ENGINE_PATH . 'src/AdminMenu.php');
+    spl_autoload_register( [$this, 'autoloader'] );
+
     new AdminMenu();
+
+    $postType = new PostTypePostType();
+
+
+  }
+
+  public function autoloader( $className ) {
+
+
+    if ( 0 !== strpos( $className, 'AcfEngine\Core' ) ) {
+      return;
+    }
+
+    // strip the namespace leaving only the final class name
+    $className = str_replace('AcfEngine\Core\\', '', $className);
+    require( ACF_ENGINE_PATH . 'src/' . $className . '.php' );
 
   }
 
