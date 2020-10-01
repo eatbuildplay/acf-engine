@@ -6,14 +6,17 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-class PostTypePostType extends PostType {
+class PostTypeCustom extends PostType {
+
+	public $key;
+	public $name;
 
 	public function key() {
-		return 'post_type';
+		return $this->key;
 	}
 
 	public function name() {
-		return 'Post Type';
+		return $this->name;
 	}
 
 }

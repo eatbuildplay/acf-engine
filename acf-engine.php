@@ -16,6 +16,7 @@
 namespace AcfEngine;
 use AcfEngine\Core\AdminMenu;
 use AcfEngine\Core\PostTypePostType;
+use AcfEngine\Core\PostTypeCustom;
 
 define( 'ACF_ENGINE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ACF_ENGINE_URL', plugin_dir_url( __FILE__ ) );
@@ -36,18 +37,31 @@ class Plugin {
       $postType = new PostTypePostType();
       $postType->register();
 
+      /*
+
+      get_posts() not available this early, use cached file or direct db query
+
       $customPostTypes = get_posts([
         'post_type' => 'acfe_post_types',
-        'numberposts' => -1
+        'numberposts' => '-1'
       ]);
+
+      */
+
+      $customPostTypes = [
+        'whatever'
+      ];
 
       foreach( $customPostTypes as $cpts ) {
 
-        
+        $postType = new PostTypeCustom();
+        $postType->key = 'whatever';
+        $postType->name = 'Whatever';
+        $postType->register();
 
       }
 
-    });
+    }, 10);
 
 
 
