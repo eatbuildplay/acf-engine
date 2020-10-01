@@ -58,11 +58,38 @@ class AdminMenu {
      [$this, 'pageTaxonomies']
    );
 
+   \add_submenu_page(
+     ACF_ENGINE_TEXT_DOMAIN,
+     'Settings Pages',
+     'Settings Pages',
+     'edit_posts',
+     ACF_ENGINE_TEXT_DOMAIN . '-settings-pages',
+     [$this, 'pageSettingsPages']
+   );
+
   }
 
   public function pageDashboard() {
 
     print 'DASHBOARD ACF ENGINE';
+
+  }
+
+  public function pagePostTypes() {
+
+    print 'DASHBOARD POST TYPES';
+
+  }
+
+  public function pageTaxonomies() {
+
+    print 'DASHBOARD TAXES';
+
+  }
+
+  public function pageSettingsPages() {
+
+    print 'SETTINGS PAGES';
 
   }
 

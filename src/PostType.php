@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
 
 abstract class PostType {
 
-	protected $prefix = 'acfeng-';
+	protected $prefix = 'acfe_';
 
 	public function init() {
 
@@ -21,6 +21,10 @@ abstract class PostType {
 	}
 
 	public function register() {
+
+		$this->showArchive = true;
+		$this->excludeFromSearch = false;
+		$this->customPermalink = null;
 
 		register_post_type( $this->getPrefixedKey(), $this->args() );
 
@@ -134,36 +138,9 @@ abstract class PostType {
 		return $this->defaultArgs();
 	}
 
-	/*
-	 * Standard user settings loader
-	 * Override if you have custom settings
-	 */
-	 public function loadUserSettings() {
-
-		$optionKeyBase = str_replace( '-', '_', $this->key() );
-
- 		$this->excludeFromSearch = !get_field($optionKeyBase.'_show_in_search', 'option');
- 		$this->showPage 					= get_field($optionKeyBase.'_show_page', 'option');
- 		$this->showArchive 				= get_field($optionKeyBase.'_show_archive', 'option');
- 		$this->alternateNameSet  	= get_field($optionKeyBase.'_alternate_name_check', 'option');
- 		$this->alternateName      = get_field($optionKeyBase.'_the_alternative_name', 'option');
- 		$this->postTypeName       = $this->alternateNameSet && !empty($this->alternateName) ? $this->alternateName : $this->renderName();
- 		$this->customPermalink    = !empty(get_field($optionKeyBase.'_permalinks', 'option')) ? get_field($optionKeyBase.'_permalinks', 'option') : $this->key();
- 		$this->categoryEnabled 	 	= get_field($optionKeyBase.'_categories', 'option');
- 		$this->tagEnabled       	= get_field($optionKeyBase.'_tags', 'option');
-
- 	}
 
 	public function renderName() {
-
-		// custom name set by user
-		if( $this->alternateNameSet && !$this->alternateName == '' ) {
-			return $this->alternateName;
-		}
-
-		// default name set in post type
 		return $this->name();
-
 	}
 
 }

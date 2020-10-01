@@ -26,11 +26,29 @@ class Plugin {
 
   public function __construct() {
 
+    require_once( ACF_ENGINE_PATH . 'vendor/acf/advanced-custom-fields-pro/acf.php' );
     spl_autoload_register( [$this, 'autoloader'] );
 
     new AdminMenu();
 
-    $postType = new PostTypePostType();
+    add_action('init', function() {
+
+      $postType = new PostTypePostType();
+      $postType->register();
+
+      $customPostTypes = get_posts([
+        'post_type' => 'acfe_post_types',
+        'numberposts' => -1
+      ]);
+
+      foreach( $customPostTypes as $cpts ) {
+
+        
+
+      }
+
+    });
+
 
 
   }
