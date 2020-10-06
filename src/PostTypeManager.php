@@ -26,8 +26,13 @@ class PostTypeManager {
       return;
     }
 
-    $postTypeData = new \stdClass();
-    $postTypeData->key = get_field('key', $postId);
+		$postTypeData = new \stdClass();
+
+		$postTypeData->key = get_field('key', $postId);
+		if( !$postTypeData->key ) {
+			return;
+		}    
+
     $postTypeJson = json_encode( $postTypeData );
 
     \file_put_contents( ACF_ENGINE_PATH . 'data/post-types/' . $postTypeData->key . '.json', $postTypeJson );

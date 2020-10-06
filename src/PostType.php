@@ -39,7 +39,7 @@ abstract class PostType {
 			'public'              => true,
 			'supports' 						=> array('title', 'editor', 'thumbnail',  'custom-fields'),
 			'show_ui'             => true,
-			'show_in_menu'        => true,
+			'show_in_menu'        => $this->showInMenu(),
 			'menu_position'       => 20,
 			'show_in_admin_bar'   => true,
 			'show_in_nav_menus'   => true,
@@ -141,6 +141,10 @@ abstract class PostType {
 
 	public function renderName() {
 		return $this->name();
+	}
+
+	public function showInMenu() {
+		return true;
 	}
 
 }

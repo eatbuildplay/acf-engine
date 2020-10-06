@@ -16,4 +16,8 @@ class PostTypePostType extends PostType {
 		return 'Post Type';
 	}
 
+	public function showInMenu() {
+		return false;
+	}
+
 }

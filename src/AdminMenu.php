@@ -45,8 +45,7 @@ class AdminMenu {
      'Post Types',
      'Post Types',
      'edit_posts',
-     ACF_ENGINE_TEXT_DOMAIN . '-post-types',
-     [$this, 'pagePostTypes']
+     'edit.php?post_type=acfe_post_type',
    );
 
    \add_submenu_page(
