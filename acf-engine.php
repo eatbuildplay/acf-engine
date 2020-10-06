@@ -17,6 +17,7 @@ namespace AcfEngine;
 use AcfEngine\Core\AdminMenu;
 use AcfEngine\Core\PostTypePostType;
 use AcfEngine\Core\PostTypeCustom;
+use AcfEngine\Core\PostTypeManager;
 
 define( 'ACF_ENGINE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ACF_ENGINE_URL', plugin_dir_url( __FILE__ ) );
@@ -27,45 +28,22 @@ class Plugin {
 
   public function __construct() {
 
+    // embed acf
     require_once( ACF_ENGINE_PATH . 'vendor/acf/advanced-custom-fields-pro/acf.php' );
+
+    // setup autoloader
     spl_autoload_register( [$this, 'autoloader'] );
 
+    // init admin menu
     new AdminMenu();
 
-    add_action('init', function() {
-
-      $postType = new PostTypePostType();
-      $postType->register();
-
-      /*
-
-      get_posts() not available this early, use cached file or direct db query
-
-      $customPostTypes = get_posts([
-        'post_type' => 'acfe_post_types',
-        'numberposts' => '-1'
-      ]);
-
-      */
-
-      $customPostTypes = [
-        'whatever'
-      ];
-
-      foreach( $customPostTypes as $cpts ) {
-
-        $postType = new PostTypeCustom();
-        $postType->key = 'whatever';
-        $postType->name = 'Whatever';
-        $postType->register();
-
-      }
-
-    }, 10);
-
-
+    // init the post type manager
+    $ptm = new PostTypeManager();
+    $ptm->setup();
 
   }
+
+
 
   public function autoloader( $className ) {
 

@@ -1,0 +1,82 @@
+<?php
+
+namespace AcfEngine\Core;
+
+if (!defined('ABSPATH')) {
+	exit;
+}
+
+class PostTypeManager {
+
+  public function setup() {
+
+    add_action('save_post', [$this, 'savePost'], 10, 3);
+
+    add_action('init', [$this, 'registerPostTypes']);
+
+
+  }
+
+
+
+  public function savePost( $postId, $post, $update ) {
+
+    // only target our post type registrations
+    if( $post->post_type !== 'acfe_post_type' ) {
+      return;
+    }
+
+    $postTypeData = new \stdClass();
+    $postTypeData->key = get_field('key', $postId);
+    $postTypeJson = json_encode( $postTypeData );
+
+    \file_put_contents( ACF_ENGINE_PATH . 'data/post-types/' . $postTypeData->key . '.json', $postTypeJson );
+
+  }
+
+  public function registerPostTypes() {
+
+    // register our default post type
+    $postType = new PostTypePostType();
+    $postType->register();
+
+    // get all the data files stored
+    $ptDataFiles = $this->findPostTypeDataFiles();
+
+    if( !empty( $ptDataFiles )) {
+
+      foreach( $ptDataFiles as $ptDataFilename ) {
+
+        $ptJson = file_get_contents( ACF_ENGINE_PATH . 'data/post-types/' . $ptDataFilename );
+        $ptData = json_decode( $ptJson );
+
+        $postType = new PostTypeCustom();
+        $postType->key = $ptData->key;
+        $postType->name = $ptData->key;
+        $postType->register();
+
+
+      }
+
+    }
+
+  }
+
+  protected function findPostTypeDataFiles() {
+
+    $files = [];
+    $dir = new \DirectoryIterator( ACF_ENGINE_PATH . 'data/post-types' );
+    foreach ($dir as $fileInfo) {
+      if (!$fileInfo->isDot()) {
+        $files[] = $fileInfo->getFilename();
+      }
+    }
+
+    return $files;
+
+  }
+
+
+
+
+}
