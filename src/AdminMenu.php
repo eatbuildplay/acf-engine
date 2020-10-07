@@ -29,7 +29,7 @@ class AdminMenu {
      ACF_ENGINE_TEXT_DOMAIN,
      [$this, 'pageDashboard'],
      'dashicons-welcome-learn-more',
-     25
+     2
    );
 
    \add_submenu_page(

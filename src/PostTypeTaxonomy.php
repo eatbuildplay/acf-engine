@@ -6,14 +6,18 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-class PostTypePostType extends PostType {
+class PostTypeTaxonomy extends PostType {
 
-	public function key() {
-		return 'post_type';
+  public function key() {
+		return 'taxonomy';
 	}
 
 	public function nameSingular() {
-		return 'Post Type';
+		return 'Taxonomy';
+	}
+
+	public function namePlural() {
+		return 'Taxonomies';
 	}
 
 	public function showInMenu() {

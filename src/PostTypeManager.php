@@ -11,9 +11,7 @@ class PostTypeManager {
   public function setup() {
 
     add_action('save_post', [$this, 'savePost'], 10, 3);
-
     add_action('init', [$this, 'registerPostTypes']);
-
 
   }
 
@@ -44,11 +42,14 @@ class PostTypeManager {
 
   public function registerPostTypes() {
 
-    // register our default post type
-    $postType = new PostTypePostType();
-    $postType->register();
+    // register our default post types
+    $pt = new PostTypePostType();
+    $pt->init();
 
-    // get all the data files stored
+		$pt = new PostTypeTaxonomy();
+    $pt->init();
+
+    // get all the data files stored and register post types
     $ptDataFiles = $this->findPostTypeDataFiles();
 
     if( !empty( $ptDataFiles )) {

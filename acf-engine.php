@@ -18,6 +18,9 @@ use AcfEngine\Core\AdminMenu;
 use AcfEngine\Core\PostTypePostType;
 use AcfEngine\Core\PostTypeCustom;
 use AcfEngine\Core\PostTypeManager;
+use AcfEngine\Core\TaxonomyManager;
+use AcfEngine\Core\TaxonomyCustom;
+use AcfEngine\Core\TaxonomyTaxonomy;
 
 define( 'ACF_ENGINE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ACF_ENGINE_URL', plugin_dir_url( __FILE__ ) );
@@ -40,6 +43,16 @@ class Plugin {
     // init the post type manager
     $ptm = new PostTypeManager();
     $ptm->setup();
+
+    $tm = new TaxonomyManager();
+    $tm->setup();
+
+    // test taxonomy register
+    add_action('init', function() {
+      $tx = new TaxonomyCustom();
+      $tx->setKey('freddy');
+      $tx->init();
+    });
 
   }
 

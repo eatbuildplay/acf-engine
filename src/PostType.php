@@ -37,7 +37,7 @@ abstract class PostType {
 		$this->excludeFromSearch = false;
 		$this->customPermalink = null;
 
-		register_post_type( $this->getPrefixedKey(), $this->args() );
+		return register_post_type( $this->getPrefixedKey(), $this->args() );
 
 	}
 
