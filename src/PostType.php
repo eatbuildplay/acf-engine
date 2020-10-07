@@ -9,10 +9,21 @@ if (!defined('ABSPATH')) {
 abstract class PostType {
 
 	protected $prefix = 'acfe_';
+	public 		$key;
+	public 		$nameSingular;
+	public 		$namePlural;
 
 	public function init() {
-
+		$this->parseArgs();
 		$this->register();
+	}
+
+	public function parseArgs() {
+
+		// set default plural name
+		if( !$this->namePlural ) {
+			$this->namePlural = $this->nameSingular . 's';
+		}
 
 	}
 
@@ -32,12 +43,12 @@ abstract class PostType {
 
 	public function defaultArgs() {
 		$args = [
-			'label'               => __($this->renderName(), 'acf-engine'),
+			'label'               => __($this->nameSingular(), 'acf-engine'),
 			'description'         => __($this->namePlural(), 'acf-engine'),
 			'labels'              => $this->labels(),
 			'menu_icon'           => 'dashicons-feedback',
 			'public'              => true,
-			'supports' 						=> array('title', 'editor', 'thumbnail',  'custom-fields'),
+			'supports' 						=> $this->supports(),
 			'show_ui'             => true,
 			'show_in_menu'        => $this->showInMenu(),
 			'menu_position'       => 20,
@@ -72,13 +83,13 @@ abstract class PostType {
 	public function defaultLabels() {
 
 		return [
-			'name'                  => $this->renderName(),
-			'menu_name'             => $this->renderName(),
-			'name_admin_bar'        => $this->renderName(),
-			'archives'              => $this->renderName() . __(' Archives', 'acf-engine'),
-			'attributes'            => $this->renderName() . __(' Attributes', 'acf-engine'),
-			'parent_item_colon'     => __('Parent ', 'acf-engine') . $this->renderName(),
-			'all_items'             => __('All ', 'acf-engine') . $this->renderName(),
+			'name'                  => $this->nameSingular(),
+			'menu_name'             => $this->namePlural(),
+			'name_admin_bar'        => $this->namePlural(),
+			'archives'              => $this->nameSingular() . __(' Archives', 'acf-engine'),
+			'attributes'            => $this->nameSingular() . __(' Attributes', 'acf-engine'),
+			'parent_item_colon'     => __('Parent ', 'acf-engine') . $this->nameSingular(),
+			'all_items'             => __('All ', 'acf-engine') . $this->namePlural(),
 			'add_new_item'          => __('Add New item', 'acf-engine'),
 			'add_new'               => __('Add New', 'acf-engine'),
 			'new_item'              => __('New item', 'acf-engine'),
@@ -130,21 +141,40 @@ abstract class PostType {
 		return false;
 	}
 
+	public function setNamePlural( $namePlural ) {
+		$this->namePlural = $namePlural;
+	}
+
 	public function namePlural() {
-		return $this->renderName() . 's';
+		return $this->namePlural;
 	}
 
 	public function args() {
 		return $this->defaultArgs();
 	}
 
+	public function setNameSingular( $value ) {
+		$this->nameSingular = $value;
+	}
 
-	public function renderName() {
-		return $this->name();
+	public function nameSingular() {
+		return $this->nameSingular;
 	}
 
 	public function showInMenu() {
 		return true;
+	}
+
+	public function supports() {
+		return ['title'];
+	}
+
+	public function setKey( $value ) {
+		$this->key = $value;
+	}
+
+	public function key() {
+		return $this->key;
 	}
 
 }

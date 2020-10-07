@@ -20,4 +20,8 @@ class PostTypePostType extends PostType {
 		return false;
 	}
 
+	public function supports() {
+		return [''];
+	}
+
 }

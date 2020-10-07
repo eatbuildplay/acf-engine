@@ -31,7 +31,10 @@ class PostTypeManager {
 		$postTypeData->key = get_field('key', $postId);
 		if( !$postTypeData->key ) {
 			return;
-		}    
+		}
+
+		$postTypeData->nameSingular = get_field('singular_name', $postId);
+		$postTypeData->namePlural = get_field('plural_name', $postId);
 
     $postTypeJson = json_encode( $postTypeData );
 
@@ -56,8 +59,13 @@ class PostTypeManager {
         $ptData = json_decode( $ptJson );
 
         $postType = new PostTypeCustom();
-        $postType->key = $ptData->key;
-        $postType->name = $ptData->key;
+        $postType->setKey( $ptData->key );
+        $postType->setNameSingular( $ptData->nameSingular );
+
+				if( $ptData->namePlural ) {
+					$postType->setNamePlural( $ptData->namePlural );
+				}
+
         $postType->register();
 
 

@@ -53,8 +53,7 @@ class AdminMenu {
      'Taxonomies',
      'Taxonomies',
      'edit_posts',
-     ACF_ENGINE_TEXT_DOMAIN . '-taxonomies',
-     [$this, 'pageTaxonomies']
+     'edit.php?post_type=acfe_taxonomy',
    );
 
    \add_submenu_page(
