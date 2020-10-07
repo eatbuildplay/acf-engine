@@ -58,11 +58,10 @@ class AdminMenu {
 
    \add_submenu_page(
      ACF_ENGINE_TEXT_DOMAIN,
-     'Settings Pages',
-     'Settings Pages',
+     'Options Pages',
+     'Options Pages',
      'edit_posts',
-     ACF_ENGINE_TEXT_DOMAIN . '-settings-pages',
-     [$this, 'pageSettingsPages']
+     'edit.php?post_type=acfe_options_page',
    );
 
   }

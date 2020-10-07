@@ -49,6 +49,9 @@ class PostTypeManager {
 		$pt = new PostTypeTaxonomy();
     $pt->init();
 
+		$pt = new PostTypeOptionsPage();
+    $pt->init();
+
     // get all the data files stored and register post types
     $ptDataFiles = $this->findPostTypeDataFiles();
 

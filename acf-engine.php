@@ -21,6 +21,7 @@ use AcfEngine\Core\PostTypeManager;
 use AcfEngine\Core\TaxonomyManager;
 use AcfEngine\Core\TaxonomyCustom;
 use AcfEngine\Core\TaxonomyTaxonomy;
+use AcfEngine\Core\OptionsPageManager;
 
 define( 'ACF_ENGINE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ACF_ENGINE_URL', plugin_dir_url( __FILE__ ) );
@@ -44,15 +45,13 @@ class Plugin {
     $ptm = new PostTypeManager();
     $ptm->setup();
 
+    // init taxonomy manager
     $tm = new TaxonomyManager();
     $tm->setup();
 
-    // test taxonomy register
-    add_action('init', function() {
-      $tx = new TaxonomyCustom();
-      $tx->setKey('freddy');
-      $tx->init();
-    });
+    // init options page manager
+    $opm = new OptionsPageManager();
+    $opm->setup();
 
   }
 
