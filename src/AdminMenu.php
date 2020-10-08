@@ -64,6 +64,14 @@ class AdminMenu {
      'edit.php?post_type=acfe_options_page',
    );
 
+   \add_submenu_page(
+     ACF_ENGINE_TEXT_DOMAIN,
+     'Components',
+     'Components',
+     'edit_posts',
+     'edit.php?post_type=acfe_component',
+   );
+
   }
 
   public function pageDashboard() {

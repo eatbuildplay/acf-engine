@@ -22,6 +22,7 @@ use AcfEngine\Core\TaxonomyManager;
 use AcfEngine\Core\TaxonomyCustom;
 use AcfEngine\Core\TaxonomyTaxonomy;
 use AcfEngine\Core\OptionsPageManager;
+use AcfEngine\Core\ComponentManager;
 
 define( 'ACF_ENGINE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ACF_ENGINE_URL', plugin_dir_url( __FILE__ ) );
@@ -53,12 +54,13 @@ class Plugin {
     $opm = new OptionsPageManager();
     $opm->setup();
 
+    // init component manager
+    $opm = new ComponentManager();
+    $opm->setup();
+
   }
 
-
-
   public function autoloader( $className ) {
-
 
     if ( 0 !== strpos( $className, 'AcfEngine\Core' ) ) {
       return;
