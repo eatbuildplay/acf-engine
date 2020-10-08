@@ -25,7 +25,7 @@ class PostTypeTemplate extends PostType {
 	}
 
 	public function supports() {
-		return [''];
+		return ['editor'];
 	}
 
 }
