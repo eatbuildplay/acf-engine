@@ -24,6 +24,7 @@ use AcfEngine\Core\TaxonomyTaxonomy;
 use AcfEngine\Core\OptionsPageManager;
 use AcfEngine\Core\ComponentManager;
 use AcfEngine\Core\BlockTypeManager;
+use AcfEngine\Core\TemplateManager;
 
 define( 'ACF_ENGINE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ACF_ENGINE_URL', plugin_dir_url( __FILE__ ) );
@@ -36,6 +37,9 @@ class Plugin {
 
     // embed acf
     require_once( ACF_ENGINE_PATH . 'vendor/acf/advanced-custom-fields-pro/acf.php' );
+
+    // embed acf code field
+    require_once( ACF_ENGINE_PATH . 'vendor/acf-code-field/acf-code-field.php' );
 
     // setup autoloader
     spl_autoload_register( [$this, 'autoloader'] );
@@ -61,6 +65,10 @@ class Plugin {
 
     // init block type manager
     $opm = new BlockTypeManager();
+    $opm->setup();
+
+    // init template manager
+    $opm = new TemplateManager();
     $opm->setup();
 
   }

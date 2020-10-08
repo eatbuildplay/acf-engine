@@ -66,18 +66,26 @@ class AdminMenu {
 
    \add_submenu_page(
      ACF_ENGINE_TEXT_DOMAIN,
-     'Components',
-     'Components',
-     'edit_posts',
-     'edit.php?post_type=acfe_component',
-   );
-
-   \add_submenu_page(
-     ACF_ENGINE_TEXT_DOMAIN,
      'Block Types',
      'Block Types',
      'edit_posts',
      'edit.php?post_type=acfe_block_type',
+   );
+
+   \add_submenu_page(
+     ACF_ENGINE_TEXT_DOMAIN,
+     'Templates',
+     'Templates',
+     'edit_posts',
+     'edit.php?post_type=acfe_template',
+   );
+
+   \add_submenu_page(
+     ACF_ENGINE_TEXT_DOMAIN,
+     'Components',
+     'Components',
+     'edit_posts',
+     'edit.php?post_type=acfe_component',
    );
 
   }

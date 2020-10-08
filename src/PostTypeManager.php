@@ -15,8 +15,6 @@ class PostTypeManager {
 
   }
 
-
-
   public function savePost( $postId, $post, $update ) {
 
     // only target our post type registrations
@@ -58,6 +56,9 @@ class PostTypeManager {
 		$pt = new PostTypeBlockType();
     $pt->init();
 
+		$pt = new PostTypeTemplate();
+    $pt->init();
+
     // get all the data files stored and register post types
     $ptDataFiles = $this->findPostTypeDataFiles();
 
@@ -78,11 +79,8 @@ class PostTypeManager {
 
         $postType->register();
 
-
       }
-
     }
-
   }
 
   protected function findPostTypeDataFiles() {

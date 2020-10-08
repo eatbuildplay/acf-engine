@@ -52,8 +52,7 @@ class TaxonomyManager {
 
         $tc = new TaxonomyCustom();
         $tc->setKey( $data->key );
-
-        $postType->register();
+        $tc->register();
 
 
       }
