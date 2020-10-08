@@ -25,14 +25,17 @@ class OptionsPageManager {
 
 		$data = new \stdClass();
 
-		$data->key = get_field('key', $postId);
-		if( !$data->key ) {
+		$data->slug = get_field('slug', $postId);
+		if( !$data->slug ) {
 			return;
 		}
 
+		$data->pageTitle = get_field('page_title', $postId);
+		$data->menuTitle = get_field('menu_title', $postId);
+
     $json = json_encode( $data );
 
-    \file_put_contents( ACF_ENGINE_PATH . 'data/options-pages/' . $data->key . '.json', $json );
+    \file_put_contents( ACF_ENGINE_PATH . 'data/options-pages/' . $data->slug . '.json', $json );
 
   }
 
@@ -48,11 +51,13 @@ class OptionsPageManager {
         $json = file_get_contents( ACF_ENGINE_PATH . 'data/options-pages/' . $filename );
         $data = json_decode( $json );
 
-        $tc = new OptionsPageCustom();
-        $tc->setKey( $data->key );
-
-        $postType->register();
-
+        $op = new OptionsPageCustom();
+        $op->setSlug( $data->slug );
+				$op->setPageTitle( $data->pageTitle );
+				if( $data->menuTitle ) {
+					$op->setMenuTitle( $data->menuTitle );
+				}
+        $op->init();
 
       }
 
