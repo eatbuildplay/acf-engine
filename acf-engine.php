@@ -23,6 +23,7 @@ use AcfEngine\Core\TaxonomyCustom;
 use AcfEngine\Core\TaxonomyTaxonomy;
 use AcfEngine\Core\OptionsPageManager;
 use AcfEngine\Core\ComponentManager;
+use AcfEngine\Core\BlockTypeManager;
 
 define( 'ACF_ENGINE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ACF_ENGINE_URL', plugin_dir_url( __FILE__ ) );
@@ -56,6 +57,10 @@ class Plugin {
 
     // init component manager
     $opm = new ComponentManager();
+    $opm->setup();
+
+    // init block type manager
+    $opm = new BlockTypeManager();
     $opm->setup();
 
   }

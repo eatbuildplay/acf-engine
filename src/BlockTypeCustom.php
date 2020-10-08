@@ -6,7 +6,6 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-class PostTypeCustom extends PostType {
-
+class BlockTypeCustom extends BlockType {
 
 }

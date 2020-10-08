@@ -72,6 +72,14 @@ class AdminMenu {
      'edit.php?post_type=acfe_component',
    );
 
+   \add_submenu_page(
+     ACF_ENGINE_TEXT_DOMAIN,
+     'Block Types',
+     'Block Types',
+     'edit_posts',
+     'edit.php?post_type=acfe_block_type',
+   );
+
   }
 
   public function pageDashboard() {
