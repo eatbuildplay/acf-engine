@@ -19,7 +19,7 @@ class OptionsPageManager {
   public function savePost( $postId, $post, $update ) {
 
     // only target our post type registrations
-    if( $post->post_type !== 'acfe_taxonomy' ) {
+    if( $post->post_type !== 'acfe_options_page' ) {
       return;
     }
 
@@ -30,8 +30,6 @@ class OptionsPageManager {
 			return;
 		}
 
-		$data->nameSingular = get_field('singular_name', $postId);
-		$data->namePlural = get_field('plural_name', $postId);
     $json = json_encode( $data );
 
     \file_put_contents( ACF_ENGINE_PATH . 'data/options-pages/' . $data->key . '.json', $json );
