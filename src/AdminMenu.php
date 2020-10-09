@@ -18,6 +18,30 @@ class AdminMenu {
 
     add_action('admin_menu', [$this, 'menu']);
 
+    /* highlight ACF Engine main menu */
+    add_filter('parent_file', [$this, 'setParentMenu'], 10, 2 );
+
+  }
+
+  public function setParentMenu( $parent_file ) {
+
+    global $submenu_file, $current_screen;
+
+    $cpts = [
+      'acfe_post_type',
+      'acfe_taxonomy',
+      'acfe_options_page',
+      'acfe_block_type',
+      'acfe_template',
+      'acfe_component'
+    ];
+
+    if( in_array($current_screen->post_type, $cpts)) {
+      $parent_file = 'acf-engine';
+    }
+
+    return $parent_file;
+
   }
 
   public function menu() {

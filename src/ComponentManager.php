@@ -24,23 +24,13 @@ class ComponentManager {
     }
 
 		$data = new \stdClass();
-
-
-
 		$data->key = get_field('key', $postId);
-
-    var_dump($data->key);
 
 		if( !$data->key ) {
 			return;
 		}
 
-
-
     $json = json_encode( $data );
-
-    var_dump( $json );
-
     \file_put_contents( ACF_ENGINE_PATH . 'data/components/' . $data->key . '.json', $json );
 
   }
