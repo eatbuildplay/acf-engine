@@ -16,6 +16,9 @@ class TemplateManager {
 		/* handle single template load */
 		add_filter( 'single_template', [$this, 'singleTemplateLoader']);
 
+		/* handle archive template load */
+		add_filter( 'archive_template', [$this, 'archiveTemplateLoader']);
+
   }
 
 
@@ -96,14 +99,26 @@ class TemplateManager {
 	 */
 	public function singleTemplateLoader( $template ) {
 
-		if(1==1) { // add proper condition handling here 
+		if(1==1) { // add proper condition handling here
 	    $template = ACF_ENGINE_PATH . '/templates/singles/base.php';
 	  }
 	  return $template;
 
 	}
 
+	/*
+	 * Archive Template Loader Method
+	 * Callback for filter "archive_template"
+	 * https://developer.wordpress.org/reference/hooks/type_template/
+	 */
+	public function archiveTemplateLoader( $template ) {
 
+		if(1==1) { // add proper condition handling here 
+			$template = ACF_ENGINE_PATH . '/templates/archives/base.php';
+		}
+		return $template;
+
+	}
 
 
 }
