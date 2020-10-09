@@ -65,7 +65,6 @@ class TaxonomyManager {
 				$tc->setObjectType( $data->objectTypes );
         $tc->register();
 
-
       }
 
     }

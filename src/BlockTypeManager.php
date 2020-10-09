@@ -33,12 +33,27 @@ class BlockTypeManager {
 		$data->title = get_field('title', $postId);
 		$data->description = get_field('title', $postId);
 
+		/* update post title */
+		remove_action( 'save_post', [$this, 'savePost'] );
+		wp_update_post(
+			[
+				'ID' => $postId,
+				'post_title' => $data->title
+			]
+		);
+
     $json = json_encode( $data );
     \file_put_contents( ACF_ENGINE_PATH . 'data/block-types/' . $data->key . '.json', $json );
 
   }
 
   public function registerBlockTypes() {
+
+		/*
+		 * Register our internal default block types
+		 */
+		$bt = new BlockTypeAcfField();
+		$bt->init();
 
     // get all the data files stored
     $dataFiles = $this->findBlockTypeDataFiles();

@@ -10,6 +10,8 @@ abstract class BlockType {
 
   protected $prefix = 'acfe_';
   public 		$key;
+	public 		$renderTemplate;
+	public 		$renderCallback;
 
   public function init() {
 		$this->parseArgs();
@@ -24,17 +26,43 @@ abstract class BlockType {
    */
   public function register() {
 
-    acf_register_block_type(array(
-      'name'              => $this->getPrefixedKey(),
-      'title'             => $this->title(),
-      'description'       => $this->description(),
-      'render_callback'   => [$this, 'callback'],
-      'category'          => 'formatting',
-    ));
+		$args = [
+			'name'              => $this->getPrefixedKey(),
+			'title'             => $this->title(),
+			'description'       => $this->description(),
+			'category'          => 'formatting',
+			'mode'							=> 'auto'
+		];
+
+		if( $this->renderTemplate() ) {
+			$args['render_template'] = $this->renderTemplate();
+		} elseif( $this->renderCallback() ) {
+			$args['render_callback'] = $this->renderCallback();
+		} else {
+			$args['render_callback'] = [$this, 'defaultCallback'];
+		}
+
+    acf_register_block_type( $args );
 
 	}
 
-	public function callback() {
+	public function setRenderTemplate( $v ) {
+		$this->renderTemplate = $v;
+	}
+
+	public function renderCallback() {
+		return $this->renderCallback;
+	}
+
+	public function setRenderCallback( $v ) {
+		$this->renderCallback = $v;
+	}
+
+	public function renderTemplate() {
+		return $this->renderTemplate;
+	}
+
+	public function defaultCallback() {
 		print 'AWESOMEEEE FDFDSFDS097219803 728037 2139';
 	}
 
