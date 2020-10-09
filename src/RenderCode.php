@@ -10,6 +10,7 @@ abstract class RenderCode {
 
   protected $prefix = 'acfe_';
   public 		$key;
+	public 		$title;
 
   public function init() {
 		$this->parseArgs();
