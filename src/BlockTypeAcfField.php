@@ -29,7 +29,14 @@ class BlockTypeAcfField extends BlockType {
     $data = $block['data'];
     $fieldKey = get_field('meta_key');
     $fieldPostId = get_field('post_id');
-    $fieldValue = get_field( $fieldKey, $fieldPostId );
+
+		if( $fieldPostId == 'current' ) {
+			print "USING CURRENT";
+			$fieldValue = get_field( $fieldKey );
+			var_dump( $fieldValue );
+		} else {
+			$fieldValue = get_field( $fieldKey, $fieldPostId );
+		}
 
     print '<h2>';
     print $fieldValue;
