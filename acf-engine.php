@@ -44,6 +44,10 @@ class Plugin {
     // setup autoloader
     spl_autoload_register( [$this, 'autoloader'] );
 
+    // setup local acf json save
+    add_filter('acf/settings/save_json', [$this, 'acfSaveLocal'], 99);
+    add_filter('acf/settings/load_json', [$this, 'acfLoadLocal'], 99);
+
     // init admin menu
     new AdminMenu();
 
@@ -71,6 +75,15 @@ class Plugin {
     $opm = new TemplateManager();
     $opm->setup();
 
+  }
+
+  public function acfSaveLocal( $path ) {
+    return ACF_ENGINE_PATH . 'data/fields';
+  }
+
+  public function acfLoadLocal( $paths ) {
+    $paths[] = ACF_ENGINE_PATH . 'data/fields/';
+    return $paths;
   }
 
   public function autoloader( $className ) {
