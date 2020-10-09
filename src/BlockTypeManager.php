@@ -52,13 +52,17 @@ class BlockTypeManager {
 		/*
 		 * Register our internal default block types
 		 */
+
+		$bt = new BlockTypeAcfTemplate();
+ 		$bt->init();
+
 		$bt = new BlockTypeAcfField();
 		$bt->init();
 
 		$bt = new BlockTypeAcfFieldNumber();
 		$bt->init();
 
-		$bt = new BlockTypeAcfTemplate();
+		$bt = new BlockTypeAcfFieldImage();
 		$bt->init();
 
     // get all the data files stored

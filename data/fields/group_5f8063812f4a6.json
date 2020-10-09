@@ -1,11 +1,11 @@
 {
-    "key": "group_5f80598ec7765",
-    "title": "ACF Engine > Block Types > ACF Template",
+    "key": "group_5f8063812f4a6",
+    "title": "ACF Engine > Block Types > ACF Field Image",
     "fields": [
         {
-            "key": "field_5f8059ac54e83",
-            "label": "Template ID",
-            "name": "template_id",
+            "key": "field_5f80638135aa2",
+            "label": "Post ID",
+            "name": "post_id",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -15,16 +15,16 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "current",
             "placeholder": "",
             "prepend": "",
             "append": "",
             "maxlength": ""
         },
         {
-            "key": "field_5f8059bf54e84",
-            "label": "Template Key",
-            "name": "template_key",
+            "key": "field_5f8063813985e",
+            "label": "Field Name",
+            "name": "meta_key",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -46,7 +46,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/acfe-acf-template"
+                "value": "acf\/acfe-acf-field-image"
             }
         ]
     ],
@@ -58,5 +58,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1602249572
+    "modified": 1602249664
 }
