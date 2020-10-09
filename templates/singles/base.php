@@ -1,6 +1,5 @@
 <?php get_header(); ?>
 
-
 <?php
 
 $template = get_post( 291 );
@@ -24,8 +23,5 @@ foreach ( $blocks as $block ) {
 print $output;
 
 ?>
-
-
-
 
 <?php get_footer(); ?>

@@ -102,16 +102,16 @@ class TemplateManager {
 		global $post;
 
 		$singleTemplates = $this->findSingleTemplates( $post->post_type );
-		if( empty( $singleTemplate )) {
+		if( empty( $singleTemplates )) {
 			return $template; // no single templates available
 		}
 
-		// use last template available from list
-		$lastTemplate = end( $singleTemplates );
-	  return $lastTemplate;
+		// use base single template
+	  return ACF_ENGINE_PATH . 'templates/singles/base.php';
 
 	}
 
+	// return template keys matching post_type
 	public function findSingleTemplates( $postType ) {
 
 		$templatePosts = get_posts([
@@ -129,7 +129,11 @@ class TemplateManager {
 			return []; // no single templates found
 		}
 
-		var_dump( $templatePosts ); die();
+		$templates = [];
+		foreach( $templatePosts as $templatePost ) {
+			$templates[] = get_field('key', $templatePost->ID);
+		}
+		return $templates;
 
 	}
 
