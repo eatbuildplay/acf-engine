@@ -30,10 +30,20 @@ class TaxonomyManager {
 			return;
 		}
 
-		$data->nameSingular = get_field('singular_name', $postId);
+		$data->nameSingular = get_field('title', $postId);
 		$data->namePlural = get_field('plural_name', $postId);
-    $json = json_encode( $data );
+		$data->objectTypes = get_field('object_types', $postId);
 
+		/* update post title */
+		remove_action( 'save_post', [$this, 'savePost'] );
+		wp_update_post(
+			[
+				'ID' => $postId,
+				'post_title' => $data->nameSingular
+			]
+		);
+
+    $json = json_encode( $data );
     \file_put_contents( ACF_ENGINE_PATH . 'data/taxonomies/' . $data->key . '.json', $json );
 
   }
@@ -52,6 +62,7 @@ class TaxonomyManager {
 
         $tc = new TaxonomyCustom();
         $tc->setKey( $data->key );
+				$tc->setObjectType( $data->objectTypes );
         $tc->register();
 
 

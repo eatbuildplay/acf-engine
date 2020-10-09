@@ -32,6 +32,15 @@ class PostTypeManager {
 		$postTypeData->nameSingular = get_field('singular_name', $postId);
 		$postTypeData->namePlural = get_field('plural_name', $postId);
 
+		/* update post title */
+		remove_action( 'save_post', [$this, 'savePost'] );
+		wp_update_post(
+			[
+				'ID' => $postId,
+				'post_title' => $postTypeData->nameSingular
+			]
+		);
+
     $postTypeJson = json_encode( $postTypeData );
 
     \file_put_contents( ACF_ENGINE_PATH . 'data/post-types/' . $postTypeData->key . '.json', $postTypeJson );
