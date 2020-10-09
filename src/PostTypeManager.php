@@ -68,6 +68,9 @@ class PostTypeManager {
 		$pt = new PostTypeTemplate();
     $pt->init();
 
+		$pt = new PostTypeRenderCode();
+    $pt->init();
+
     // get all the data files stored and register post types
     $ptDataFiles = $this->findPostTypeDataFiles();
 

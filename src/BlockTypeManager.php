@@ -55,6 +55,9 @@ class BlockTypeManager {
 		$bt = new BlockTypeAcfField();
 		$bt->init();
 
+		$bt = new BlockTypeAcfFieldNumber();
+		$bt->init();
+
     // get all the data files stored
     $dataFiles = $this->findBlockTypeDataFiles();
 

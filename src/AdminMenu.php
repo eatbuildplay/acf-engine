@@ -33,7 +33,8 @@ class AdminMenu {
       'acfe_options_page',
       'acfe_block_type',
       'acfe_template',
-      'acfe_component'
+      'acfe_component',
+      'acfe_render_code'
     ];
 
     if( in_array($current_screen->post_type, $cpts)) {
@@ -102,6 +103,14 @@ class AdminMenu {
      'Templates',
      'edit_posts',
      'edit.php?post_type=acfe_template',
+   );
+
+   \add_submenu_page(
+     ACF_ENGINE_TEXT_DOMAIN,
+     'Render Code',
+     'Render Code',
+     'edit_posts',
+     'edit.php?post_type=acfe_render_code',
    );
 
    \add_submenu_page(
