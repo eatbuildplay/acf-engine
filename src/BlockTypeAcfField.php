@@ -31,9 +31,7 @@ class BlockTypeAcfField extends BlockType {
     $fieldPostId = get_field('post_id');
 
 		if( $fieldPostId == 'current' ) {
-			print "USING CURRENT";
-			$fieldValue = get_field( $fieldKey );
-			var_dump( $fieldValue );
+			$fieldValue = get_field( $fieldKey, $editorPostId );
 		} else {
 			$fieldValue = get_field( $fieldKey, $fieldPostId );
 		}

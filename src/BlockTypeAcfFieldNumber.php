@@ -31,7 +31,12 @@ class BlockTypeAcfFieldNumber extends BlockType {
     $fieldPostId = get_field('post_id');
     $numberPrepend = get_field('number_prepend');
     $numberAppend = get_field('number_append');
-    $fieldValue = get_field( $fieldKey, $fieldPostId );
+
+		if( $fieldPostId == 'current' ) {
+			$fieldValue = get_field( $fieldKey, $editorPostId );
+		} else {
+			$fieldValue = get_field( $fieldKey, $fieldPostId );
+		}
 
     print '<h2>';
     print $numberPrepend . $fieldValue . $numberAppend;

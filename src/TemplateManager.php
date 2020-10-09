@@ -13,6 +13,9 @@ class TemplateManager {
     add_action('save_post', [$this, 'savePost'], 10, 3);
     add_action('init', [$this, 'registerTaxonomies']);
 
+		/* handle single template load */
+		add_filter( 'single_template', [$this, 'singleTemplateLoader']);
+
   }
 
 
@@ -24,11 +27,24 @@ class TemplateManager {
     }
 
 		$data = new \stdClass();
+		$data->id = $postId;
 
 		$data->key = get_field('key', $postId);
 		if( !$data->key ) {
 			return;
 		}
+
+		$data->title = get_field('title', $postId);
+		$data->type = get_field('type', $postId);
+
+		/* update post title */
+		remove_action( 'save_post', [$this, 'savePost'] );
+		wp_update_post(
+			[
+				'ID' => $postId,
+				'post_title' => $data->title
+			]
+		);
 
     $json = json_encode( $data );
 
@@ -72,6 +88,20 @@ class TemplateManager {
     return $files;
 
   }
+
+	/*
+	 * Single Template Loader Method
+	 * Callback for filter "single_template"
+	 * https://developer.wordpress.org/reference/hooks/type_template/
+	 */
+	public function singleTemplateLoader( $template ) {
+
+		if(1==1) { // add proper condition handling here 
+	    $template = ACF_ENGINE_PATH . '/templates/singles/base.php';
+	  }
+	  return $template;
+
+	}
 
 
 
