@@ -63,10 +63,10 @@
             "maxlength": ""
         },
         {
-            "key": "field_5f7ffaf2f1067",
-            "label": "Test 32432",
-            "name": "test_32432",
-            "type": "text",
+            "key": "field_5f81c3c592fe0",
+            "label": "Render Code",
+            "name": "render_code",
+            "type": "acf_code_field",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -77,9 +77,8 @@
             },
             "default_value": "",
             "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "mode": "htmlmixed",
+            "theme": "monokai"
         }
     ],
     "location": [
@@ -99,5 +98,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1602222840
+    "modified": 1602339798
 }

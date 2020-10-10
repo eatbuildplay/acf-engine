@@ -91,6 +91,14 @@ class AdminMenu {
 
    \add_submenu_page(
      ACF_ENGINE_TEXT_DOMAIN,
+     'Field Groups',
+     'Field Groups',
+     'edit_posts',
+     'edit.php?post_type=acf-field-group',
+   );
+
+   \add_submenu_page(
+     ACF_ENGINE_TEXT_DOMAIN,
      'Block Types',
      'Block Types',
      'edit_posts',

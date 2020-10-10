@@ -30,6 +30,7 @@ class BlockTypeManager {
 			return;
 		}
 
+		$data->id = $postId;
 		$data->title = get_field('title', $postId);
 		$data->description = get_field('title', $postId);
 

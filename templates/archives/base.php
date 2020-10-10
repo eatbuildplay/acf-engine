@@ -25,19 +25,41 @@ function acf_engine_get_archive_loop_content( $postId, $templateId ) {
 
 }
 
+print '<div class="acfg-grid acfg-grid-boxed">';
+
 $archiveTemplates = $GLOBALS['acfg_archive_templates'];
 $archiveTemplate = end( $archiveTemplates ); // take last one for now
 $archiveTemplateId = $archiveTemplate['id'];
 
 while ( have_posts() ) {
 
+  print '<div class="acfg-grid-item">';
+
   the_post();
   $postType = get_post_type();
   $postID = get_the_ID();
   acf_engine_get_archive_loop_content( $postID, $archiveTemplateId );
 
+  print '</div>';
+
 }
 
+print '</div>';
+
 ?>
+
+<style>
+.acfg-grid-boxed {
+  max-width: 960px;
+  margin: 0 auto;
+}
+.acfg-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+.acfg-grid-item {
+  max-width: 50%;
+}
+</style>
 
 <?php get_footer(); ?>

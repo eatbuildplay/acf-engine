@@ -88,6 +88,33 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
+        },
+        {
+            "key": "field_5f81ab4c915c4",
+            "label": "Wrap Tag",
+            "name": "wrap_tag",
+            "type": "button_group",
+            "instructions": "Choose the HTML tag to wrap the ACF field value, or choose raw to render only the value.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "h1": "h1",
+                "h2": "h2",
+                "h3": "h3",
+                "h4": "h4",
+                "h5": "h5",
+                "div": "div",
+                "span": "span"
+            },
+            "allow_null": 0,
+            "default_value": "div",
+            "layout": "horizontal",
+            "return_format": "value"
         }
     ],
     "location": [
@@ -107,5 +134,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1602249592
+    "modified": 1602333825
 }

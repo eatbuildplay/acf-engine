@@ -31,7 +31,12 @@ abstract class BlockType {
 			'title'             => $this->title(),
 			'description'       => $this->description(),
 			'category'          => 'formatting',
-			'mode'							=> 'auto'
+			'mode'							=> 'preview',
+			'supports'					=> [
+				'align' => true,
+        'mode' 	=> true,
+        'jsx' 	=> true
+			]
 		];
 
 		if( $this->renderTemplate() ) {
@@ -62,8 +67,17 @@ abstract class BlockType {
 		return $this->renderTemplate;
 	}
 
-	public function defaultCallback() {
-		print 'AWESOMEEEE FDFDSFDS097219803 728037 2139';
+	public function defaultCallback( $block, $content = '', $isPreview, $editorPostId ) {
+
+		$filename = str_replace('acf/acfe-', '', $block['name']) . '.json';
+		$filename = str_replace('-', '_', $filename);
+
+		$json = file_get_contents( ACF_ENGINE_PATH . 'data/block-types/' . $filename );
+		$data = json_decode( $json );
+
+		$code = get_field( 'render_code', $data->id );
+		print $code;
+
 	}
 
   public function parseArgs() {

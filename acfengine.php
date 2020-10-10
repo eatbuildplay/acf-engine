@@ -79,6 +79,9 @@ class Plugin {
     $rcm = new RenderCodeManager();
     $rcm->setup();
 
+    /* enqueue scripts */
+    add_action('wp_enqueue_scripts', [$this, 'scripts']);
+
   }
 
   public function acfSaveLocal( $path ) {
@@ -99,6 +102,25 @@ class Plugin {
     // strip the namespace leaving only the final class name
     $className = str_replace('AcfEngine\Core\\', '', $className);
     require( ACF_ENGINE_PATH . 'src/' . $className . '.php' );
+
+  }
+
+  public function scripts() {
+
+    wp_enqueue_script(
+      'acfg-js',
+      ACF_ENGINE_URL . 'scripts/js/acfg.js',
+      array( 'jquery' ),
+      '1.0.0',
+      true
+    );
+
+    wp_enqueue_style(
+      'acfg-css',
+      ACF_ENGINE_URL . 'scripts/css/acfg.css',
+      array(),
+      true
+    );
 
   }
 

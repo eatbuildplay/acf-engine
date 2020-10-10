@@ -1,0 +1,9 @@
+.acfg-grid-item h2 {
+  color: #AAA;
+  font-size: 1.7em;
+}
+
+.acfg-grid-item {
+  box-sizing: border-box;
+  padding: 40px;
+}
