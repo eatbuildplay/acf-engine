@@ -121,6 +121,10 @@ class TemplateManager {
 			'numberposts' => -1,
 			'meta_query' => [
 				[
+					'key' 	=> 'type',
+					'value' => 'single_post'
+				],
+				[
 					'key' => 'post_type',
 					'value' => $postType
 				]
@@ -134,7 +138,7 @@ class TemplateManager {
 		$templates = [];
 		foreach( $templatePosts as $templatePost ) {
 			$templates[] = [
-				'id' => $templatePost->ID,
+				'id' 	=> $templatePost->ID,
 				'key' => get_field('key', $templatePost->ID)
 			];
 		}
@@ -170,7 +174,7 @@ class TemplateManager {
 			'meta_query' => [
 				[
 					'key' 	=> 'type',
-					'value' => 'archive'
+					'value' => 'archive_page'
 				],
 				[
 					'key' 	=> 'post_type',
