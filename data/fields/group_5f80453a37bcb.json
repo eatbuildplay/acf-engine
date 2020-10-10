@@ -3,6 +3,25 @@
     "title": "Post Type > Property",
     "fields": [
         {
+            "key": "field_5f817e99bdb75",
+            "label": "Address",
+            "name": "address",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_5f80456771df9",
             "label": "Price",
             "name": "price",
@@ -65,5 +84,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1602249728
+    "modified": 1602322084
 }

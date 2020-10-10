@@ -2,7 +2,11 @@
 
 <?php
 
-$template = get_post( 291 );
+$singleTemplates = $GLOBALS['acfg_template_singles'];
+$singleTemplate = $singleTemplates[0]; // use first template for now
+
+$templateId = $singleTemplate['id'];
+$template = get_post( $templateId );
 $content = $template->post_content;
 
 

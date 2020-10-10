@@ -106,6 +106,8 @@ class TemplateManager {
 			return $template; // no single templates available
 		}
 
+		$GLOBALS['acfg_template_singles'] = $singleTemplates;
+
 		// use base single template
 	  return ACF_ENGINE_PATH . 'templates/singles/base.php';
 
@@ -131,7 +133,10 @@ class TemplateManager {
 
 		$templates = [];
 		foreach( $templatePosts as $templatePost ) {
-			$templates[] = get_field('key', $templatePost->ID);
+			$templates[] = [
+				'id' => $templatePost->ID,
+				'key' => get_field('key', $templatePost->ID)
+			];
 		}
 		return $templates;
 
