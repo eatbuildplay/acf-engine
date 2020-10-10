@@ -149,12 +149,49 @@ class TemplateManager {
 	 */
 	public function archiveTemplateLoader( $template ) {
 
-		if(1==1) { // add proper condition handling here
-			$template = ACF_ENGINE_PATH . '/templates/archives/base.php';
+		global $post;
+
+		$archiveTemplates = $this->findArchiveTemplates( $post->post_type );
+		if( empty( $archiveTemplates )) {
+			return $template; // no archive templates available
 		}
-		return $template;
+
+		$GLOBALS['acfg_archive_templates'] = $archiveTemplates;
+		return ACF_ENGINE_PATH . '/templates/archives/base.php';
 
 	}
 
+	// return template keys matching post_type
+	public function findArchiveTemplates( $postType ) {
+
+		$templatePosts = get_posts([
+			'post_type' => 'acfe_template',
+			'numberposts' => -1,
+			'meta_query' => [
+				[
+					'key' 	=> 'type',
+					'value' => 'archive'
+				],
+				[
+					'key' 	=> 'post_type',
+					'value' => $postType
+				]
+			]
+		]);
+
+		if( empty( $templatePosts )) {
+			return []; // no single templates found
+		}
+
+		$templates = [];
+		foreach( $templatePosts as $templatePost ) {
+			$templates[] = [
+				'id' => $templatePost->ID,
+				'key' => get_field('key', $templatePost->ID)
+			];
+		}
+		return $templates;
+
+	}
 
 }

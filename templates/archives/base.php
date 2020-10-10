@@ -2,9 +2,8 @@
 
 <?php
 
-function acf_engine_get_archive_loop_content( $postId ) {
+function acf_engine_get_archive_loop_content( $postId, $templateId ) {
 
-  $templateId = 296;
   $template = get_post( $templateId );
   $content = $template->post_content;
 
@@ -26,13 +25,16 @@ function acf_engine_get_archive_loop_content( $postId ) {
 
 }
 
+$archiveTemplates = $GLOBALS['acfg_archive_templates'];
+$archiveTemplate = end( $archiveTemplates ); // take last one for now
+$archiveTemplateId = $archiveTemplate['id'];
 
 while ( have_posts() ) {
 
   the_post();
   $postType = get_post_type();
   $postID = get_the_ID();
-  acf_engine_get_archive_loop_content( $postID );
+  acf_engine_get_archive_loop_content( $postID, $archiveTemplateId );
 
 }
 
