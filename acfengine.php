@@ -37,7 +37,7 @@ class Plugin {
   public function __construct() {
 
     // integrate freemium
-    do_action( 'afcg_freemius_loaded', [$this, 'freemius'] );
+    $this->freemius();
 
     // embed acf
     require_once( ACF_ENGINE_PATH . 'vendor/acf/advanced-custom-fields-pro/acf.php' );
@@ -138,20 +138,21 @@ class Plugin {
         require_once ACF_ENGINE_PATH . 'vendor/freemius/start.php';
 
         $afcg_freemius = fs_dynamic_init( array(
-          'id'                  => '7023',
+          'id'                  => '7042',
           'slug'                => 'acfengine',
           'premium_slug'        => 'acf-engine-premium',
           'type'                => 'plugin',
-          'public_key'          => 'pk_5cfb9a0fd6498bd16f3c5b47e3d20',
+          'public_key'          => 'pk_1cfe4c350f5a0a42d9f2b9960fce6',
           'is_premium'          => false,
           'has_addons'          => false,
-          'has_paid_plans'      => false,
+          'has_paid_plans'      => true,
           'menu' => array(
             'slug'           => 'acf-engine',
-            'account'        => false,
-            'contact'        => false,
-            'support'        => false,
+            'account'        => true,
+            'contact'        => true,
+            'support'        => true,
           ),
+          'secret_key'          => 'sk_rcg1N_(M~ga=dy*_6C<XyrqomrW~K',
         )
       );
     }
