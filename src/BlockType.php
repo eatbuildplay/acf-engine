@@ -76,6 +76,14 @@ abstract class BlockType {
 		$data = json_decode( $json );
 
 		$code = get_field( 'render_code', $data->id );
+
+		$badges = get_field('badges');
+		$badgesRender = '';
+		foreach( $badges as $badgeLine ) {
+			$badgesRender .= $badgeLine['text'];
+		}
+		$code = str_replace('{acfg-badges}', $badgesRender, $code);
+
 		print $code;
 
 	}

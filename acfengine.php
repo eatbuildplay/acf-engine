@@ -36,6 +36,9 @@ class Plugin {
 
   public function __construct() {
 
+    // integrate freemium
+    do_action( 'afcg_freemius_loaded', [$this, 'freemius'] );
+
     // embed acf
     require_once( ACF_ENGINE_PATH . 'vendor/acf/advanced-custom-fields-pro/acf.php' );
 
@@ -121,6 +124,39 @@ class Plugin {
       array(),
       true
     );
+
+  }
+
+    // Create a helper function for easy SDK access.
+    public function freemius() {
+
+      global $afcg_freemius;
+
+      if ( ! isset( $afcg_freemius ) ) {
+
+        // Include Freemius SDK.
+        require_once ACF_ENGINE_PATH . 'vendor/freemius/start.php';
+
+        $afcg_freemius = fs_dynamic_init( array(
+          'id'                  => '7023',
+          'slug'                => 'acfengine',
+          'premium_slug'        => 'acf-engine-premium',
+          'type'                => 'plugin',
+          'public_key'          => 'pk_5cfb9a0fd6498bd16f3c5b47e3d20',
+          'is_premium'          => false,
+          'has_addons'          => false,
+          'has_paid_plans'      => false,
+          'menu' => array(
+            'slug'           => 'acf-engine',
+            'account'        => false,
+            'contact'        => false,
+            'support'        => false,
+          ),
+        )
+      );
+    }
+
+    return $afcg_freemius;
 
   }
 
