@@ -22,28 +22,29 @@ class PostTypeManager {
       return;
     }
 
-		$postTypeData = new \stdClass();
+		$data = new \stdClass();
 
-		$postTypeData->key = get_field('key', $postId);
-		if( !$postTypeData->key ) {
+		$data->key = get_field('key', $postId);
+		if( !$data->key ) {
 			return;
 		}
 
-		$postTypeData->nameSingular = get_field('singular_name', $postId);
-		$postTypeData->namePlural = get_field('plural_name', $postId);
+		$data->nameSingular = get_field('singular_name', $postId);
+		$data->namePlural = get_field('plural_name', $postId);
+		$data->showInMenu = get_field('show_in_menu', $postId);
 
 		/* update post title */
 		remove_action( 'save_post', [$this, 'savePost'] );
 		wp_update_post(
 			[
 				'ID' => $postId,
-				'post_title' => $postTypeData->nameSingular
+				'post_title' => $data->nameSingular
 			]
 		);
 
-    $postTypeJson = json_encode( $postTypeData );
+    $postTypeJson = json_encode( $data );
 
-    \file_put_contents( ACF_ENGINE_PATH . 'data/post-types/' . $postTypeData->key . '.json', $postTypeJson );
+    \file_put_contents( ACF_ENGINE_PATH . 'data/post-types/' . $data->key . '.json', $postTypeJson );
 
   }
 
@@ -72,22 +73,27 @@ class PostTypeManager {
     $pt->init();
 
     // get all the data files stored and register post types
-    $ptDataFiles = $this->findPostTypeDataFiles();
+    $files = $this->findPostTypeDataFiles();
 
-    if( !empty( $ptDataFiles )) {
+    if( !empty( $files )) {
 
-      foreach( $ptDataFiles as $ptDataFilename ) {
+      foreach( $files as $filename ) {
 
-        $ptJson = file_get_contents( ACF_ENGINE_PATH . 'data/post-types/' . $ptDataFilename );
-        $ptData = json_decode( $ptJson );
+        $json = file_get_contents( ACF_ENGINE_PATH . 'data/post-types/' . $filename );
+        $data = json_decode( $json );
 
         $postType = new PostTypeCustom();
-        $postType->setKey( $ptData->key );
-        $postType->setNameSingular( $ptData->nameSingular );
+        $postType->setKey( $data->key );
+        $postType->setNameSingular( $data->nameSingular );
 
-				if( $ptData->namePlural ) {
-					$postType->setNamePlural( $ptData->namePlural );
+				if( $data->namePlural ) {
+					$postType->setNamePlural( $data->namePlural );
 				}
+
+				if( isset($data->showInMenu) && !$data->showInMenu ) {
+					$postType->setShowInMenu( false );
+				}
+
 
         $postType->register();
 

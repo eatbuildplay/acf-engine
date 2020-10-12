@@ -12,6 +12,7 @@ abstract class PostType {
 	public 		$key;
 	public 		$nameSingular;
 	public 		$namePlural;
+	public 		$showInMenu = true;
 
 	public function init() {
 		$this->parseArgs();
@@ -161,8 +162,17 @@ abstract class PostType {
 		return $this->nameSingular;
 	}
 
+	/*
+	 *
+	 * Menu settings
+	 *
+	 */
+	public function setShowInMenu( $v ) {
+		$this->showInMenu = $v;
+	}
+
 	public function showInMenu() {
-		return true;
+		return $this->showInMenu;
 	}
 
 	public function supports() {
