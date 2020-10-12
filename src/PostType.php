@@ -12,7 +12,9 @@ abstract class PostType {
 	public 		$key;
 	public 		$nameSingular;
 	public 		$namePlural;
-	public 		$showInMenu = true;
+	public 		$showInMenu 	= true;
+	public 		$menuPosition = 10;
+	public 		$supports;
 
 	public function init() {
 		$this->parseArgs();
@@ -52,7 +54,7 @@ abstract class PostType {
 			'supports' 						=> $this->supports(),
 			'show_ui'             => true,
 			'show_in_menu'        => $this->showInMenu(),
-			'menu_position'       => 20,
+			'menu_position'       => $this->menuPosition(),
 			'show_in_admin_bar'   => true,
 			'show_in_nav_menus'   => true,
 			'can_export'          => true,
@@ -175,8 +177,20 @@ abstract class PostType {
 		return $this->showInMenu;
 	}
 
+	public function setMenuPosition( $v ) {
+		$this->menuPosition = (int) $v;
+	}
+
+	public function menuPosition() {
+		return $this->menuPosition;
+	}
+
+	public function setSupports( $v ) {
+		$this->supports = $v;
+	}
+
 	public function supports() {
-		return ['title'];
+		return $this->supports;
 	}
 
 	public function setKey( $value ) {

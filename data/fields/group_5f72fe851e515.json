@@ -79,6 +79,95 @@
             "maxlength": ""
         },
         {
+            "key": "field_5f7f130eba016",
+            "label": "Show in Menu",
+            "name": "show_in_menu",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5f7f14f9ba01c",
+            "label": "Menu Position",
+            "name": "menu_position",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 10,
+            "placeholder": 10,
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": ""
+        },
+        {
+            "key": "field_5f84527d4b719",
+            "label": "Supports",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5f7f72311cb0b",
+            "label": "Supports",
+            "name": "supports",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "title": "Title",
+                "editor": "Editor",
+                "author": "Author",
+                "thumbnail": "Thumbnail",
+                "excerpt": "Excerpt",
+                "trackbacks": "Trackbacks",
+                "custom-fields": "Custom Fields",
+                "comments": "Comments",
+                "revisions": "Revisions",
+                "page-attributes": "Page Attributes",
+                "post-formats": "Post Formats"
+            },
+            "allow_custom": 0,
+            "default_value": [],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "value",
+            "save_custom": 0
+        },
+        {
             "key": "field_5f7f673f17ae7",
             "label": "Labels",
             "name": "",
@@ -662,25 +751,6 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_5f7f130eba016",
-            "label": "Show in Menu",
-            "name": "show_in_menu",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 1,
-            "ui": 1,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
             "key": "field_5f7f1214ba012",
             "label": "Hierarchical",
             "name": "hierarchical",
@@ -985,27 +1055,6 @@
             "maxlength": ""
         },
         {
-            "key": "field_5f7f14f9ba01c",
-            "label": "Menu Position",
-            "name": "menu_position",
-            "type": "number",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": 20,
-            "prepend": "",
-            "append": "",
-            "min": "",
-            "max": "",
-            "step": ""
-        },
-        {
             "key": "field_5f7f153dba01d",
             "label": "Menu Icon",
             "name": "menu_icon",
@@ -1061,39 +1110,6 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
-        },
-        {
-            "key": "field_5f7f72311cb0b",
-            "label": "Supports",
-            "name": "supports",
-            "type": "checkbox",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "title": "Title",
-                "editor": "Editor",
-                "author": "Author",
-                "thumbnail": "Thumbnail",
-                "excerpt": "Excerpt",
-                "trackbacks": "Trackbacks",
-                "custom-fields": "Custom Fields",
-                "comments": "Comments",
-                "revisions": "revisions",
-                "page-attributes": "Page Attributes",
-                "post-formats": "Post Formats"
-            },
-            "allow_custom": 0,
-            "default_value": [],
-            "layout": "vertical",
-            "toggle": 0,
-            "return_format": "value",
-            "save_custom": 0
         }
     ],
     "location": [
@@ -1113,5 +1129,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1602224491
+    "modified": 1602507514
 }

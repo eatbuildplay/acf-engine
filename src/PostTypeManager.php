@@ -32,6 +32,8 @@ class PostTypeManager {
 		$data->nameSingular = get_field('singular_name', $postId);
 		$data->namePlural = get_field('plural_name', $postId);
 		$data->showInMenu = get_field('show_in_menu', $postId);
+		$data->menuPosition = get_field('menu_position', $postId);
+		$data->supports = get_field('supports', $postId);
 
 		/* update post title */
 		remove_action( 'save_post', [$this, 'savePost'] );
@@ -94,6 +96,13 @@ class PostTypeManager {
 					$postType->setShowInMenu( false );
 				}
 
+				if( isset($data->menuPosition) && is_numeric($data->menuPosition) ) {
+					$postType->setMenuPosition( $data->menuPosition );
+				}
+
+				if( isset($data->supports) ) {
+					$postType->setSupports( $data->supports );
+				}
 
         $postType->register();
 
