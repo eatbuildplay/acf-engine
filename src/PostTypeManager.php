@@ -112,8 +112,13 @@ class PostTypeManager {
 
   protected function findPostTypeDataFiles() {
 
-    $files = [];
-    $dir = new \DirectoryIterator( ACF_ENGINE_PATH . 'data/post-types' );
+		if( !is_dir( ACF_ENGINE_DATA_PATH . 'post-types')) {
+			return [];
+		}
+
+		$files = [];
+    $dir = new \DirectoryIterator( ACF_ENGINE_DATA_PATH . 'post-types' );
+
     foreach ($dir as $fileInfo) {
       if (!$fileInfo->isDot()) {
         $files[] = $fileInfo->getFilename();

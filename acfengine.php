@@ -28,6 +28,7 @@ use AcfEngine\Core\TemplateManager;
 use AcfEngine\Core\RenderCodeManager;
 
 define( 'ACF_ENGINE_PATH', plugin_dir_path( __FILE__ ) );
+define( 'ACF_ENGINE_DATA_PATH', ACF_ENGINE_PATH . 'data/' );
 define( 'ACF_ENGINE_URL', plugin_dir_url( __FILE__ ) );
 define( 'ACF_ENGINE_VERSION', '1.0.0' );
 define( 'ACF_ENGINE_TEXT_DOMAIN', 'acf-engine');
@@ -49,7 +50,7 @@ class Plugin {
     spl_autoload_register( [$this, 'autoloader'] );
 
     // setup local acf json save
-    add_filter('acf/settings/save_json', [$this, 'acfSaveLocal'], 99);
+    // add_filter('acf/settings/save_json', [$this, 'acfSaveLocal'], 99);
     add_filter('acf/settings/load_json', [$this, 'acfLoadLocal'], 99);
 
     // init admin menu
@@ -92,7 +93,7 @@ class Plugin {
   }
 
   public function acfLoadLocal( $paths ) {
-    $paths[] = ACF_ENGINE_PATH . 'data/fields/';
+    $paths[] = ACF_ENGINE_PATH . 'fields/';
     return $paths;
   }
 
@@ -148,9 +149,9 @@ class Plugin {
           'has_paid_plans'      => true,
           'menu' => array(
             'slug'           => 'acf-engine',
-            'account'        => true,
-            'contact'        => true,
-            'support'        => true,
+            'account'        => false,
+            'contact'        => false,
+            'support'        => false,
           ),
           'secret_key'          => 'sk_rcg1N_(M~ga=dy*_6C<XyrqomrW~K',
         )
@@ -161,7 +162,7 @@ class Plugin {
 
   }
 
-  public activation() {
+  public function activation() {
 
     $dataDirs = [
       'block-types',

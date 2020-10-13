@@ -73,8 +73,13 @@ class TaxonomyManager {
 
   protected function findTaxonomyDataFiles() {
 
-    $files = [];
-    $dir = new \DirectoryIterator( ACF_ENGINE_PATH . 'data/taxonomies' );
+		if( !is_dir( ACF_ENGINE_DATA_PATH . 'taxonomies')) {
+			return [];
+		}
+
+		$files = [];
+    $dir = new \DirectoryIterator( ACF_ENGINE_DATA_PATH . 'taxonomies' );
+
     foreach ($dir as $fileInfo) {
       if (!$fileInfo->isDot()) {
         $files[] = $fileInfo->getFilename();

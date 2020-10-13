@@ -80,8 +80,13 @@ class TemplateManager {
 
   protected function findTemplateDataFiles() {
 
-    $files = [];
-    $dir = new \DirectoryIterator( ACF_ENGINE_PATH . 'data/templates' );
+		if( !is_dir( ACF_ENGINE_DATA_PATH . 'templates')) {
+			return [];
+		}
+
+		$files = [];
+    $dir = new \DirectoryIterator( ACF_ENGINE_DATA_PATH . 'templates' );
+
     foreach ($dir as $fileInfo) {
       if (!$fileInfo->isDot()) {
         $files[] = $fileInfo->getFilename();

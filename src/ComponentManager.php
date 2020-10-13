@@ -59,8 +59,13 @@ class ComponentManager {
 
   protected function findComponentDataFiles() {
 
-    $files = [];
-    $dir = new \DirectoryIterator( ACF_ENGINE_PATH . 'data/components' );
+		if( !is_dir( ACF_ENGINE_DATA_PATH . 'components')) {
+			return [];
+		}
+
+		$files = [];
+    $dir = new \DirectoryIterator( ACF_ENGINE_DATA_PATH . 'components' );
+
     foreach ($dir as $fileInfo) {
       if (!$fileInfo->isDot()) {
         $files[] = $fileInfo->getFilename();

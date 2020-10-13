@@ -69,8 +69,13 @@ class RenderCodeManager {
 
   protected function findRenderCodeDataFiles() {
 
-    $files = [];
-    $dir = new \DirectoryIterator( ACF_ENGINE_PATH . 'data/render-code' );
+		if( !is_dir( ACF_ENGINE_DATA_PATH . 'render-code')) {
+			return [];
+		}
+
+		$files = [];
+    $dir = new \DirectoryIterator( ACF_ENGINE_DATA_PATH . 'render-code' );
+
     foreach ($dir as $fileInfo) {
       if (!$fileInfo->isDot()) {
         $files[] = $fileInfo->getFilename();

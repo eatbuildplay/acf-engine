@@ -67,8 +67,13 @@ class OptionsPageManager {
 
   protected function findOptionsPageDataFiles() {
 
-    $files = [];
-    $dir = new \DirectoryIterator( ACF_ENGINE_PATH . 'data/options-pages' );
+		if( !is_dir( ACF_ENGINE_DATA_PATH . 'options-pages')) {
+			return [];
+		}
+
+		$files = [];
+    $dir = new \DirectoryIterator( ACF_ENGINE_DATA_PATH . 'options-pages' );
+
     foreach ($dir as $fileInfo) {
       if (!$fileInfo->isDot()) {
         $files[] = $fileInfo->getFilename();

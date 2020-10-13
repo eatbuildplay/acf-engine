@@ -91,7 +91,11 @@ class BlockTypeManager {
   protected function findBlockTypeDataFiles() {
 
     $files = [];
-    $dir = new \DirectoryIterator( ACF_ENGINE_PATH . 'data/block-types' );
+		if( !is_dir( ACF_ENGINE_DATA_PATH . 'block-types')) {
+			return [];
+		}
+    $dir = new \DirectoryIterator( ACF_ENGINE_DATA_PATH . 'block-types' );
+
     foreach ($dir as $fileInfo) {
       if (!$fileInfo->isDot()) {
         $files[] = $fileInfo->getFilename();
