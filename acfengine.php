@@ -161,6 +161,36 @@ class Plugin {
 
   }
 
+  public activation() {
+
+    $dataDirs = [
+      'block-types',
+      'components',
+      'fields',
+      'forms',
+      'options-pages',
+      'post-types',
+      'render-code',
+      'taxonomies',
+      'templates'
+    ];
+
+    $dataPath = ACF_ENGINE_PATH . 'data/';
+
+    foreach( $dataDirs as $dirName ) {
+      $dirPath = $dataPath . $dirName;
+      if( !file_exists( $dirPath )) {
+        mkdir( $dirPath );
+      }
+    }
+
+  }
+
 }
 
 new Plugin();
+
+/*
+ * Activation and deactivation hooks
+ */
+register_activation_hook(__FILE__, '\AcfEngine\Plugin::activation');

@@ -8,8 +8,10 @@ if (!defined('ABSPATH')) {
 
 abstract class Taxonomy {
 
-  protected $prefix = 'acfe_';
+  protected $prefix = 'acfg_';
   public 		$key;
+	public 		$description;
+	public 		$objectType = [];
 
   public function init() {
 		$this->parseArgs();
@@ -23,10 +25,22 @@ abstract class Taxonomy {
    *
    */
   public function register() {
+
+		$key = $this->getPrefixedKey();
+		$objectType = $this->objectType();
+		$objectType = explode(',', $objectType);
+
+		$objectTypePrefixed = [];
+		foreach( $objectType as $ot ) {
+			$objectTypePrefixed[] = 'acfe_' . $ot;
+		}
+
+		$args = $this->args();
+
     $reg = register_taxonomy(
-      $this->getPrefixedKey(),
-      $this->objectType(),
-      $this->args()
+      $key,
+      $objectTypePrefixed,
+      $args
     );
 	}
 
@@ -67,5 +81,46 @@ abstract class Taxonomy {
 	public function key() {
 		return $this->key;
 	}
+
+	public function setDescription( $v ) {
+		$this->description = $v;
+	}
+
+	public function description() {
+		return $this->description;
+	}
+
+	public function setPublic( $v ) {
+		$this->public = $v;
+	}
+
+	public function public() {
+		return $this->public;
+	}
+
+	public function setPublicQueryable( $v ) {
+		$this->publicQueryable = $v;
+	}
+
+	public function Queryable() {
+		return $this->publicQueryable;
+	}
+
+	// hierarchical
+	// show_ui
+	// show_in_menu
+	// show_in_nav_menus
+	// show_in_rest
+	// rest_base
+	// rest_controller_class
+	// show_tagcloud
+	// show_admin_column
+	// meta_box_cb
+	// meta_box_sanitize_cb
+	// capabilities
+	// rewrite
+	// query_var
+	// update_count_callback
+	// default_term
 
 }
