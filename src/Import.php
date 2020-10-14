@@ -74,6 +74,10 @@ class Import {
       'post-type' => [
         'key'       => 'post-type',
         'name'      => 'PostType'
+      ],
+      'taxonomy' => [
+        'key'       => 'taxonomy',
+        'name'      => 'Taxonomy'
       ]
     ];
 

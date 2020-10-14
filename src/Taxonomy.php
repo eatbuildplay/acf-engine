@@ -9,6 +9,7 @@ if (!defined('ABSPATH')) {
 abstract class Taxonomy {
 
   protected $prefix = 'acfg_';
+	protected $postType = 'acfg_taxonomy';
   public 		$key;
 	public 		$description;
 	public 		$objectType = [];
@@ -28,7 +29,10 @@ abstract class Taxonomy {
 
 		$key = $this->getPrefixedKey();
 		$objectType = $this->objectType();
-		$objectType = explode(',', $objectType);
+
+		if( !is_array( $objectType )) {
+			$objectType = explode(',', $objectType);
+		}
 
 		$objectTypePrefixed = [];
 		foreach( $objectType as $ot ) {
@@ -104,6 +108,35 @@ abstract class Taxonomy {
 
 	public function Queryable() {
 		return $this->publicQueryable;
+	}
+
+	/*
+	 * Make a WP post with meta data from the current properties of this object
+	 */
+	 public function import() {
+
+ 		/*
+ 		 * insert into db with create post
+ 		 */
+ 		$postId = wp_insert_post(
+ 			[
+ 				'post_type'      => $this->postType(),
+ 				'post_title'     => 'Imported Tax',
+ 				'post_status'    => 'publish'
+ 			]
+ 		);
+
+ 		/*
+ 		 * update acf fields with meta data
+ 		 */
+ 		update_field( 'key', $this->key, $postId );
+
+ 		return $postId;
+
+ 	}
+
+	public function postType() {
+		return $this->postType;
 	}
 
 	// hierarchical

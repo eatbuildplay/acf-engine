@@ -57,13 +57,9 @@ class TaxonomyManager {
 
       foreach( $dataFiles as $filename ) {
 
-        $json = file_get_contents( ACF_ENGINE_PATH . 'data/taxonomies/' . $filename );
-        $data = json_decode( $json );
-
-        $tc = new TaxonomyCustom();
-        $tc->setKey( $data->key );
-				$tc->setObjectType( $data->objectTypes );
-        $tc->register();
+				$data = $this->loadDataFile( $filename );
+				$obj 	= $this->initObject( $data );
+        $obj->register();
 
       }
 
@@ -90,7 +86,41 @@ class TaxonomyManager {
 
   }
 
+	public function getDataFiles() {
+		return $this->findTaxonomyDataFiles();
+	}
 
+	public function loadDataFile( $filename ) {
+		$json = file_get_contents( ACF_ENGINE_PATH . 'data/taxonomies/' . $filename );
+		return json_decode( $json );
+	}
+
+	public function initObject( $data ) {
+		$obj = new TaxonomyCustom();
+		$obj->setKey( $data->key );
+		return $obj;
+	}
+
+	public function fetchByKey( $key ) {
+
+		$posts = get_posts([
+			'post_type' 	=> 'acfe_taxonomy',
+			'numberposts' => -1,
+			'meta_query' => [
+				[
+					'key' 	=> 'key',
+					'value' => $key
+				]
+			]
+		]);
+
+		if( !$posts || empty( $posts )) {
+			return false;
+		}
+
+		return $posts[0];
+
+	}
 
 
 }
