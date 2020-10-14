@@ -16,17 +16,17 @@ abstract class PostType {
 	public 		$showInMenu 	= true;
 	public 		$menuPosition = 10;
 	public 		$supports;
-	public      $description = '';
-	public      $menuIcon = 'dashicons-feedback';
-    protected   $public = true;
-    protected   $publiclyQueryable = true;
-    protected   $showUi = true;
-    protected   $hierarchical = false;
-    protected   $showInAdminBar = true;
-    protected   $showInNavMenus = true;
-    protected   $canExport = true;
-    protected   $showInRest = false;
-    protected   $withFront = true;
+	public 		$description = '';
+	public 		$menuIcon = 'dashicons-feedback';
+	protected   $public = true;
+	protected   $publiclyQueryable = true;
+	protected   $showUi = true;
+	protected   $hierarchical = false;
+	protected   $showInAdminBar = true;
+	protected   $showInNavMenus = true;
+	protected   $canExport = true;
+	protected   $showInRest = false;
+	protected   $withFront = true;
 
 	public function init() {
 		$this->parseArgs();
