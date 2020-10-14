@@ -81,34 +81,66 @@ class PostTypeManager {
 
       foreach( $files as $filename ) {
 
-        $json = file_get_contents( ACF_ENGINE_PATH . 'data/post-types/' . $filename );
-        $data = json_decode( $json );
-
-        $postType = new PostTypeCustom();
-        $postType->setKey( $data->key );
-        $postType->setNameSingular( $data->nameSingular );
-
-				if( $data->namePlural ) {
-					$postType->setNamePlural( $data->namePlural );
-				}
-
-				if( isset($data->showInMenu) && !$data->showInMenu ) {
-					$postType->setShowInMenu( false );
-				}
-
-				if( isset($data->menuPosition) && is_numeric($data->menuPosition) ) {
-					$postType->setMenuPosition( $data->menuPosition );
-				}
-
-				if( isset($data->supports) ) {
-					$postType->setSupports( $data->supports );
-				}
-
-        $postType->register();
+        $data = $this->loadDataFile( $filename );
+				$obj 	= $this->initObject( $data );
+        $obj->register();
 
       }
     }
   }
+
+	public function fetchByKey( $key ) {
+
+		$posts = get_posts([
+			'post_type' 	=> 'acfe_post_type',
+			'numberposts' => -1,
+			'meta_query' => [
+				[
+					'key' 	=> 'key',
+					'value' => $key
+				]
+			]
+		]);
+
+		if( !$posts || empty( $posts )) {
+			return false;
+		}
+
+		return $posts[0];
+
+	}
+
+	public function loadDataFile( $filename ) {
+		$json = file_get_contents( ACF_ENGINE_PATH . 'data/post-types/' . $filename );
+		return json_decode( $json );
+	}
+
+	public function initObject( $data ) {
+		$obj = new PostTypeCustom();
+		$obj->setKey( $data->key );
+		$obj->setNameSingular( $data->nameSingular );
+
+		if( $data->namePlural ) {
+			$obj->setNamePlural( $data->namePlural );
+		}
+
+		if( isset($data->showInMenu) && !$data->showInMenu ) {
+			$obj->setShowInMenu( false );
+		}
+
+		if( isset($data->menuPosition) && is_numeric($data->menuPosition) ) {
+			$obj->setMenuPosition( $data->menuPosition );
+		}
+
+		if( isset($data->supports) ) {
+			$obj->setSupports( $data->supports );
+		}
+		return $obj;
+	}
+
+	public function getDataFiles() {
+		return $this->findPostTypeDataFiles();
+	}
 
   protected function findPostTypeDataFiles() {
 

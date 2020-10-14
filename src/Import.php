@@ -70,6 +70,10 @@ class Import {
       'block-type' => [
         'key'       => 'block-type',
         'name'      => 'BlockType'
+      ],
+      'post-type' => [
+        'key'       => 'post-type',
+        'name'      => 'PostType'
       ]
     ];
 
