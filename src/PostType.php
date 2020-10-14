@@ -15,6 +15,9 @@ abstract class PostType {
 	public 		$showInMenu 	= true;
 	public 		$menuPosition = 10;
 	public 		$supports;
+	public      $description = '';
+    protected   $public = true;
+    protected   $hierarchical = false;
 
 	public function init() {
 		$this->parseArgs();
@@ -47,11 +50,11 @@ abstract class PostType {
 	public function defaultArgs() {
 		$args = [
 			'label'               => __($this->nameSingular(), 'acf-engine'),
-			'description'         => __($this->namePlural(), 'acf-engine'),
+			'description'         => __($this->description(), 'acf-engine'),
 			'labels'              => $this->labels(),
 			'menu_icon'           => 'dashicons-feedback',
-			'public'              => true,
-			'supports' 						=> $this->supports(),
+			'public'              => $this->publicShow(),
+			'supports' 			  => $this->supports(),
 			'show_ui'             => true,
 			'show_in_menu'        => $this->showInMenu(),
 			'menu_position'       => $this->menuPosition(),
@@ -59,7 +62,7 @@ abstract class PostType {
 			'show_in_nav_menus'   => true,
 			'can_export'          => true,
 			'has_archive'         => $this->showArchive(),
-			'hierarchical'        => false,
+			'hierarchical'        => $this->hierarchical(),
 			'exclude_from_search' => $this->excludeFromSearch(),
 			'show_in_rest'        => true,
 			'publicly_queryable'  => true,
@@ -200,5 +203,28 @@ abstract class PostType {
 	public function key() {
 		return $this->key;
 	}
+
+    public function description() {
+        return $this->description;
+    }
+
+    public function setDescription( $v ) {
+        $this->description = $v;
+    }
+
+    public function publicShow() {
+        return $this->public;
+    }
+    public function setPublicShow( $v ) {
+        $this->public = (bool) $v;
+    }
+
+    public function hierarchical() {
+        return $this->hierarchical;
+    }
+    public function setHierarchical( $v ) {
+        $this->hierarchical = (bool) $v;
+    }
+
 
 }
