@@ -8,8 +8,8 @@ if (!defined('ABSPATH')) {
 
 abstract class PostType {
 
-	protected 		$prefix = 'acfe_';
-	protected 		$postType = 'acfe_post_type';
+	protected 	$prefix = 'acfe_';
+	protected 	$postType = 'acfe_post_type';
 	public 		$key;
 	public 		$nameSingular;
 	public 		$namePlural;
@@ -18,15 +18,15 @@ abstract class PostType {
 	public 		$supports;
 	public 		$description = '';
 	public 		$menuIcon = 'dashicons-feedback';
-	protected 		$public = true;
-	protected 		$publiclyQueryable = true;
-	protected 		$showUi = true;
-	protected 		$hierarchical = false;
-	protected 		$showInAdminBar = true;
-	protected 		$showInNavMenus = true;
-	protected 		$canExport = true;
-	protected 		$showInRest = false;
-	protected 		$withFront = true;
+	protected 	$public = true;
+	protected 	$publiclyQueryable = true;
+	protected 	$showUi = true;
+	protected 	$hierarchical = false;
+	protected 	$showInAdminBar = true;
+	protected 	$showInNavMenus = true;
+	protected 	$canExport = true;
+	protected 	$showInRest = false;
+	protected 	$withFront = true;
 
 	public function init() {
 		$this->parseArgs();
