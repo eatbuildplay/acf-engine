@@ -217,7 +217,7 @@ abstract class PostType {
 		$postId = wp_insert_post(
 			[
 				'post_type'      => $this->postType(),
-				'post_title'     => $this->title,
+				'post_title'     => $this->nameSingular(),
 				'post_status'    => 'publish'
 			]
 		);
@@ -226,8 +226,8 @@ abstract class PostType {
 		 * update acf fields with meta data
 		 */
 		update_field( 'key', $this->key, $postId );
-		update_field( 'title', $this->title, $postId );
-		update_field( 'description', $this->description, $postId );
+		update_field( 'title', $this->nameSingular(), $postId );
+		// update_field( 'description', $this->description(), $postId );
 
 		return $postId;
 
