@@ -73,20 +73,52 @@ class BlockTypeManager {
 
       foreach( $dataFiles as $filename ) {
 
-        $json = file_get_contents( ACF_ENGINE_PATH . 'data/block-types/' . $filename );
-        $data = json_decode( $json );
-
-        $c = new BlockTypeCustom();
-        $c->setKey( $data->key );
-				$c->setTitle( $data->title );
-				$c->setDescription( $data->description );
-        $c->register();
+        $data = $this->loadDataFile( $filename );
+				$obj 	= $this->initObject( $data );
+        $obj->register();
 
       }
-
     }
-
   }
+
+	public function fetchByKey( $key ) {
+
+		$posts = get_posts([
+			'post_type' 	=> 'acfe_block_type',
+			'numberposts' => -1,
+			'meta_query' => [
+				[
+					'key' 	=> 'key',
+					'value' => $key
+				]
+			]
+		]);
+
+		if( !$posts || empty( $posts )) {
+			return false;
+		}
+
+		return $posts[0];
+
+	}
+
+	public function initObject( $data ) {
+		$obj = new BlockTypeCustom();
+		$obj->setKey( $data->key );
+		$obj->setTitle( $data->title );
+		$obj->setDescription( $data->description );
+		return $obj;
+	}
+
+	public function loadDataFile( $filename ) {
+		$json = file_get_contents( ACF_ENGINE_PATH . 'data/block-types/' . $filename );
+		return json_decode( $json );
+	}
+
+	// public option to get the data file list
+	public function getDataFiles() {
+		return $this->findBlockTypeDataFiles();
+	}
 
   protected function findBlockTypeDataFiles() {
 

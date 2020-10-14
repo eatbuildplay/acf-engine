@@ -9,6 +9,7 @@ if (!defined('ABSPATH')) {
 abstract class PostType {
 
 	protected $prefix = 'acfe_';
+	protected $postType = 'acfe_post_type';
 	public 		$key;
 	public 		$nameSingular;
 	public 		$namePlural;
@@ -204,6 +205,7 @@ abstract class PostType {
 		return $this->key;
 	}
 
+
     public function description() {
         return $this->description;
     }
@@ -226,5 +228,35 @@ abstract class PostType {
         $this->hierarchical = (bool) $v;
     }
 
+	public function postType() {
+		return $this->postType;
+	}
+
+	/*
+	 * Make a WP post with meta data from the current properties of this object
+	 */
+	public function import() {
+
+		/*
+		 * insert into db with create post
+		 */
+		$postId = wp_insert_post(
+			[
+				'post_type'      => $this->postType(),
+				'post_title'     => $this->nameSingular(),
+				'post_status'    => 'publish'
+			]
+		);
+
+		/*
+		 * update acf fields with meta data
+		 */
+		update_field( 'key', $this->key, $postId );
+		update_field( 'title', $this->nameSingular(), $postId );
+		// update_field( 'description', $this->description(), $postId );
+
+		return $postId;
+
+	}
 
 }

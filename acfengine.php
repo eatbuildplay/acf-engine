@@ -26,6 +26,7 @@ use AcfEngine\Core\ComponentManager;
 use AcfEngine\Core\BlockTypeManager;
 use AcfEngine\Core\TemplateManager;
 use AcfEngine\Core\RenderCodeManager;
+use AcfEngine\Core\Import;
 
 define( 'ACF_ENGINE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ACF_ENGINE_DATA_PATH', ACF_ENGINE_PATH . 'data/' );
@@ -55,6 +56,10 @@ class Plugin {
 
     // init admin menu
     new AdminMenu();
+
+    // init importer
+    $import = new Import();
+    $import->init();
 
     // init the post type manager
     $ptm = new PostTypeManager();
