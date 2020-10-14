@@ -9,6 +9,7 @@ if (!defined('ABSPATH')) {
 abstract class BlockType {
 
   protected $prefix = 'acfe_';
+	protected $postType = 'acfe_block_type';
   public 		$key;
 	public 		$renderTemplate;
 	public 		$renderCallback;
@@ -128,6 +129,37 @@ abstract class BlockType {
 
 	public function description() {
 		return $this->description;
+	}
+
+	public function postType() {
+		return $this->postType;
+	}
+
+	/*
+	 * Make a WP post with meta data from the current properties of this object
+	 */
+	public function import() {
+
+		/*
+		 * insert into db with create post
+		 */
+		$postId = wp_insert_post(
+			[
+				'post_type'      => $this->postType(),
+				'post_title'     => $this->title,
+				'post_status'    => 'publish'
+			]
+		);
+
+		/*
+		 * update acf fields with meta data
+		 */
+		update_field( 'key', $this->key, $postId );
+		update_field( 'title', $this->title, $postId );
+		update_field( 'description', $this->description, $postId );
+
+		return $postId;
+
 	}
 
 }
