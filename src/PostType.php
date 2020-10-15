@@ -29,7 +29,9 @@ abstract class PostType {
 	protected 	$queryVar   = true;
 	protected 	$deleteWithUser   = null;
 	protected 	$restBase;
-	protected 	$restControllerClass;
+	protected 	$restControllerClass = false;
+	protected 	$capabilityType = '';
+	protected 	$capabilities = '';
 	protected 	$showInAdminBar = true;
 	protected 	$showInNavMenus = true;
 	protected 	$canExport = true;
@@ -85,8 +87,7 @@ abstract class PostType {
 			'delete_with_user'    => $this->deleteWithUser(),
 			'exclude_from_search' => $this->excludeFromSearch(),
 			'show_in_rest'        => $this->showInRest(),
-			'show_in_rest'        => $this->showInRest(),
-			'rest_controller_class'=> $this->restControllerClass(),
+			'rest_base'           => $this->restBase(),
 			'publicly_queryable'  => $this->publiclyQueryable(),
 			'capability_type'     => 'post',
 			'rewrite'             => array(
@@ -99,6 +100,9 @@ abstract class PostType {
 			$args['template'] 			= [ $this->templatePaths() ];
 			$args['template_lock'] 	= 'all';
 		}
+        if( $this->restControllerClass ) {
+            $args['rest_controller_class'] 	= $this->restControllerClass();
+        }
 
 		return $args;
 
@@ -343,6 +347,21 @@ abstract class PostType {
     public function setRestControllerClass( $v ) {
         $this->restControllerClass = $v;
     }
+
+    public function capabilityType() {
+        return $this->capabilityType;
+    }
+    public function setCapabilityType( $v ) {
+        $this->capabilityType = $v;
+    }
+
+    public function capabilities() {
+        return $this->capabilities;
+    }
+    public function setCapabilities( $v ) {
+        $this->capabilities = $v;
+    }
+
 
 	public function postType() {
 		return $this->postType;
