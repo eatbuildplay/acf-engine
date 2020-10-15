@@ -172,7 +172,6 @@ class Plugin {
     $dataDirs = [
       'block-types',
       'components',
-      'fields',
       'forms',
       'options-pages',
       'post-types',
