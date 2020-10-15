@@ -138,9 +138,8 @@ class AdminMenu {
   }
 
   public function pageDashboard() {
-
-    print 'DASHBOARD ACF ENGINE';
-
+    $d = new Dashboard();
+    $d->render();
   }
 
   public function pagePostTypes() {
