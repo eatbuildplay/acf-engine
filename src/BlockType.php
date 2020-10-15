@@ -11,6 +11,8 @@ abstract class BlockType {
   protected $prefix = 'acfe_';
 	protected $postType = 'acfe_block_type';
   public 		$key;
+	protected $renderCode;
+	protected $category;
 	public 		$renderTemplate;
 	public 		$renderCallback;
 
@@ -68,6 +70,10 @@ abstract class BlockType {
 		return $this->renderTemplate;
 	}
 
+	/*
+	 * Default callback registered when blocks created
+	 * Uses the render_code field (user written code)
+	 */
 	public function defaultCallback( $block, $content = '', $isPreview, $editorPostId ) {
 
 		$filename = str_replace('acf/acfe-', '', $block['name']) . '.json';
@@ -77,14 +83,6 @@ abstract class BlockType {
 		$data = json_decode( $json );
 
 		$code = get_field( 'render_code', $data->id );
-
-		$badges = get_field('badges');
-		$badgesRender = '';
-		foreach( $badges as $badgeLine ) {
-			$badgesRender .= $badgeLine['text'];
-		}
-		$code = str_replace('{acfg-badges}', $badgesRender, $code);
-
 		print $code;
 
 	}
@@ -129,6 +127,22 @@ abstract class BlockType {
 
 	public function description() {
 		return $this->description;
+	}
+
+	public function setRenderCode( $v ) {
+		$this->renderCode = $v;
+	}
+
+	public function renderCode() {
+		return $this->renderCode;
+	}
+
+	public function setCategory( $v ) {
+		$this->category = $v;
+	}
+
+	public function category() {
+		return $this->category;
 	}
 
 	public function postType() {
