@@ -22,6 +22,16 @@ abstract class PostType {
 	protected 	$publiclyQueryable = true;
 	protected 	$showUi = true;
 	protected 	$hierarchical = false;
+	protected 	$excludeFromSearch = true;
+	protected 	$showArchive = true;
+	protected 	$customPermalink = null;
+	protected 	$mapMetaCap  = null;
+	protected 	$queryVar   = true;
+	protected 	$deleteWithUser   = null;
+	protected 	$restBase;
+	protected 	$restControllerClass = false;
+	protected 	$capabilityType = '';
+	protected 	$capabilities = '';
 	protected 	$showInAdminBar = true;
 	protected 	$showInNavMenus = true;
 	protected 	$canExport = true;
@@ -72,8 +82,12 @@ abstract class PostType {
 			'can_export'          => $this->canExport(),
 			'has_archive'         => $this->showArchive(),
 			'hierarchical'        => $this->hierarchical(),
+			'map_meta_cap'        => $this->mapMetaCap(),
+			'query_var'           => $this->queryVar(),
+			'delete_with_user'    => $this->deleteWithUser(),
 			'exclude_from_search' => $this->excludeFromSearch(),
 			'show_in_rest'        => $this->showInRest(),
+			'rest_base'           => $this->restBase(),
 			'publicly_queryable'  => $this->publiclyQueryable(),
 			'capability_type'     => 'post',
 			'rewrite'             => array(
@@ -86,6 +100,9 @@ abstract class PostType {
 			$args['template'] 			= [ $this->templatePaths() ];
 			$args['template_lock'] 	= 'all';
 		}
+        if( $this->restControllerClass ) {
+            $args['rest_controller_class'] 	= $this->restControllerClass();
+        }
 
 		return $args;
 
@@ -292,6 +309,59 @@ abstract class PostType {
     public function setHierarchical( $v ) {
         $this->hierarchical = (bool) $v;
     }
+
+    public function mapMetaCap() {
+        return $this->mapMetaCap;
+    }
+    public function setMapMetaCap( $v ) {
+        $this->mapMetaCap = (bool) $v;
+    }
+
+    public function queryVar() {
+        return $this->queryVar;
+    }
+    public function setQueryVar( $v ) {
+        $this->queryVar = (bool) $v;
+    }
+
+    public function deleteWithUser() {
+        return $this->deleteWithUser;
+    }
+    public function setDeleteWithUser( $v ) {
+        $this->deleteWithUser = (bool) $v;
+    }
+
+    public function restBase() {
+        if( is_null( $this->restBase ) ) {
+            return str_replace('sb-', '', $this->key());
+        }
+        return $this->restBase;
+    }
+    public function setRestBase( $v ) {
+        $this->restBase = $v;
+    }
+
+    public function restControllerClass() {
+        return $this->restControllerClass;
+    }
+    public function setRestControllerClass( $v ) {
+        $this->restControllerClass = $v;
+    }
+
+    public function capabilityType() {
+        return $this->capabilityType;
+    }
+    public function setCapabilityType( $v ) {
+        $this->capabilityType = $v;
+    }
+
+    public function capabilities() {
+        return $this->capabilities;
+    }
+    public function setCapabilities( $v ) {
+        $this->capabilities = $v;
+    }
+
 
 	public function postType() {
 		return $this->postType;
