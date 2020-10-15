@@ -212,6 +212,30 @@ abstract class BlockType {
 		return $this->alignContent;
 	}
 
+	public function setEnqueueStyle( $v ) {
+		$this->enqueueStyle = $v;
+	}
+
+	public function enqueueStyle() {
+		return $this->enqueueStyle;
+	}
+
+	public function setEnqueueScript( $v ) {
+		$this->enqueueScript = $v;
+	}
+
+	public function enqueueScript() {
+		return $this->enqueueScript;
+	}
+
+	public function setEnqueueAssets( $v ) {
+		$this->enqueueAssets = $v;
+	}
+
+	public function enqueueAssets() {
+		return $this->enqueueAssets;
+	}
+
 	public function postType() {
 		return $this->postType;
 	}
