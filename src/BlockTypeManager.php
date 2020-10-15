@@ -31,8 +31,23 @@ class BlockTypeManager {
 		}
 
 		$data->id = $postId;
-		$data->title = get_field('title', $postId);
-		$data->description = get_field('title', $postId);
+		$data->title 					= get_field('title', $postId);
+		$data->description 		= get_field('title', $postId);
+		$data->renderCode 		= get_field('render_code', $postId);
+		$data->category		 		= get_field('category', $postId);
+		$data->icon		 				= get_field('icon', $postId);
+		$data->keywords		 		= get_field('keywords', $postId);
+		$data->postTypes			= get_field('post_types', $postId);
+		$data->mode						= get_field('mode', $postId);
+		$data->align					= get_field('align', $postId);
+		$data->alignText			= get_field('align_text', $postId);
+		$data->alignContent		= get_field('align_content', $postId);
+		$data->renderTemplate	= get_field('render_template', $postId);
+		$data->renderCallback	= get_field('render_callback', $postId);
+		$data->enqueueStyle		= get_field('enqueue_style', $postId);
+		$data->enqueueScript	= get_field('enqueue_script', $postId);
+		$data->enqueueAssets	= get_field('enqueue_assets', $postId);
+		$data->supports				= get_field('supports', $postId);
 
 		/* update post title */
 		remove_action( 'save_post', [$this, 'savePost'] );
