@@ -31,9 +31,59 @@ class PostTypeManager {
 
 		$data->nameSingular = get_field('singular_name', $postId);
 		$data->namePlural = get_field('plural_name', $postId);
+		$data->description = get_field('description', $postId);
+		$data->labels = [
+		   'name' =>  get_field('name', $postId),
+		   'menuName' =>  get_field('menu_name', $postId),
+		   'nameAdminBar' =>  get_field('name_admin_bar', $postId),
+		   'archives' =>  get_field('archives', $postId),
+		   'attributes' =>  get_field('attributes', $postId),
+		   'parentItemColon' =>  get_field('parent_item_colon', $postId),
+		   'allItems' =>  get_field('all_items', $postId),
+		   'addNewItem' =>  get_field('add_new_item', $postId),
+		   'addNew' =>  get_field('add_new', $postId),
+		   'newItem' =>  get_field('new_item', $postId),
+		   'editItem' =>  get_field('edit_item', $postId),
+		   'updateItem' =>  get_field('update_item', $postId),
+		   'viewItem' =>  get_field('view_item', $postId),
+		   'viewItems' =>  get_field('view_items', $postId),
+		   'searchItems' =>  get_field('search_items', $postId),
+		   'notFound' =>  get_field('not_found', $postId),
+		   'notFoundInTrash' =>  get_field('not_found_in_trash', $postId),
+		   'featuredImage' =>  get_field('featured_image', $postId),
+		   'setFeaturedImage' =>  get_field('set_featured_image', $postId),
+		   'removeFeaturedImage' =>  get_field('remove_featured_image', $postId),
+		   'useFeaturedImage' =>  get_field('use_featured_image', $postId),
+		   'insertIntoItem' =>  get_field('insert_into_item', $postId),
+		   'uploadedToThisItem' =>  get_field('uploaded_to_this_item', $postId),
+		   'itemsList' =>  get_field('items_list', $postId),
+		   'itemsListNavigation' =>  get_field('items_list_navigation', $postId),
+		   'filterItemsList' =>  get_field('filter_items_list', $postId),
+        ];
+		$data->menuIcon  = get_field('menu_icon', $postId);
+		$data->public  = get_field('public', $postId);
+		$data->supports = get_field('supports', $postId);
+		$data->showUi = get_field('show_ui', $postId);
 		$data->showInMenu = get_field('show_in_menu', $postId);
 		$data->menuPosition = get_field('menu_position', $postId);
-		$data->supports = get_field('supports', $postId);
+		$data->showInAdminBar = get_field('show_in_admin_bar', $postId);
+		$data->showInNavMenus = get_field('show_in_nav_menus', $postId);
+		$data->canExport = get_field('can_export', $postId);
+		$data->showArchive = get_field('has_archive', $postId);
+		$data->hierarchical = get_field('hierarchical', $postId);
+		$data->mapMetaCap = get_field('map_meta_cap', $postId);
+		$data->queryVar = get_field('query_var', $postId);
+		$data->deleteWithUser = get_field('delete_with_user', $postId);
+		$data->excludeFromSearch = get_field('exclude_from_search', $postId);
+		$data->showInRest = get_field('show_in_rest', $postId);
+		$data->restBase = get_field('rest_base', $postId);
+		$data->publiclyQueryable = get_field('publicly_queryable', $postId);
+		$data->capabilityType = get_field('capability_type', $postId);
+		$data->rewrite = [
+		    'slug'          => get_field('slug', $postId),
+            'withFront'    => get_field('with_front', $postId),
+        ];
+
 
 		/* update post title */
 		remove_action( 'save_post', [$this, 'savePost'] );

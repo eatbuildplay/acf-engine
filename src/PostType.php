@@ -37,6 +37,7 @@ abstract class PostType {
 	protected 	$canExport = true;
 	protected 	$showInRest = false;
 	protected 	$withFront = true;
+	protected 	$rewrite;
 
 	public function init() {
 		$this->parseArgs();
@@ -100,7 +101,7 @@ abstract class PostType {
 			$args['template'] 			= [ $this->templatePaths() ];
 			$args['template_lock'] 	= 'all';
 		}
-        if( $this->restControllerClass ) {
+        if( $this->restControllerClass() ) {
             $args['rest_controller_class'] 	= $this->restControllerClass();
         }
 
