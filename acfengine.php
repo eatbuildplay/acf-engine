@@ -51,7 +51,7 @@ class Plugin {
     spl_autoload_register( [$this, 'autoloader'] );
 
     // setup local acf json save
-    // add_filter('acf/settings/save_json', [$this, 'acfSaveLocal'], 99);
+    add_filter('acf/settings/save_json', [$this, 'acfSaveLocal'], 99);
     add_filter('acf/settings/load_json', [$this, 'acfLoadLocal'], 99);
 
     // init admin menu
@@ -94,7 +94,7 @@ class Plugin {
   }
 
   public function acfSaveLocal( $path ) {
-    return ACF_ENGINE_PATH . 'data/fields';
+    return ACF_ENGINE_PATH . 'fields/';
   }
 
   public function acfLoadLocal( $paths ) {
@@ -133,39 +133,39 @@ class Plugin {
 
   }
 
-    // Create a helper function for easy SDK access.
-    public function freemius() {
+  // Create a helper function for easy SDK access.
+  public function freemius() {
 
-      global $afcg_freemius;
+    global $afcgFreemius;
 
-      if ( ! isset( $afcg_freemius ) ) {
+    if ( ! isset( $afcgFreemius ) ) {
 
-        // Include Freemius SDK.
-        require_once ACF_ENGINE_PATH . 'vendor/freemius/start.php';
+      // Include Freemius SDK.
+      require_once ACF_ENGINE_PATH . 'vendor/freemius/start.php';
 
-        $afcg_freemius = fs_dynamic_init( array(
-          'id'                  => '7042',
-          'slug'                => 'acfengine',
-          'premium_slug'        => 'acf-engine-premium',
-          'type'                => 'plugin',
-          'public_key'          => 'pk_1cfe4c350f5a0a42d9f2b9960fce6',
-          'is_premium'          => false,
-          'has_addons'          => false,
-          'has_paid_plans'      => true,
-          'menu' => array(
-            'slug'           => 'acf-engine',
-            'account'        => false,
-            'contact'        => false,
-            'support'        => false,
-          ),
-          'secret_key'          => 'sk_rcg1N_(M~ga=dy*_6C<XyrqomrW~K',
-        )
-      );
-    }
-
-    return $afcg_freemius;
-
+      $afcgFreemius = fs_dynamic_init( array(
+        'id'                  => '7042',
+        'slug'                => 'acfengine',
+        'premium_slug'        => 'acf-engine-premium',
+        'type'                => 'plugin',
+        'public_key'          => 'pk_1cfe4c350f5a0a42d9f2b9960fce6',
+        'is_premium'          => false,
+        'has_addons'          => false,
+        'has_paid_plans'      => true,
+        'menu' => array(
+          'slug'           => 'acf-engine',
+          'account'        => false,
+          'contact'        => false,
+          'support'        => false,
+        ),
+        'secret_key'          => 'sk_rcg1N_(M~ga=dy*_6C<XyrqomrW~K',
+      )
+    );
   }
+
+  return $afcgFreemius;
+
+}
 
   public function activation() {
 
