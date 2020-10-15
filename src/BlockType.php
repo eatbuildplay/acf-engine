@@ -13,8 +13,19 @@ abstract class BlockType {
   public 		$key;
 	protected $renderCode;
 	protected $category;
-	public 		$renderTemplate;
-	public 		$renderCallback;
+	protected $icon;
+	protected $keywords;
+	protected $postTypes;
+	protected $mode;
+	protected $align;
+	protected $alignText;
+	protected $alignContent;
+	protected $renderTemplate;
+	protected $renderCallback;
+	protected $enqueueStyle;
+	protected $enqueueScript;
+	protected $enqueueAssets;
+	protected $supports;
 
   public function init() {
 		$this->parseArgs();
@@ -143,6 +154,62 @@ abstract class BlockType {
 
 	public function category() {
 		return $this->category;
+	}
+
+	public function setIcon( $v ) {
+		$this->icon = $v;
+	}
+
+	public function icon() {
+		return $this->icon;
+	}
+
+	public function setKeywords( $v ) {
+		$this->keywords = $v;
+	}
+
+	public function keywords() {
+		return $this->keywords;
+	}
+
+	public function setPostTypes( $v ) {
+		$this->postTypes = $v;
+	}
+
+	public function postTypes() {
+		return $this->postTypes;
+	}
+
+	public function setMode( $v ) {
+		$this->mode = $v;
+	}
+
+	public function mode() {
+		return $this->mode;
+	}
+
+	public function setAlign( $v ) {
+		$this->align = $v;
+	}
+
+	public function align() {
+		return $this->align;
+	}
+
+	public function setAlignText( $v ) {
+		$this->alignText = $v;
+	}
+
+	public function alignText() {
+		return $this->alignText;
+	}
+
+	public function setAlignContent( $v ) {
+		$this->alignContent = $v;
+	}
+
+	public function alignContent() {
+		return $this->alignContent;
 	}
 
 	public function postType() {
