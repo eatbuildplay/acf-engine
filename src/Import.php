@@ -78,6 +78,14 @@ class Import {
       'taxonomy' => [
         'key'       => 'taxonomy',
         'name'      => 'Taxonomy'
+      ],
+      'options-page' => [
+        'key'       => 'options-page',
+        'name'      => 'OptionsPage'
+      ],
+      'template' => [
+        'key'       => 'template',
+        'name'      => 'Template'
       ]
     ];
 
