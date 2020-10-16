@@ -25,13 +25,22 @@ class OptionsPageManager {
 
 		$data = new \stdClass();
 
-		$data->slug = get_field('slug', $postId);
-		if( !$data->slug ) {
+		$data->menuSlug = get_field('menu_slug', $postId);
+		if( !$data->menuSlug ) {
 			return;
 		}
 
 		$data->pageTitle = get_field('page_title', $postId);
 		$data->menuTitle = get_field('menu_title', $postId);
+		$data->capability = get_field('capability', $postId);
+		$data->position = get_field('position', $postId);
+		$data->parentSlug = get_field('parent_slug', $postId);
+		$data->iconUrl = get_field('icon_url', $postId);
+		$data->redirect = get_field('redirect', $postId);
+		$data->postId = get_field('post_id', $postId);
+		$data->autoload = get_field('autoload', $postId);
+		$data->updateButton = get_field('update_button', $postId);
+		$data->updatedMessage = get_field('updated_message', $postId);
 
     $json = json_encode( $data );
 
