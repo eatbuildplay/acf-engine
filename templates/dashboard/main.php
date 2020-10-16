@@ -1,6 +1,10 @@
 <?php
 
-$countPostTypes = wp_count_posts('acfg_post_type');
+$countPostTypes     = wp_count_posts('acfg_post_type');
+$countTaxonomies    = wp_count_posts('acfg_taxonomy');
+$countOptionsPages  = wp_count_posts('acfg_options_page');
+$countBlockTypes    = wp_count_posts('acfg_block_type');
+$countTemplates     = wp_count_posts('acfg_template');
 
 // var_dump( $countPostTypes );
 
@@ -26,6 +30,62 @@ $countPostTypes = wp_count_posts('acfg_post_type');
 
     </div>
 
+    <div class="acfg-dashboard-item">
+
+      <h2>Taxonomies</h2>
+      <h3 class="acfg-dashboard-stat">
+        <?php print $countTaxonomies->publish; ?>
+      </h3>
+      <h4>
+        <a href="edit.php?post_type=acfg_taxonomy">Manage Taxonomies</a>
+      </h4>
+
+    </div>
+
+    <div class="acfg-dashboard-item">
+
+      <h2>Options Pages</h2>
+      <h3 class="acfg-dashboard-stat">
+        <?php print $countOptionsPages->publish; ?>
+      </h3>
+      <h4>
+        <a href="edit.php?post_type=acfg_options_page">Manage Options Pages</a>
+      </h4>
+
+    </div>
+
+    <div class="acfg-dashboard-item">
+
+      <h2>Block Types</h2>
+      <h3 class="acfg-dashboard-stat">
+        <?php print $countBlockTypes->publish; ?>
+      </h3>
+      <h4>
+        <a href="edit.php?post_type=acfg_block_type">Manage Block Types</a>
+      </h4>
+
+    </div>
+
+    <div class="acfg-dashboard-item">
+
+      <h2>Templates</h2>
+      <h3 class="acfg-dashboard-stat">
+        <?php print $countTemplates->publish; ?>
+      </h3>
+      <h4>
+        <a href="edit.php?post_type=acfg_template">Manage Templates</a>
+      </h4>
+
+    </div>
+
+  </div>
+
+  <!-- ACFEngine.com Link -->
+  <div class="acfg-dashboard-row">
+    <div>
+      <h2>LEARN MORE ABOUT ACF ENGINE</h2>
+      <p>For documentation, tutorials and support <a href="https://acfengine.com/">visit ACFEngine.com</a> to learn how to make the most of your ACF Engine.</p>
+    </div>
   </div>
 
 </div>
@@ -33,9 +93,32 @@ $countPostTypes = wp_count_posts('acfg_post_type');
 
 <style>
 
+.acfg-dashboard-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 header {
-  background: #AAA;
+  background: #D7D7D7;
   color: #353535;
+  padding: 30px 25px;
+  margin-left: -25px;
+}
+
+.acfg-dashboard-item {
+  margin: 5px;
+  padding: 15px;
+  background: #F8F8F8;
+}
+
+.acfg-dashboard-item h2 {
+  text-align: center;
+}
+
+.acfg-dashboard-stat {
+  font-size: 2.8em;
+  font-weight: 500;
+  text-align: center;
 }
 
 </style>
