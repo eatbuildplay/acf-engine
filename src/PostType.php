@@ -30,7 +30,7 @@ abstract class PostType {
 	protected 	$deleteWithUser   = null;
 	protected 	$restBase;
 	protected 	$restControllerClass = false;
-	protected 	$capabilityType = '';
+	protected 	$capabilityType = null;
 	protected 	$capabilities = '';
 	protected 	$showInAdminBar = true;
 	protected 	$showInNavMenus = true;
@@ -40,7 +40,7 @@ abstract class PostType {
 	protected 	$feeds = true;
 	protected 	$pages = true;
 	protected 	$epMask = EP_PERMALINK;
-	protected 	$rewrite;
+	protected 	$rewrite = false;
 
 	public function init() {
 		$this->parseArgs();
@@ -87,7 +87,7 @@ abstract class PostType {
 			'show_in_rest'        => $this->showInRest(),
 			'rest_base'           => $this->restBase(),
 			'publicly_queryable'  => $this->publiclyQueryable(),
-			'capability_type'     => 'post',
+			'capability_type'     => $this->capabilityType(),
 			'rewrite'             => array(
 				'slug'       	=> $this->customPermalink(),
 				'with_front' 	=> $this->withFront(),
@@ -353,6 +353,13 @@ abstract class PostType {
         $this->deleteWithUser = (bool) $v;
     }
 
+    public function rewrite() {
+        return $this->rewrite;
+    }
+    public function setRewrite( $v ) {
+        $this->rewrite = (bool) $v;
+    }
+
     public function restBase() {
         if( is_null( $this->restBase ) ) {
             return str_replace('sb-', '', $this->key());
@@ -371,6 +378,9 @@ abstract class PostType {
     }
 
     public function capabilityType() {
+        if (is_null($this->capabilityType)){
+            return $this->nameSingular();
+        }
         return $this->capabilityType;
     }
     public function setCapabilityType( $v ) {
@@ -410,7 +420,61 @@ abstract class PostType {
 		 */
 		update_field( 'key', $this->key, $postId );
 		update_field( 'title', $this->nameSingular(), $postId );
-		// update_field( 'description', $this->description(), $postId );
+        update_field( 'description', $this->description(), $postId );
+        update_field( 'singular_name', $this->nameSingular(), $postId );
+        update_field( 'plural_name', $this->namePlural(), $postId );
+        /*labels*/
+        update_field( 'name', $this->nameSingular(), $postId );
+        update_field( 'menu_name', $this->namePlural(), $postId );
+        update_field( 'name_admin_bar', $this->namePlural(), $postId );
+        update_field( 'archives', $this->nameSingular() . __(' Archives', 'acf-engine'), $postId );
+        update_field( 'attributes', $this->nameSingular() . __(' Attributes', 'acf-engine'), $postId );
+        update_field( 'parent_item_colon', __('Parent ', 'acf-engine') . $this->nameSingular(), $postId );
+        update_field( 'all_items', __('All ', 'acf-engine') . $this->namePlural(), $postId );
+        update_field( 'add_new_item', __('Add New ', 'acf-engine'). $this->nameSingular(), $postId );
+        update_field( 'add_new', __('Add New', 'acf-engine'), $postId );
+        update_field( 'new_item', __('New ', 'acf-engine'). $this->nameSingular(), $postId );
+        update_field( 'edit_item', __('Edit ', 'acf-engine'). $this->nameSingular(), $postId );
+        update_field( 'update_item', __('Update ', 'acf-engine'). $this->nameSingular(), $postId );
+        update_field( 'view_item', __('View ', 'acf-engine'). $this->nameSingular(), $postId );
+        update_field( 'view_items', __('View ', 'acf-engine'). $this->namePlural(), $postId );
+        update_field( 'search_items', __('Search ', 'acf-engine'). $this->nameSingular(), $postId );
+        update_field( 'not_found', __('Not found', 'acf-engine'), $postId );
+        update_field( 'not_found_in_trash', __('Not found in Trash', 'acf-engine'), $postId );
+        update_field( 'featured_image', __('Featured Image', 'acf-engine'), $postId );
+        update_field( 'set_featured_image', __('Set featured image', 'acf-engine'), $postId );
+        update_field( 'remove_featured_image', __('Remove featured image', 'acf-engine'), $postId );
+        update_field( 'use_featured_image', __('Use as featured image', 'acf-engine'), $postId );
+        update_field( 'insert_into_item', __('Insert into ', 'acf-engine'). $this->nameSingular(), $postId );
+        update_field( 'uploaded_to_this_item', __('Uploaded to this Newsletter', 'acf-engine'), $postId );
+        update_field( 'items_list', $this->namePlural(). __(' list', 'acf-engine'), $postId );
+        update_field( 'items_list_navigation', $this->namePlural() . __(' list navigation', 'acf-engine'), $postId );
+        update_field( 'filter_items_list', __('Filter '. $this->namePlural() .' list', 'acf-engine'), $postId );
+        /*end labels*/
+        update_field( 'menu_icon', $this->menuIcon(), $postId );
+        update_field( 'public', $this->public(), $postId );
+        update_field( 'supports', $this->supports(), $postId );
+        update_field( 'show_ui', $this->showUi(), $postId );
+        update_field( 'show_in_menu', $this->showInMenu(), $postId );
+        update_field( 'menu_position', $this->menuPosition(), $postId );
+        update_field( 'show_in_admin_bar', $this->showInAdminBar(), $postId );
+        update_field( 'show_in_nav_menus', $this->showInNavMenus(), $postId );
+        update_field( 'can_export', $this->canExport(), $postId );
+        update_field( 'has_archive', $this->showArchive(), $postId );
+        update_field( 'hierarchical', $this->hierarchical(), $postId );
+        update_field( 'map_meta_cap', $this->mapMetaCap(), $postId );
+        update_field( 'query_var', $this->queryVar(), $postId );
+        update_field( 'delete_with_user', $this->deleteWithUser(), $postId );
+        update_field( 'exclude_from_search', $this->excludeFromSearch(), $postId );
+        update_field( 'show_in_rest', $this->showInRest(), $postId );
+        update_field( 'rest_base', $this->restBase(), $postId );
+        update_field( 'publicly_queryable', $this->publiclyQueryable(), $postId );
+        update_field( 'capability_type', $this->capabilityType(), $postId );
+        update_field( 'rewrite', $this->rewrite(), $postId );
+        update_field( 'slug', $this->customPermalink(), $postId );
+        update_field( 'with_front', $this->withFront(), $postId );
+        update_field( 'feeds', $this->feeds(), $postId );
+        update_field( 'ep_mask', $this->epMask(), $postId );
 
 		return $postId;
 
