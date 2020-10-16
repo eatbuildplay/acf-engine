@@ -262,6 +262,22 @@ abstract class BlockType {
 		update_field( 'key', $this->key, $postId );
 		update_field( 'title', $this->title, $postId );
 		update_field( 'description', $this->description, $postId );
+		update_field( 'render_code', $this->renderCode, $postId );
+		update_field( 'category', $this->category, $postId );
+		update_field( 'icon', $this->icon, $postId );
+		update_field( 'keywords', $this->keywords, $postId );
+		update_field( 'post_types', $this->postTypes, $postId );
+		update_field( 'mode', $this->mode, $postId );
+		update_field( 'align', $this->align, $postId );
+		update_field( 'align_text', $this->alignText, $postId );
+		update_field( 'align_content', $this->alignContent, $postId );
+		update_field( 'render_template', $this->renderTemplate, $postId );
+		update_field( 'render_callback', $this->renderCallback, $postId );
+		update_field( 'enqueue_style', $this->enqueueStyle, $postId );
+		update_field( 'enqueue_style', $this->enqueueStyle, $postId );
+		update_field( 'enqueue_script', $this->enqueueScript, $postId );
+		update_field( 'enqueue_assets', $this->enqueueAssets, $postId );
+		update_field( 'supports', $this->supports, $postId );
 
 		return $postId;
 
