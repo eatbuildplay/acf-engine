@@ -159,7 +159,7 @@ abstract class OptionsPage {
   }
 
   public function getPrefixedSlug() {
-		return $this->prefix . $this->slug();
+		return $this->prefix . $this->menuSlug();
 	}
 
 	public function setMenuSlug( $v ) {

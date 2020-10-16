@@ -44,7 +44,7 @@ class OptionsPageManager {
 
     $json = json_encode( $data );
 
-    \file_put_contents( ACF_ENGINE_PATH . 'data/options-pages/' . $data->slug . '.json', $json );
+    \file_put_contents( ACF_ENGINE_PATH . 'data/options-pages/' . $data->menuSlug . '.json', $json );
 
   }
 
