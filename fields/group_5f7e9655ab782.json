@@ -817,7 +817,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "acfe_taxonomy"
+                "value": "acfg_taxonomy"
             }
         ]
     ],
@@ -829,5 +829,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1602261216
+    "modified": 1602868724
 }

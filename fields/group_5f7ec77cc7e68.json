@@ -360,7 +360,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "acfe_block_type"
+                "value": "acfg_block_type"
             }
         ]
     ],
@@ -372,5 +372,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1602778218
+    "modified": 1602868653
 }

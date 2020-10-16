@@ -239,7 +239,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "acfe_options_page"
+                "value": "acfg_options_page"
             }
         ]
     ],
@@ -251,5 +251,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1602818822
+    "modified": 1602868763
 }

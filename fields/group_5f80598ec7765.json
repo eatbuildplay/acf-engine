@@ -46,7 +46,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/acfe-acf-template"
+                "value": "acf\/acfg-acf-template"
             }
         ]
     ],

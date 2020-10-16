@@ -46,7 +46,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/acfe-acf-field-image"
+                "value": "acf\/acfg-acf-field-image"
             }
         ]
     ],
