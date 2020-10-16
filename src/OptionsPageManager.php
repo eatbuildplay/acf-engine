@@ -19,7 +19,7 @@ class OptionsPageManager {
   public function savePost( $postId, $post, $update ) {
 
     // only target our post type registrations
-    if( $post->post_type !== 'acfe_options_page' ) {
+    if( $post->post_type !== 'acfg_options_page' ) {
       return;
     }
 

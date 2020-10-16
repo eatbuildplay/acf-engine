@@ -19,7 +19,7 @@ class TaxonomyManager {
   public function savePost( $postId, $post, $update ) {
 
     // only target our post type registrations
-    if( $post->post_type !== 'acfe_taxonomy' ) {
+    if( $post->post_type !== 'acfg_taxonomy' ) {
       return;
     }
 
@@ -104,7 +104,7 @@ class TaxonomyManager {
 	public function fetchByKey( $key ) {
 
 		$posts = get_posts([
-			'post_type' 	=> 'acfe_taxonomy',
+			'post_type' 	=> 'acfg_taxonomy',
 			'numberposts' => -1,
 			'meta_query' => [
 				[

@@ -1,6 +1,6 @@
 <?php
 
-$countPostTypes = wp_count_posts('acfe_post_type');
+$countPostTypes = wp_count_posts('acfg_post_type');
 
 // var_dump( $countPostTypes );
 
@@ -21,7 +21,7 @@ $countPostTypes = wp_count_posts('acfe_post_type');
         <?php print $countPostTypes->publish; ?>
       </h3>
       <h4>
-        <a href="edit.php?post_type=acfe_post_type">Manage Post Types</a>
+        <a href="edit.php?post_type=acfg_post_type">Manage Post Types</a>
       </h4>
 
     </div>

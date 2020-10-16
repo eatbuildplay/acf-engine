@@ -19,7 +19,7 @@ class ComponentManager {
   public function savePost( $postId, $post, $update ) {
 
     // only target our post type registrations
-    if( $post->post_type !== 'acfe_component' ) {
+    if( $post->post_type !== 'acfg_component' ) {
       return;
     }
 

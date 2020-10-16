@@ -8,8 +8,8 @@ if (!defined('ABSPATH')) {
 
 abstract class BlockType {
 
-  protected $prefix = 'acfe_';
-	protected $postType = 'acfe_block_type';
+  protected $prefix = 'acfg_';
+	protected $postType = 'acfg_block_type';
   public 		$key;
 	protected $renderCode;
 	protected $category;
@@ -87,7 +87,7 @@ abstract class BlockType {
 	 */
 	public function defaultCallback( $block, $content = '', $isPreview, $editorPostId ) {
 
-		$filename = str_replace('acf/acfe-', '', $block['name']) . '.json';
+		$filename = str_replace('acf/acfg-', '', $block['name']) . '.json';
 		$filename = str_replace('-', '_', $filename);
 
 		$json = file_get_contents( ACF_ENGINE_PATH . 'data/block-types/' . $filename );

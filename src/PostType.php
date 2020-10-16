@@ -8,8 +8,8 @@ if (!defined('ABSPATH')) {
 
 abstract class PostType {
 
-	protected 	$prefix = 'acfe_';
-	protected 	$postType = 'acfe_post_type';
+	protected 	$prefix = 'acfg_';
+	protected 	$postType = 'acfg_post_type';
 	protected 	$key;
 	protected 	$nameSingular;
 	protected 	$namePlural;

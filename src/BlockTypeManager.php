@@ -19,7 +19,7 @@ class BlockTypeManager {
   public function savePost( $postId, $post, $update ) {
 
     // only target our post type registrations
-    if( $post->post_type !== 'acfe_block_type' ) {
+    if( $post->post_type !== 'acfg_block_type' ) {
       return;
     }
 
@@ -99,7 +99,7 @@ class BlockTypeManager {
 	public function fetchByKey( $key ) {
 
 		$posts = get_posts([
-			'post_type' 	=> 'acfe_block_type',
+			'post_type' 	=> 'acfg_block_type',
 			'numberposts' => -1,
 			'meta_query' => [
 				[

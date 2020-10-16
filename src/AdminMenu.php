@@ -34,13 +34,13 @@ class AdminMenu {
     global $submenu_file, $current_screen;
 
     $cpts = [
-      'acfe_post_type',
-      'acfe_taxonomy',
-      'acfe_options_page',
-      'acfe_block_type',
-      'acfe_template',
-      'acfe_component',
-      'acfe_render_code'
+      'acfg_post_type',
+      'acfg_taxonomy',
+      'acfg_options_page',
+      'acfg_block_type',
+      'acfg_template',
+      'acfg_component',
+      'acfg_render_code'
     ];
 
     if( in_array($current_screen->post_type, $cpts)) {
@@ -76,7 +76,7 @@ class AdminMenu {
      'Post Types',
      'Post Types',
      'edit_posts',
-     'edit.php?post_type=acfe_post_type',
+     'edit.php?post_type=acfg_post_type',
    );
 
    \add_submenu_page(
@@ -84,7 +84,7 @@ class AdminMenu {
      'Taxonomies',
      'Taxonomies',
      'edit_posts',
-     'edit.php?post_type=acfe_taxonomy',
+     'edit.php?post_type=acfg_taxonomy',
    );
 
    \add_submenu_page(
@@ -92,7 +92,7 @@ class AdminMenu {
      'Options Pages',
      'Options Pages',
      'edit_posts',
-     'edit.php?post_type=acfe_options_page',
+     'edit.php?post_type=acfg_options_page',
    );
 
    \add_submenu_page(
@@ -100,7 +100,7 @@ class AdminMenu {
      'Block Types',
      'Block Types',
      'edit_posts',
-     'edit.php?post_type=acfe_block_type',
+     'edit.php?post_type=acfg_block_type',
    );
 
    \add_submenu_page(
@@ -108,7 +108,7 @@ class AdminMenu {
      'Templates',
      'Templates',
      'edit_posts',
-     'edit.php?post_type=acfe_template',
+     'edit.php?post_type=acfg_template',
    );
 
    $plugin = new \AcfEngine\Plugin();
@@ -120,7 +120,7 @@ class AdminMenu {
        'Render Code',
        'Render Code',
        'edit_posts',
-       'edit.php?post_type=acfe_render_code',
+       'edit.php?post_type=acfg_render_code',
      );
 
      \add_submenu_page(
@@ -128,7 +128,7 @@ class AdminMenu {
        'Components',
        'Components',
        'edit_posts',
-       'edit.php?post_type=acfe_component',
+       'edit.php?post_type=acfg_component',
      );
 
      \add_submenu_page(

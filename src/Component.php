@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
 
 abstract class Component {
 
-  protected $prefix = 'acfe_';
+  protected $prefix = 'acfg_';
   public 		$key;
 
   public function init() {

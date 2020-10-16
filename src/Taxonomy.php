@@ -36,7 +36,7 @@ abstract class Taxonomy {
 
 		$objectTypePrefixed = [];
 		foreach( $objectType as $ot ) {
-			$objectTypePrefixed[] = 'acfe_' . $ot;
+			$objectTypePrefixed[] = 'acfg_' . $ot;
 		}
 
 		$args = $this->args();

@@ -18,7 +18,7 @@ class RenderCodeManager {
   public function savePost( $postId, $post, $update ) {
 
     // only target our post type registrations
-    if( $post->post_type !== 'acfe_render_code' ) {
+    if( $post->post_type !== 'acfg_render_code' ) {
       return;
     }
 

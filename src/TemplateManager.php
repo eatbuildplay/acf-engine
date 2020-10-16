@@ -25,7 +25,7 @@ class TemplateManager {
   public function savePost( $postId, $post, $update ) {
 
     // only target our post type registrations
-    if( $post->post_type !== 'acfe_template' ) {
+    if( $post->post_type !== 'acfg_template' ) {
       return;
     }
 
@@ -122,7 +122,7 @@ class TemplateManager {
 	public function findSingleTemplates( $postType ) {
 
 		$templatePosts = get_posts([
-			'post_type' => 'acfe_template',
+			'post_type' => 'acfg_template',
 			'numberposts' => -1,
 			'meta_query' => [
 				[
@@ -174,7 +174,7 @@ class TemplateManager {
 	public function findArchiveTemplates( $postType ) {
 
 		$templatePosts = get_posts([
-			'post_type' => 'acfe_template',
+			'post_type' => 'acfg_template',
 			'numberposts' => -1,
 			'meta_query' => [
 				[

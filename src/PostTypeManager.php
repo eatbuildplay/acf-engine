@@ -18,7 +18,7 @@ class PostTypeManager {
   public function savePost( $postId, $post, $update ) {
 
     // only target our post type registrations
-    if( $post->post_type !== 'acfe_post_type' ) {
+    if( $post->post_type !== 'acfg_post_type' ) {
       return;
     }
 
@@ -153,7 +153,7 @@ class PostTypeManager {
 	public function fetchByKey( $key ) {
 
 		$posts = get_posts([
-			'post_type' 	=> 'acfe_post_type',
+			'post_type' 	=> 'acfg_post_type',
 			'numberposts' => -1,
 			'meta_query' => [
 				[
