@@ -37,6 +37,9 @@ abstract class PostType {
 	protected 	$canExport = true;
 	protected 	$showInRest = false;
 	protected 	$withFront = true;
+	protected 	$feeds = true;
+	protected 	$pages = true;
+	protected 	$epMask = EP_PERMALINK;
 	protected 	$rewrite;
 
 	public function init() {
@@ -94,6 +97,9 @@ abstract class PostType {
 			'rewrite'             => array(
 				'slug'       				=> $this->customPermalink(),
 				'with_front' 				=> $this->withFront(),
+				'feeds' 				    => $this->feeds(),
+				'pages' 				    => $this->pages(),
+				'ep_mask' 				    => $this->epMask(),
 			)
 		];
 
@@ -294,6 +300,27 @@ abstract class PostType {
     }
     public function setWithFront( $v ) {
         $this->withFront = (bool) $v;
+    }
+
+    public function feeds() {
+        return $this->feeds;
+    }
+    public function setFeeds( $v ) {
+        $this->feeds = (bool) $v;
+    }
+
+    public function pages() {
+        return $this->pages;
+    }
+    public function setPages( $v ) {
+        $this->pages = (bool) $v;
+    }
+
+    public function epMask() {
+        return $this->epMask;
+    }
+    public function setEpMask( $v ) {
+        $this->epMask = $v;
     }
 
     public function menuIcon() {

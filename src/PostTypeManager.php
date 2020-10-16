@@ -32,8 +32,13 @@ class PostTypeManager {
 		$data->nameSingular = get_field('singular_name', $postId);
 		$data->namePlural = get_field('plural_name', $postId);
 		$data->description = get_field('description', $postId);
+		if (!empty(get_field('name', $postId))){
+            $field_name = get_field('name', $postId);
+        }else{
+            $field_name = get_field('key', $postId);
+        }
 		$data->labels = [
-		   'name' =>  get_field('name', $postId),
+		   'name' =>  $field_name,
 		   'menuName' =>  get_field('menu_name', $postId),
 		   'nameAdminBar' =>  get_field('name_admin_bar', $postId),
 		   'archives' =>  get_field('archives', $postId),
@@ -79,11 +84,17 @@ class PostTypeManager {
 		$data->restBase = get_field('rest_base', $postId);
 		$data->publiclyQueryable = get_field('publicly_queryable', $postId);
 		$data->capabilityType = get_field('capability_type', $postId);
-		$data->rewrite = [
-		    'slug'          => get_field('slug', $postId),
-            'withFront'    => get_field('with_front', $postId),
-        ];
-
+		if (get_field('rewrite', $postId)){
+            $data->rewrite = [
+                'slug'          => get_field('slug', $postId),
+                'withFront'    => get_field('with_front', $postId),
+                'feeds'    => get_field('feeds', $postId),
+                'pages'    => get_field('pages', $postId),
+                'epMask'    => get_field('ep_mask', $postId),
+            ];
+        }else{
+            $data->rewrite = get_field('rewrite', $postId);
+        }
 
 		/* update post title */
 		remove_action( 'save_post', [$this, 'savePost'] );
