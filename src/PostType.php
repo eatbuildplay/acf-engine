@@ -10,14 +10,14 @@ abstract class PostType {
 
 	protected 	$prefix = 'acfe_';
 	protected 	$postType = 'acfe_post_type';
-	public 		$key;
-	public 		$nameSingular;
-	public 		$namePlural;
-	public 		$showInMenu 	= true;
-	public 		$menuPosition = 10;
-	public 		$supports;
-	public 		$description = '';
-	public 		$menuIcon = 'dashicons-feedback';
+	protected 	$key;
+	protected 	$nameSingular;
+	protected 	$namePlural;
+	protected 	$showInMenu 	= true;
+	protected 	$menuPosition = 10;
+	protected 	$supports;
+	protected 	$description = '';
+	protected 	$menuIcon = 'dashicons-feedback';
 	protected 	$public = true;
 	protected 	$publiclyQueryable = true;
 	protected 	$showUi = true;
@@ -35,7 +35,7 @@ abstract class PostType {
 	protected 	$showInAdminBar = true;
 	protected 	$showInNavMenus = true;
 	protected 	$canExport = true;
-	protected 	$showInRest = false;
+	protected 	$showInRest = true; // default true to better support gutenberg
 	protected 	$withFront = true;
 	protected 	$feeds = true;
 	protected 	$pages = true;
@@ -61,13 +61,7 @@ abstract class PostType {
 	}
 
 	public function register() {
-
-		$this->showArchive = true;
-		$this->excludeFromSearch = false;
-		$this->customPermalink = null;
-
 		return register_post_type( $this->getPrefixedKey(), $this->args() );
-
 	}
 
 	public function defaultArgs() {
@@ -76,8 +70,8 @@ abstract class PostType {
 			'description'         => __($this->description(), 'acf-engine'),
 			'labels'              => $this->labels(),
 			'menu_icon'           => $this->menuIcon(),
-			'public'              => $this->publicShow(),
-			'supports' 			  => $this->supports(),
+			'public'              => $this->public(),
+			'supports' 			  		=> $this->supports(),
 			'show_ui'             => $this->showUi(),
 			'show_in_menu'        => $this->showInMenu(),
 			'menu_position'       => $this->menuPosition(),
@@ -95,11 +89,11 @@ abstract class PostType {
 			'publicly_queryable'  => $this->publiclyQueryable(),
 			'capability_type'     => 'post',
 			'rewrite'             => array(
-				'slug'       				=> $this->customPermalink(),
-				'with_front' 				=> $this->withFront(),
-				'feeds' 				    => $this->feeds(),
-				'pages' 				    => $this->pages(),
-				'ep_mask' 				    => $this->epMask(),
+				'slug'       	=> $this->customPermalink(),
+				'with_front' 	=> $this->withFront(),
+				'feeds' 			=> $this->feeds(),
+				'pages' 			=> $this->pages(),
+				'ep_mask' 		=> $this->epMask(),
 			)
 		];
 
@@ -107,12 +101,12 @@ abstract class PostType {
 			$args['template'] 			= [ $this->templatePaths() ];
 			$args['template_lock'] 	= 'all';
 		}
-        if( $this->restControllerClass() ) {
-            $args['rest_controller_class'] 	= $this->restControllerClass();
-        }
+
+    if( $this->restControllerClass() ) {
+      $args['rest_controller_class'] 	= $this->restControllerClass();
+    }
 
 		return $args;
-
 	}
 
 	public function labels() {
@@ -246,10 +240,10 @@ abstract class PostType {
         $this->description = $v;
     }
 
-    public function publicShow() {
+    public function public() {
         return $this->public;
     }
-    public function setPublicShow( $v ) {
+    public function setPublic( $v ) {
         $this->public = (bool) $v;
     }
 
