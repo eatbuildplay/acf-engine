@@ -52,7 +52,7 @@ class OptionsPageManager {
         $data = json_decode( $json );
 
         $op = new OptionsPageCustom();
-        $op->setSlug( $data->slug );
+        $op->setMenuSlug( $data->menuSlug );
 				$op->setPageTitle( $data->pageTitle );
 				if( $data->menuTitle ) {
 					$op->setMenuTitle( $data->menuTitle );

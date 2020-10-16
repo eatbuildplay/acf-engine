@@ -9,13 +9,14 @@ if (!defined('ABSPATH')) {
 abstract class OptionsPage {
 
 	protected $key;
-  protected $prefix = 'acfg-';
+  protected $prefix = 'acfg_';
+	protected $postType = 'acfg_options_page';
 	protected $pageTitle;
 	protected $menuTitle;
 	protected $menuSlug;
 	protected $capability;
 	protected $position;
-	protected $parenSlug;
+	protected $parentSlug;
 	protected $iconUrl;
 	protected $redirect;
 	protected $postId;
@@ -69,20 +70,12 @@ abstract class OptionsPage {
 		return $this->menuTitle;
 	}
 
-	public function setCapability( $v ) {
-		$this->capability = $v;
-	}
-
-	public function menuCapability() {
+	public function capability() {
 		return $this->capability;
 	}
 
 	public function setCapability( $v ) {
 		$this->capability = $v;
-	}
-
-	public function menuCapability() {
-		return $this->capability;
 	}
 
 	public function setPosition( $v ) {
@@ -98,14 +91,6 @@ abstract class OptionsPage {
 	}
 
 	public function parentSlug() {
-		return $this->parentSlug;
-	}
-
-	public function setIconUrl( $v ) {
-		$this->iconUrl = $v;
-	}
-
-	public function iconUrl() {
 		return $this->parentSlug;
 	}
 
@@ -177,20 +162,43 @@ abstract class OptionsPage {
 		return $this->prefix . $this->slug();
 	}
 
-  public function setMenuSlug( $v ) {
-		$this->menuSlug = $v;
-	}
-
-	public function menuSlug() {
-		return $this->menuSlug;
-	}
-
 	public function setMenuSlug( $v ) {
 		$this->menuSlug = $v;
 	}
 
 	public function menuSlug() {
 		return $this->menuSlug;
+	}
+
+	public function import() {
+
+		/*
+		 * insert into db with create post
+		 */
+		$postId = wp_insert_post(
+			[
+				'post_type'      => $this->postType(),
+				'post_title'     => $this->menuSlug,
+				'post_status'    => 'publish'
+			]
+		);
+
+		/*
+		 * update acf fields with meta data
+		 */
+		update_field( 'menu_slug', $this->menuSlug, $postId );
+		update_field( 'page_title', $this->pageTitle, $postId );
+		update_field( 'menu_title', $this->menuTitle, $postId );
+		update_field( 'capability', $this->capability, $postId );
+		update_field( 'position', $this->position, $postId );
+		update_field( 'parent_slug', $this->parentSlug, $postId );
+		update_field( 'icon_url', $this->iconUrl, $postId );
+		update_field( 'redirect', $this->redirect, $postId );
+		update_field( 'post_id', $this->post_id, $postId );
+		update_field( 'autoload', $this->iconUrl, $postId );
+		update_field( 'update_button', $this->updateButton, $postId );
+		update_field( 'updated_message', $this->updatedMessage, $postId );
+
 	}
 
 }
