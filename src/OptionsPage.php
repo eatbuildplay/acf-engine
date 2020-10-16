@@ -8,10 +8,20 @@ if (!defined('ABSPATH')) {
 
 abstract class OptionsPage {
 
-  protected $prefix = 'acfe-';
-  public 		$slug; // slug is used here as unique key
-	public 		$pageTitle;
-	public 		$menuTitle;
+	protected $key;
+  protected $prefix = 'acfg-';
+	protected $pageTitle;
+	protected $menuTitle;
+	protected $menuSlug;
+	protected $capability;
+	protected $position;
+	protected $parenSlug;
+	protected $iconUrl;
+	protected $redirect;
+	protected $postId;
+	protected $autoload;
+	protected $updateButton;
+	protected $updatedMessage;
 
   public function init() {
 		$this->parseArgs();
@@ -21,8 +31,7 @@ abstract class OptionsPage {
   /*
    *
    * Options Page Registration
-   *
-   *
+	 *
    */
   public function register() {
 
@@ -34,6 +43,14 @@ abstract class OptionsPage {
   		'redirect'		=> false
   	));
 
+	}
+
+	public function setKey( $v ) {
+		$this->key = $v;
+	}
+
+	public function key() {
+		return $this->key;
 	}
 
 	public function setPageTitle( $v ) {
@@ -50,6 +67,94 @@ abstract class OptionsPage {
 
 	public function menuTitle() {
 		return $this->menuTitle;
+	}
+
+	public function setCapability( $v ) {
+		$this->capability = $v;
+	}
+
+	public function menuCapability() {
+		return $this->capability;
+	}
+
+	public function setCapability( $v ) {
+		$this->capability = $v;
+	}
+
+	public function menuCapability() {
+		return $this->capability;
+	}
+
+	public function setPosition( $v ) {
+		$this->position = $v;
+	}
+
+	public function menuPosition() {
+		return $this->position;
+	}
+
+	public function setParentSlug( $v ) {
+		$this->parentSlug = $v;
+	}
+
+	public function parentSlug() {
+		return $this->parentSlug;
+	}
+
+	public function setIconUrl( $v ) {
+		$this->iconUrl = $v;
+	}
+
+	public function iconUrl() {
+		return $this->parentSlug;
+	}
+
+	public function setIconUrl( $v ) {
+		$this->iconUrl = $v;
+	}
+
+	public function iconUrl() {
+		return $this->parentSlug;
+	}
+
+	public function setRedirect( $v ) {
+		$this->redirect = $v;
+	}
+
+	public function redirect() {
+		return $this->redirect;
+	}
+
+	public function setPostId( $v ) {
+		$this->postId = $v;
+	}
+
+	public function postId() {
+		return $this->postId;
+	}
+
+	public function setAutoload( $v ) {
+		$this->autoload = $v;
+	}
+
+	public function autoload() {
+		return $this->autoload;
+	}
+
+	public function setUpdateButton( $v ) {
+		$this->updateButton = $v;
+	}
+
+	public function updateButton() {
+		return $this->updateButton;
+	}
+
+	public function setUpdatedMessage( $v ) {
+		$this->updatedMessage = $v;
+	}
+
+	public function updatedMessage() {
+		return $this->updatedMessage;
 	}
 
   public function parseArgs() {
@@ -72,12 +177,20 @@ abstract class OptionsPage {
 		return $this->prefix . $this->slug();
 	}
 
-  public function setSlug( $v ) {
-		$this->slug = $v;
+  public function setMenuSlug( $v ) {
+		$this->menuSlug = $v;
 	}
 
-	public function slug() {
-		return $this->slug;
+	public function menuSlug() {
+		return $this->menuSlug;
+	}
+
+	public function setMenuSlug( $v ) {
+		$this->menuSlug = $v;
+	}
+
+	public function menuSlug() {
+		return $this->menuSlug;
 	}
 
 }
