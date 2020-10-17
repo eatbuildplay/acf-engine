@@ -87,7 +87,6 @@ abstract class PostType {
 			'show_in_rest'        => $this->showInRest(),
 			'rest_base'           => $this->restBase(),
 			'publicly_queryable'  => $this->publiclyQueryable(),
-			'capability_type'     => $this->capabilityType(),
 			'rewrite'             => array(
 				'slug'       	=> $this->customPermalink(),
 				'with_front' 	=> $this->withFront(),
@@ -96,6 +95,10 @@ abstract class PostType {
 				'ep_mask' 		=> $this->epMask(),
 			)
 		];
+
+		if( $this->capabilityType() ) {
+			$args['capability_type'] = $this->capabilityType();
+		}
 
 		if( !empty( $this->templatePaths() )) {
 			$args['template'] 			= [ $this->templatePaths() ];
@@ -378,13 +381,10 @@ abstract class PostType {
     }
 
     public function capabilityType() {
-        if (is_null($this->capabilityType)){
-            return $this->nameSingular();
-        }
-        return $this->capabilityType;
+      return $this->capabilityType;
     }
     public function setCapabilityType( $v ) {
-        $this->capabilityType = $v;
+      $this->capabilityType = $v;
     }
 
     public function capabilities() {
