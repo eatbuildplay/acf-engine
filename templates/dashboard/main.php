@@ -96,28 +96,36 @@ $countTemplates     = wp_count_posts('acfg_template');
 .acfg-dashboard-row {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 25px;
 }
 
 header {
   background: #D7D7D7;
   color: #353535;
-  padding: 30px 25px;
+  padding: 20px 25px;
   margin-left: -25px;
+  margin-bottom: 20px;
 }
 
 .acfg-dashboard-item {
-  margin: 5px;
+  margin: 10px;
   padding: 15px;
   background: #F8F8F8;
 }
 
+.acfg-dashboard-item:first-child {
+  margin-left: 0;
+}
+
 .acfg-dashboard-item h2 {
   text-align: center;
+  color: #454545;
 }
 
 .acfg-dashboard-stat {
   font-size: 2.8em;
   font-weight: 500;
+  color: #454545;
   text-align: center;
 }
 

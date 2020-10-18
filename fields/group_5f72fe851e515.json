@@ -79,11 +79,11 @@
             "maxlength": ""
         },
         {
-            "key": "field_5f7f130eba016",
-            "label": "Show in Menu",
-            "name": "show_in_menu",
+            "key": "field_5f7f11b7ba011",
+            "label": "Public",
+            "name": "public",
             "type": "true_false",
-            "instructions": "",
+            "instructions": "Controls how the type is visible to authors (Show in Nav Menu's, Show UI) and readers Exclude from Search, Public Queryable.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -98,10 +98,29 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_5f7f14f9ba01c",
-            "label": "Menu Position",
-            "name": "menu_position",
-            "type": "number",
+            "key": "field_5f7f12f2ba015",
+            "label": "Show UI",
+            "name": "show_ui",
+            "type": "true_false",
+            "instructions": "Whether to generate and allow a UI for managing this post type in the admin. Default is value of Public Setting. This must be set to true if you want the Show in Menu option to work.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5f8c08464dfd0",
+            "label": "Menu Settings",
+            "name": "menu_settings",
+            "type": "group",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -110,13 +129,92 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": 10,
-            "placeholder": 10,
-            "prepend": "",
-            "append": "",
-            "min": "",
-            "max": "",
-            "step": ""
+            "layout": "row",
+            "sub_fields": [
+                {
+                    "key": "field_5f7f130eba016",
+                    "label": "Show in Menu",
+                    "name": "show_in_menu",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5f7f12f2ba015",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_5f7f14f9ba01c",
+                    "label": "Menu Position",
+                    "name": "menu_position",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5f7f130eba016",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 10,
+                    "placeholder": 10,
+                    "prepend": "",
+                    "append": "",
+                    "min": "",
+                    "max": "",
+                    "step": ""
+                },
+                {
+                    "key": "field_5f7f153dba01d",
+                    "label": "Menu Icon",
+                    "name": "menu_icon",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5f7f130eba016",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "dashicons-feedback",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
         },
         {
             "key": "field_5f84527d4b719",
@@ -161,7 +259,10 @@
                 "post-formats": "Post Formats"
             },
             "allow_custom": 0,
-            "default_value": [],
+            "default_value": [
+                "title",
+                "editor"
+            ],
             "layout": "vertical",
             "toggle": 0,
             "return_format": "value",
@@ -182,25 +283,6 @@
             },
             "placement": "left",
             "endpoint": 0
-        },
-        {
-            "key": "field_5f7e1b64fc99d",
-            "label": "Description",
-            "name": "description",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
         },
         {
             "key": "field_5f7e158d29a7b",
@@ -716,6 +798,187 @@
             "maxlength": ""
         },
         {
+            "key": "field_5f8c0ef15ce80",
+            "label": "REST API",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5f7f1377ba019",
+            "label": "Show in REST API",
+            "name": "show_in_rest",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5f7f1398ba01a",
+            "label": "REST API Base url",
+            "name": "rest_base",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "REST API",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5f7f14b2ba01b",
+            "label": "Rest Controller Class",
+            "name": "rest_controller_class",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "REST API Controller class name",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5f8c0fa5377f6",
+            "label": "Capabilities",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5f7f1d9cb8635",
+            "label": "Map Meta Cap",
+            "name": "map_meta_cap",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5f7f1cf0b8634",
+            "label": "Capability Type",
+            "name": "capability_type",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5f7f2ea8c6ed1",
+            "label": "Capabilities",
+            "name": "capabilities",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5f8c6983678a8",
+            "label": "Rewrite",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5f7f2f74c6ed3",
+            "label": "Rewrite",
+            "name": "rewrite",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_5f7f674f17ae8",
             "label": "Advanced",
             "name": "",
@@ -732,10 +995,10 @@
             "endpoint": 0
         },
         {
-            "key": "field_5f7f11b7ba011",
-            "label": "Public",
-            "name": "public",
-            "type": "true_false",
+            "key": "field_5f7e1b64fc99d",
+            "label": "Description",
+            "name": "description",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -744,11 +1007,11 @@
                 "class": "",
                 "id": ""
             },
-            "message": "",
-            "default_value": 1,
-            "ui": 1,
-            "ui_on_text": "",
-            "ui_off_text": ""
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         },
         {
             "key": "field_5f7f1214ba012",
@@ -808,66 +1071,9 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_5f7f1377ba019",
-            "label": "Show in REST API",
-            "name": "show_in_rest",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 1,
-            "ui": 1,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_5f7f1d9cb8635",
-            "label": "Map Meta Cap",
-            "name": "map_meta_cap",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0,
-            "ui": 1,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
             "key": "field_5f7f2f22c6ed2",
             "label": "Has Archive",
             "name": "has_archive",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0,
-            "ui": 1,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_5f7f2f74c6ed3",
-            "label": "Rewrite",
-            "name": "rewrite",
             "type": "true_false",
             "instructions": "",
             "required": 0,
@@ -941,25 +1147,6 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_5f7f12f2ba015",
-            "label": "Show Ui",
-            "name": "show_ui",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 1,
-            "ui": 1,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
             "key": "field_5f7f12d3ba014",
             "label": "Publicly Queryable",
             "name": "publicly_queryable",
@@ -996,120 +1183,6 @@
             "ui": 1,
             "ui_on_text": "",
             "ui_off_text": ""
-        },
-        {
-            "key": "field_5f7f1398ba01a",
-            "label": "REST API Base url",
-            "name": "rest_base",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "REST API",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5f7e133729a7a",
-            "label": "Add New on Toolbar",
-            "name": "name_admin_bar",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5f7f14b2ba01b",
-            "label": "Rest Controller Class",
-            "name": "rest_controller_class",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "REST API Controller class name",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5f7f153dba01d",
-            "label": "Menu Icon",
-            "name": "menu_icon",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "Url ico",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5f7f1cf0b8634",
-            "label": "Capability Type",
-            "name": "capability_type",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5f7f2ea8c6ed1",
-            "label": "Capabilities",
-            "name": "capabilities",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
         }
     ],
     "location": [
@@ -1129,5 +1202,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1602868674
+    "modified": 1603039111
 }

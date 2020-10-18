@@ -33,14 +33,17 @@ abstract class PostType {
 	protected 	$capabilityType = null;
 	protected 	$capabilities = '';
 	protected 	$showInAdminBar = true;
-	protected 	$showInNavMenus = true;
+	protected 	$showInNavMenus;
 	protected 	$canExport = true;
 	protected 	$showInRest = true; // default true to better support gutenberg
-	protected 	$withFront = true;
-	protected 	$feeds = true;
-	protected 	$pages = true;
-	protected 	$epMask = EP_PERMALINK;
-	protected 	$rewrite = false;
+
+	// rewrite properties
+	protected 	$rewrite;
+	protected 	$rewriteSlug;
+	protected 	$rewriteWithFront;
+	protected 	$rewriteFeeds;
+	protected 	$rewritePages;
+	protected 	$rewriteEpMask;
 
 	public function init() {
 		$this->parseArgs();
@@ -51,7 +54,7 @@ abstract class PostType {
 
 		// set default plural name
 		if( !$this->namePlural ) {
-			$this->namePlural = $this->nameSingular . 's';
+			$this->namePlural = $this->nameSingular() . 's';
 		}
 
 	}
@@ -76,7 +79,6 @@ abstract class PostType {
 			'show_in_menu'        => $this->showInMenu(),
 			'menu_position'       => $this->menuPosition(),
 			'show_in_admin_bar'   => $this->showInAdminBar(),
-			'show_in_nav_menus'   => $this->showInNavMenus(),
 			'can_export'          => $this->canExport(),
 			'has_archive'         => $this->showArchive(),
 			'hierarchical'        => $this->hierarchical(),
@@ -88,13 +90,17 @@ abstract class PostType {
 			'rest_base'           => $this->restBase(),
 			'publicly_queryable'  => $this->publiclyQueryable(),
 			'rewrite'             => array(
-				'slug'       	=> $this->customPermalink(),
-				'with_front' 	=> $this->withFront(),
-				'feeds' 			=> $this->feeds(),
-				'pages' 			=> $this->pages(),
-				'ep_mask' 		=> $this->epMask(),
+				'slug'       	=> $this->rewriteSlug(),
+				'with_front' 	=> $this->rewriteWithFront(),
+				'feeds' 			=> $this->rewriteFeeds(),
+				'pages' 			=> $this->rewritePages(),
+				'ep_mask' 		=> $this->rewriteEpMask(),
 			)
 		];
+
+		if( $this->showInNavMenus() ) {
+			$args['show_in_nav_menus'] = $this->showInNavMenus();
+		}
 
 		if( $this->capabilityType() ) {
 			$args['capability_type'] = $this->capabilityType();
@@ -272,10 +278,10 @@ abstract class PostType {
     }
 
     public function showInNavMenus() {
-        return $this->showInNavMenus;
+      return $this->showInNavMenus;
     }
     public function setShowInNavMenus( $v ) {
-        $this->showInNavMenus = (bool) $v;
+      $this->showInNavMenus = (bool) $v;
     }
 
     public function canExport() {
@@ -290,34 +296,6 @@ abstract class PostType {
     }
     public function setShowInRest( $v ) {
         $this->showInRest = (bool) $v;
-    }
-
-    public function withFront() {
-        return $this->withFront;
-    }
-    public function setWithFront( $v ) {
-        $this->withFront = (bool) $v;
-    }
-
-    public function feeds() {
-        return $this->feeds;
-    }
-    public function setFeeds( $v ) {
-        $this->feeds = (bool) $v;
-    }
-
-    public function pages() {
-        return $this->pages;
-    }
-    public function setPages( $v ) {
-        $this->pages = (bool) $v;
-    }
-
-    public function epMask() {
-        return $this->epMask;
-    }
-    public function setEpMask( $v ) {
-        $this->epMask = $v;
     }
 
     public function menuIcon() {
@@ -356,12 +334,59 @@ abstract class PostType {
         $this->deleteWithUser = (bool) $v;
     }
 
+		/*
+		 *
+		 * Rewrite methods
+		 *
+		 */
+
     public function rewrite() {
-        return $this->rewrite;
+      return $this->rewrite;
     }
+
     public function setRewrite( $v ) {
-        $this->rewrite = (bool) $v;
+      $this->rewrite = (bool) $v;
     }
+
+		public function rewriteSlug() {
+      return $this->rewriteSlug;
+    }
+
+    public function setRewriteSlug( $v ) {
+      $this->rewriteSlug = $v;
+    }
+
+		public function rewriteWithFront() {
+      return $this->rewriteWithFront;
+    }
+
+    public function setRewriteWithFront( $v ) {
+      $this->rewriteWithFront = (bool) $v;
+    }
+
+		public function rewriteFeeds() {
+    	return $this->rewriteFeeds;
+    }
+    public function setRewriteFeeds( $v ) {
+      $this->rewriteFeeds = (bool) $v;
+    }
+
+    public function rewritePages() {
+      return $this->rewritePages;
+    }
+
+    public function setRewritePages( $v ) {
+      $this->rewritePages = (bool) $v;
+    }
+
+    public function rewriteEpMask() {
+      return $this->rewriteEpMask;
+    }
+    public function setRewriteEpMask( $v ) {
+      $this->rewriteEpMask = $v;
+    }
+
+		/* end rewrite methods */
 
     public function restBase() {
         if( is_null( $this->restBase ) ) {
@@ -472,9 +497,9 @@ abstract class PostType {
         	update_field( 'capability_type', $this->capabilityType(), $postId );
         	update_field( 'rewrite', $this->rewrite(), $postId );
         	update_field( 'slug', $this->customPermalink(), $postId );
-        	update_field( 'with_front', $this->withFront(), $postId );
-        	update_field( 'feeds', $this->feeds(), $postId );
-        	update_field( 'ep_mask', $this->epMask(), $postId );
+        	update_field( 'with_front', $this->rewriteWithFront(), $postId );
+        	update_field( 'rewriteFeeds', $this->rewriteFeeds(), $postId );
+        	update_field( 'ep_mask', $this->rewriteEpMask(), $postId );
 
 		return $postId;
 
