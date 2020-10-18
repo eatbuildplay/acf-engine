@@ -24,7 +24,6 @@ abstract class PostType {
 	protected 	$hierarchical = false;
 	protected 	$excludeFromSearch = true;
 	protected 	$showArchive = true;
-	protected 	$customPermalink = null;
 	protected 	$mapMetaCap  = null;
 	protected 	$queryVar   = true;
 	protected 	$deleteWithUser   = null;
@@ -88,7 +87,6 @@ abstract class PostType {
 			'exclude_from_search' => $this->excludeFromSearch(),
 			'show_in_rest'        => $this->showInRest(),
 			'rest_base'           => $this->restBase(),
-			'publicly_queryable'  => $this->publiclyQueryable(),
 			'rewrite'             => array(
 				'slug'       	=> $this->rewriteSlug(),
 				'with_front' 	=> $this->rewriteWithFront(),
@@ -114,6 +112,10 @@ abstract class PostType {
     if( $this->restControllerClass() ) {
       $args['rest_controller_class'] 	= $this->restControllerClass();
     }
+
+		if( $this->publiclyQueryable() ) {
+			$args['publicly_queryable'] 	= $this->publiclyQueryable();
+		}
 
 		return $args;
 	}
@@ -166,17 +168,11 @@ abstract class PostType {
 	}
 
 	public function excludeFromSearch() {
-		if( is_null( $this->excludeFromSearch) ) {
-			return false;
-		}
 		return $this->excludeFromSearch;
 	}
 
-	public function customPermalink() {
-		if( is_null( $this->customPermalink ) ) {
-			return str_replace('sb-', '', $this->key());
-		}
-		return $this->customPermalink;
+	public function setExcludeFromSearch( $v ) {
+		$this->excludeFromSearch = $v;
 	}
 
 	public function templatePaths() {
@@ -496,7 +492,7 @@ abstract class PostType {
         	update_field( 'publicly_queryable', $this->publiclyQueryable(), $postId );
         	update_field( 'capability_type', $this->capabilityType(), $postId );
         	update_field( 'rewrite', $this->rewrite(), $postId );
-        	update_field( 'slug', $this->customPermalink(), $postId );
+        	update_field( 'rewrite_slug', $this->rewriteSlug(), $postId );
         	update_field( 'with_front', $this->rewriteWithFront(), $postId );
         	update_field( 'rewriteFeeds', $this->rewriteFeeds(), $postId );
         	update_field( 'ep_mask', $this->rewriteEpMask(), $postId );
