@@ -305,34 +305,27 @@ abstract class Taxonomy {
 		update_field( 'title', $this->title(), $postId );
 		update_field( 'labels', $this->labels(), $postId );
 		update_field( 'description', $this->description(), $postId );
-
-		/*
-
-		Next properties to add to importer...
+		update_field( 'object_type', $this->objectType(), $postId );
+		update_field( 'public', $this->public(), $postId );
+		update_field( 'public_queryable', $this->publicQueryable(), $postId );
+		update_field( 'hierarchical', $this->hierarchical(), $postId );
+		update_field( 'show_ui', $this->showUi(), $postId );
+		update_field( 'show_in_menu', $this->showInMenu(), $postId );
+		update_field( 'show_in_nav_menus', $this->showInNavMenus(), $postId );
+		update_field( 'show_in_rest', $this->showInRest(), $postId );
+		update_field( 'rest_base', $this->restBase(), $postId );
+		update_field( 'rest_controller_class', $this->restControllerClass(), $postId );
+		update_field( 'show_tagcloud', $this->showTagcloud(), $postId );
+		update_field( 'show_in_quick_edit', $this->showInQuickEdit(), $postId );
+		update_field( 'show_admin_column', $this->showAdminColumn(), $postId );
+		update_field( 'meta_box_cb', $this->metaBoxCb(), $postId );
+		update_field( 'meta_box_sanitize_cb', $this->metaBoxSanitizeCb(), $postId );
+		update_field( 'capabilities', $this->capabilities(), $postId );
+		update_field( 'rewrite', $this->rewrite(), $postId );
+		update_field( 'query_var', $this->queryVar(), $postId );
+		update_field( 'update_count_callback', $this->updateCountCallback(), $postId );
+		update_field( 'default_term', $this->defaultTerm(), $postId );
 		
-		protected $objectType = [];
-		protected $public;
-		protected $publicQueryable;
-		protected $hierarchical;
-		protected $showUi;
-		protected $showInMenu;
-		protected $showInNavMenus;
-		protected $showInRest;
-		protected $restBase;
-		protected $restControllerClass;
-		protected $showTagcloud;
-		protected $showInQuickEdit;
-		protected $showAdminColumn;
-		protected $metaBoxCb;
-		protected $metaBoxSanitizeCb;
-		protected $capabilities;
-		protected $rewrite;
-		protected $queryVar;
-		protected $updateCountCallback;
-		protected $defaultTerm;
-
-		*/
-
  		return $postId;
 
  	}

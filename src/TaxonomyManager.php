@@ -57,7 +57,6 @@ class TaxonomyManager {
 		$data->updateCountCallback = get_field('update_count_callback', $postId);
 		$data->defaultTerm = get_field('default_term', $postId);
 
-
 		/* update post title */
 		remove_action( 'save_post', [$this, 'savePost'] );
 		wp_update_post(
@@ -120,7 +119,7 @@ class TaxonomyManager {
 	}
 
 	public function initObject( $data ) {
-		
+
 		$obj = new TaxonomyCustom();
 		$obj->setKey( $data->key );
 		$obj->setLabels( $data->labels );
