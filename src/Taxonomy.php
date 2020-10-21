@@ -31,7 +31,7 @@ abstract class Taxonomy {
 	protected $capabilities;
 	protected $rewrite;
 	protected $queryVar;
-	protected $updateCountcallback;
+	protected $updateCountCallback;
 	protected $defaultTerm;
 
 

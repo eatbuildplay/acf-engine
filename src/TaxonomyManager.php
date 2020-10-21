@@ -8,6 +8,8 @@ if (!defined('ABSPATH')) {
 
 class TaxonomyManager {
 
+	private $postTypeKey = 'acfg_taxonomy';
+
   public function setup() {
 
     add_action('save_post', [$this, 'savePost'], 10, 3);
@@ -19,7 +21,7 @@ class TaxonomyManager {
   public function savePost( $postId, $post, $update ) {
 
     // only target our post type registrations
-    if( $post->post_type !== 'acfg_taxonomy' ) {
+    if( $post->post_type !== $this->postTypeKey() ) {
       return;
     }
 
@@ -33,6 +35,25 @@ class TaxonomyManager {
 		$data->nameSingular = get_field('title', $postId);
 		$data->namePlural = get_field('plural_name', $postId);
 		$data->objectTypes = get_field('object_types', $postId);
+		$data->publicQueryable = get_field('public_queryable', $postId);
+		$data->hierarchical = get_field('hierarchical', $postId);
+		$data->showUi = get_field('show_ui', $postId);
+		$data->showInMenu = get_field('show_in_menu', $postId);
+		$data->showInNavMenus = get_field('show_in_nav_menus', $postId);
+		$data->showInRest = get_field('show_in_rest', $postId);
+		$data->restBase = get_field('rest_base', $postId);
+		$data->restControllerClass = get_field('rest_controller_class', $postId);
+		$data->showTagcloud = get_field('show_tagcloud', $postId);
+		$data->showInQuickEdit = get_field('show_in_quick_edit', $postId);
+		$data->showAdminColumn = get_field('show_admin_column', $postId);
+		$data->metaBoxCb = get_field('show_meta_box_cb', $postId);
+		$data->metaBoxSanitizeCb = get_field('show_meta_box_sanitize_cb', $postId);
+		$data->capabilities = get_field('capabilities', $postId);
+		$data->rewrite = get_field('rewrite', $postId);
+		$data->queryVar = get_field('query_var', $postId);
+		$data->updateCountcallback = get_field('update_count_callback', $postId);
+		$data->defaultTerm = get_field('default_term', $postId);
+
 
 		/* update post title */
 		remove_action( 'save_post', [$this, 'savePost'] );
@@ -122,5 +143,8 @@ class TaxonomyManager {
 
 	}
 
+	public function postTypeKey() {
+		return $this->postTypeKey;
+	}
 
 }
