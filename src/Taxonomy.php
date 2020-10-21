@@ -11,8 +11,29 @@ abstract class Taxonomy {
   protected $prefix = 'acfg_';
 	protected $postType = 'acfg_taxonomy';
   public 		$key;
-	public 		$description;
-	public 		$objectType = [];
+	protected $labels = [];
+	protected	$description;
+	protected $objectType = [];
+	protected $public;
+	protected $publicQueryable;
+	protected $hierarchical;
+	protected $showUi;
+	protected $showInMenu;
+	protected $showInNavMenus;
+	protected $showInRest;
+	protected $restBase;
+	protected $restControllerClass;
+	protected $showTagcloud;
+	protected $showInQuickEdit;
+	protected $showAdminColumn;
+	protected $metaBoxCb;
+	protected $metaBoxSanitizeCb;
+	protected $capabilities;
+	protected $rewrite;
+	protected $queryVar;
+	protected $updateCountcallback;
+	protected $defaultTerm;
+
 
   public function init() {
 		$this->parseArgs();
@@ -86,6 +107,14 @@ abstract class Taxonomy {
 		return $this->key;
 	}
 
+	public function labels() {
+		return $this->labels;
+	}
+
+	public function setLabels( $v ) {
+		$this->labels = v;
+	}
+
 	public function setDescription( $v ) {
 		$this->description = $v;
 	}
@@ -106,8 +135,136 @@ abstract class Taxonomy {
 		$this->publicQueryable = $v;
 	}
 
-	public function Queryable() {
+	public function publicQueryable() {
 		return $this->publicQueryable;
+	}
+
+	public function setHierarchical( $v ) {
+		$this->hierarchical = $v;
+	}
+
+	public function hierarchical() {
+		return $this->hierarchical;
+	}
+
+	public function setShowUi( $v ) {
+		$this->showUi = $v;
+	}
+
+	public function showUi() {
+		return $this->showUi;
+	}
+
+	public function setShowMenu( $v ) {
+		$this->showMenu = $v;
+	}
+
+	public function showMenu() {
+		return $this->showMenu;
+	}
+
+	public function setShowInNavMenus( $v ) {
+		$this->showInNavMenus = $v;
+	}
+
+	public function showInNavMenus() {
+		return $this->showInNavMenus;
+	}
+
+	public function setShowInRest( $v ) {
+		$this->showInRest = $v;
+	}
+
+	public function showInRest() {
+		return $this->showInRest;
+	}
+
+	public function setRestBase( $v ) {
+		$this->restBase = $v;
+	}
+
+	public function restBase() {
+		return $this->restBase;
+	}
+
+	public function setControllerClass( $v ) {
+		$this->controllerClass = $v;
+	}
+
+	public function controllerClass() {
+		return $this->controllerClass;
+	}
+
+	public function setShowTagcloud( $v ) {
+		$this->showTagcloud = $v;
+	}
+
+	public function showTagcloud() {
+		return $this->showTagcloud;
+	}
+
+	public function setShowAdminColumn( $v ) {
+		$this->showAdminColumn = $v;
+	}
+
+	public function showAdminColumn() {
+		return $this->showAdminColumn;
+	}
+
+	public function setMetaBoxCb( $v ) {
+		$this->metaBoxCb = $v;
+	}
+
+	public function metaBoxCb() {
+		return $this->metaBoxCb;
+	}
+
+	public function setMetaBoxSanitizeCb( $v ) {
+		$this->metaBoxSanitizeCb = $v;
+	}
+
+	public function metaBoxSanitizeCb() {
+		return $this->metaBoxSanitizeCb;
+	}
+
+	public function setCapabilities( $v ) {
+		$this->capabilities = $v;
+	}
+
+	public function capabilities() {
+		return $this->capabilities;
+	}
+
+	public function setRewrite( $v ) {
+		$this->rewrite = $v;
+	}
+
+	public function rewrite() {
+		return $this->rewrite;
+	}
+
+	public function setQueryVar( $v ) {
+		$this->queryVar = $v;
+	}
+
+	public function queryVar() {
+		return $this->queryVar;
+	}
+
+	public function setUpdateCountCallback( $v ) {
+		$this->updateCountCallback = $v;
+	}
+
+	public function updateCountCallback() {
+		return $this->updateCountCallback;
+	}
+
+	public function setDefaultTerm( $v ) {
+		$this->defaultTerm = $v;
+	}
+
+	public function defaultTerm() {
+		return $this->defaultTerm;
 	}
 
 	/*
@@ -139,21 +296,6 @@ abstract class Taxonomy {
 		return $this->postType;
 	}
 
-	// hierarchical
-	// show_ui
-	// show_in_menu
-	// show_in_nav_menus
-	// show_in_rest
-	// rest_base
-	// rest_controller_class
-	// show_tagcloud
-	// show_admin_column
-	// meta_box_cb
-	// meta_box_sanitize_cb
-	// capabilities
-	// rewrite
-	// query_var
-	// update_count_callback
-	// default_term
+
 
 }
