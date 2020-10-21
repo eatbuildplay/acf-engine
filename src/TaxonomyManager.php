@@ -32,9 +32,12 @@ class TaxonomyManager {
 			return;
 		}
 
+		$data->description = get_field('description', $postId);
 		$data->nameSingular = get_field('title', $postId);
 		$data->namePlural = get_field('plural_name', $postId);
 		$data->objectTypes = get_field('object_types', $postId);
+		$data->labels = get_field('labels', $postId);
+		$data->public = get_field('public', $postId);
 		$data->publicQueryable = get_field('public_queryable', $postId);
 		$data->hierarchical = get_field('hierarchical', $postId);
 		$data->showUi = get_field('show_ui', $postId);
@@ -117,7 +120,7 @@ class TaxonomyManager {
 	}
 
 	public function initObject( $data ) {
-
+		
 		$obj = new TaxonomyCustom();
 		$obj->setKey( $data->key );
 		$obj->setLabels( $data->labels );
@@ -125,7 +128,7 @@ class TaxonomyManager {
 		$obj->setPublic( $data->public );
 		$obj->setPublicQueryable( $data->publicQueryable );
 		$obj->setHierarchical( $data->hierarchical );
-		$obj->setShowUi( $data->setShowUi );
+		$obj->setShowUi( $data->showUi );
 		$obj->setShowInMenu( $data->showInMenu );
 		$obj->showInNavMenus( $data->showInNavMenus );
 		$obj->showInRest( $data->showInRest );
@@ -142,6 +145,7 @@ class TaxonomyManager {
 		$obj->setUpdateCountCallback( $data->updateCountCallback );
 		$obj->setDefaultTerm( $data->defaultTerm );
 		return $obj;
+
 	}
 
 	public function fetchByKey( $key ) {
