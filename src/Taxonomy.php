@@ -10,7 +10,8 @@ abstract class Taxonomy {
 
   protected $prefix = 'acfg_';
 	protected $postType = 'acfg_taxonomy';
-  public 		$key;
+  protected	$key;
+	protected $title;
 	protected $labels = [];
 	protected	$description;
 	protected $objectType = [];
@@ -90,21 +91,27 @@ abstract class Taxonomy {
   }
 
   public function defaultArgs() {
-    return [
-      'label' => 'Freddy'
-    ];
+    return [];
   }
 
   public function getPrefixedKey() {
 		return $this->prefix . $this->key();
 	}
 
-  public function setKey( $value ) {
-		$this->key = $value;
+  public function setKey( $v ) {
+		$this->key = $v;
 	}
 
 	public function key() {
 		return $this->key;
+	}
+
+	public function setTitle( $v ) {
+		$this->title = $v;
+	}
+
+	public function title() {
+		return $this->title;
 	}
 
 	public function labels() {
@@ -286,7 +293,7 @@ abstract class Taxonomy {
  		$postId = wp_insert_post(
  			[
  				'post_type'      => $this->postType(),
- 				'post_title'     => 'Imported Tax',
+ 				'post_title'     => $this->title(),
  				'post_status'    => 'publish'
  			]
  		);
@@ -294,7 +301,37 @@ abstract class Taxonomy {
  		/*
  		 * update acf fields with meta data
  		 */
- 		update_field( 'key', $this->key, $postId );
+ 		update_field( 'key', $this->key(), $postId );
+		update_field( 'title', $this->title(), $postId );
+		update_field( 'labels', $this->labels(), $postId );
+		update_field( 'description', $this->description(), $postId );
+
+		/*
+
+		Next properties to add to importer...
+		
+		protected $objectType = [];
+		protected $public;
+		protected $publicQueryable;
+		protected $hierarchical;
+		protected $showUi;
+		protected $showInMenu;
+		protected $showInNavMenus;
+		protected $showInRest;
+		protected $restBase;
+		protected $restControllerClass;
+		protected $showTagcloud;
+		protected $showInQuickEdit;
+		protected $showAdminColumn;
+		protected $metaBoxCb;
+		protected $metaBoxSanitizeCb;
+		protected $capabilities;
+		protected $rewrite;
+		protected $queryVar;
+		protected $updateCountCallback;
+		protected $defaultTerm;
+
+		*/
 
  		return $postId;
 
