@@ -51,7 +51,7 @@ class TaxonomyManager {
 		$data->capabilities = get_field('capabilities', $postId);
 		$data->rewrite = get_field('rewrite', $postId);
 		$data->queryVar = get_field('query_var', $postId);
-		$data->updateCountcallback = get_field('update_count_callback', $postId);
+		$data->updateCountCallback = get_field('update_count_callback', $postId);
 		$data->defaultTerm = get_field('default_term', $postId);
 
 
@@ -117,8 +117,30 @@ class TaxonomyManager {
 	}
 
 	public function initObject( $data ) {
+
 		$obj = new TaxonomyCustom();
 		$obj->setKey( $data->key );
+		$obj->setLabels( $data->labels );
+		$obj->setDescription( $data->description );
+		$obj->setPublic( $data->public );
+		$obj->setPublicQueryable( $data->publicQueryable );
+		$obj->setHierarchical( $data->hierarchical );
+		$obj->setShowUi( $data->setShowUi );
+		$obj->setShowInMenu( $data->showInMenu );
+		$obj->showInNavMenus( $data->showInNavMenus );
+		$obj->showInRest( $data->showInRest );
+		$obj->setRestBase( $data->restBase );
+		$obj->setRestControllerClass( $data->restControllerClass );
+		$obj->setShowTagcloud( $data->showTagcloud );
+		$obj->setShowInQuickEdit( $data->showInQuickEdit );
+		$obj->setShowAdminColumn( $data->showAdminColumn );
+		$obj->setMetaBoxCb( $data->metaBoxCb );
+		$obj->setMetaBoxSanitizeCb( $data->metaBoxSanitizeCb );
+		$obj->setCapabilities( $data->capabilities );
+		$obj->setRewrite( $data->rewrite );
+		$obj->setQueryVar( $data->queryVar );
+		$obj->setUpdateCountCallback( $data->updateCountCallback );
+		$obj->setDefaultTerm( $data->defaultTerm );
 		return $obj;
 	}
 

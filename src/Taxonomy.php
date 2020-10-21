@@ -112,7 +112,7 @@ abstract class Taxonomy {
 	}
 
 	public function setLabels( $v ) {
-		$this->labels = v;
+		$this->labels = $v;
 	}
 
 	public function setDescription( $v ) {
@@ -155,12 +155,12 @@ abstract class Taxonomy {
 		return $this->showUi;
 	}
 
-	public function setShowMenu( $v ) {
-		$this->showMenu = $v;
+	public function setShowInMenu( $v ) {
+		$this->showInMenu = $v;
 	}
 
-	public function showMenu() {
-		return $this->showMenu;
+	public function showInMenu() {
+		return $this->showInMenu;
 	}
 
 	public function setShowInNavMenus( $v ) {
@@ -187,11 +187,11 @@ abstract class Taxonomy {
 		return $this->restBase;
 	}
 
-	public function setControllerClass( $v ) {
+	public function setRestControllerClass( $v ) {
 		$this->controllerClass = $v;
 	}
 
-	public function controllerClass() {
+	public function restControllerClass() {
 		return $this->controllerClass;
 	}
 
@@ -201,6 +201,14 @@ abstract class Taxonomy {
 
 	public function showTagcloud() {
 		return $this->showTagcloud;
+	}
+
+	public function setShowInQuickEdit( $v ) {
+		$this->showInQuickEdit = $v;
+	}
+
+	public function showInQuickEdit() {
+		return $this->showInQuickEdit;
 	}
 
 	public function setShowAdminColumn( $v ) {
