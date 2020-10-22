@@ -35,7 +35,7 @@ class TaxonomyManager {
 		$data->description = get_field('description', $postId);
 		$data->nameSingular = get_field('title', $postId);
 		$data->namePlural = get_field('plural_name', $postId);
-		$data->objectTypes = get_field('object_types', $postId);
+		$data->objectType = get_field('object_type', $postId);
 		$data->labels = get_field('labels', $postId);
 		$data->public = get_field('public', $postId);
 		$data->publicQueryable = get_field('public_queryable', $postId);
@@ -122,6 +122,7 @@ class TaxonomyManager {
 
 		$obj = new TaxonomyCustom();
 		$obj->setKey( $data->key );
+		$obj->setObjectType( $data->objectType );
 		$obj->setLabels( $data->labels );
 		$obj->setDescription( $data->description );
 		$obj->setPublic( $data->public );

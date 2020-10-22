@@ -51,6 +51,7 @@ abstract class Taxonomy {
 
 		$key = $this->getPrefixedKey();
 		$objectType = $this->objectType();
+		$objectType = str_replace( '\'', '', $objectType );
 
 		if( !is_array( $objectType )) {
 			$objectType = explode(',', $objectType);
@@ -62,12 +63,12 @@ abstract class Taxonomy {
 		}
 
 		$args = $this->args();
-
     $reg = register_taxonomy(
       $key,
       $objectTypePrefixed,
       $args
     );
+		
 	}
 
   public function setObjectType( $v ) {
@@ -325,7 +326,7 @@ abstract class Taxonomy {
 		update_field( 'query_var', $this->queryVar(), $postId );
 		update_field( 'update_count_callback', $this->updateCountCallback(), $postId );
 		update_field( 'default_term', $this->defaultTerm(), $postId );
-		
+
  		return $postId;
 
  	}
