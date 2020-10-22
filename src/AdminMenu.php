@@ -148,22 +148,4 @@ class AdminMenu {
     $d->render();
   }
 
-  public function pagePostTypes() {
-
-    print 'DASHBOARD POST TYPES';
-
-  }
-
-  public function pageTaxonomies() {
-
-    print 'DASHBOARD TAXES';
-
-  }
-
-  public function pageSettingsPages() {
-
-    print 'SETTINGS PAGES';
-
-  }
-
 }
