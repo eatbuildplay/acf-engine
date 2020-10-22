@@ -206,7 +206,7 @@ abstract class OptionsPage {
 		update_field( 'parent_slug', $this->parentSlug, $postId );
 		update_field( 'icon_url', $this->iconUrl, $postId );
 		update_field( 'redirect', $this->redirect, $postId );
-		update_field( 'post_id', $this->post_id, $postId );
+		update_field( 'post_id', $this->postId, $postId );
 		update_field( 'autoload', $this->iconUrl, $postId );
 		update_field( 'update_button', $this->updateButton, $postId );
 		update_field( 'updated_message', $this->updatedMessage, $postId );

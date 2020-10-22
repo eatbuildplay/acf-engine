@@ -42,6 +42,15 @@ class OptionsPageManager {
 		$data->updateButton = get_field('update_button', $postId);
 		$data->updatedMessage = get_field('updated_message', $postId);
 
+		/* update post title */
+		remove_action( 'save_post', [$this, 'savePost'] );
+		wp_update_post(
+			[
+				'ID' => $postId,
+				'post_title' => $data->pageTitle
+			]
+		);
+
     $json = json_encode( $data );
 
     \file_put_contents( ACF_ENGINE_PATH . 'data/options-pages/' . $data->menuSlug . '.json', $json );
@@ -63,6 +72,7 @@ class OptionsPageManager {
         $op = new OptionsPageCustom();
         $op->setMenuSlug( $data->menuSlug );
 				$op->setPageTitle( $data->pageTitle );
+
 				if( $data->menuTitle ) {
 					$op->setMenuTitle( $data->menuTitle );
 				}
