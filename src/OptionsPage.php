@@ -36,16 +36,25 @@ abstract class OptionsPage {
    */
   public function register() {
 
-    acf_add_options_page(array(
-  		'page_title' 			=> $this->pageTitle(),
+		$args = [
+			'page_title' 			=> $this->pageTitle(),
   		'menu_title'			=> $this->menuTitle(),
   		'menu_slug' 			=> $this->getPrefixedSlug(),
-  		'capability'			=> 'edit_posts',
-  		'redirect'				=> false,
+  		'capability'			=> $this->capability(),
+			'position'				=> $this->position(),
+			'parent_slug'			=> $this->parentSlug(),
+			'icon_url'				=> $this->iconUrl(),
+  		'redirect'				=> $this->redirect(),
 			'autoload'				=> $this->autoload(),
 			'update_button'		=> $this->updateButton(),
 			'updated_message' => $this->updatedMessage()
-  	));
+		];
+
+		if( $this->postId() ) {
+			$args['post_id'] = $this->postId();
+		}
+
+    acf_add_options_page( $args );
 
 	}
 

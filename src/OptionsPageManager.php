@@ -67,6 +67,12 @@ class OptionsPageManager {
 					$op->setMenuTitle( $data->menuTitle );
 				}
 
+				$op->setCapability( $data->capability );
+				$op->setPosition( $data->position );
+				$op->setParentSlug( $data->parentSlug );
+				$op->setIconUrl( $data->iconUrl );
+				$op->setRedirect( $data->redirect );
+				$op->setPostId( $data->postId );
 				$op->setAutoload( $data->autoload );
 				$op->setUpdateButton( $data->updateButton );
 				$op->setUpdatedMessage( $data->updatedMessage );

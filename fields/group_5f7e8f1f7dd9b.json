@@ -98,7 +98,7 @@
             "label": "Capability",
             "name": "capability",
             "type": "text",
-            "instructions": "",
+            "instructions": "The capability required for this menu to be displayed to the user. Defaults to ‘edit_posts’.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -106,9 +106,8 @@
                 "class": "",
                 "id": ""
             },
-            "acfe_permissions": "",
-            "default_value": "edit_posts",
-            "placeholder": "",
+            "default_value": "",
+            "placeholder": "edit_posts",
             "prepend": "",
             "append": "",
             "maxlength": ""
@@ -118,7 +117,7 @@
             "label": "Position",
             "name": "position",
             "type": "text",
-            "instructions": "",
+            "instructions": "The position in the menu order where this menu should appear. \r\n\r\nWARNING: if two menu items use the same position, one of the items may be overwritten. Risk of conflict can be reduced by using decimal instead of integer values, e.g. ‘63.3’ instead of 63 (must use quotes). Defaults to bottom of utility menu items.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -156,7 +155,7 @@
             "label": "Icon Url",
             "name": "icon_url",
             "type": "text",
-            "instructions": "",
+            "instructions": "The icon class for this menu. Defaults to default WordPress gear.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -165,7 +164,7 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "",
+            "placeholder": "dashicon-gear",
             "prepend": "",
             "append": "",
             "maxlength": ""
@@ -174,8 +173,8 @@
             "key": "field_5f8912cc60e59",
             "label": "Redirect",
             "name": "redirect",
-            "type": "text",
-            "instructions": "",
+            "type": "true_false",
+            "instructions": "If set to true, this options page will redirect to the first child page (if a child page exists). If set to false, this parent page will appear alongside any child pages as its own page. Defaults to true.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -183,18 +182,18 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
             "key": "field_5f8912d260e5a",
             "label": "Post ID",
             "name": "post_id",
             "type": "text",
-            "instructions": "",
+            "instructions": "The $post_id to save and load values from. Can be set to a numeric post ID (123), or a string (‘user_2’). Read more about the available post_id values. Defaults to ‘options’.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -203,7 +202,7 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "",
+            "placeholder": "options",
             "prepend": "",
             "append": "",
             "maxlength": ""
@@ -283,5 +282,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1603334906
+    "modified": 1603338850
 }
