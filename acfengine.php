@@ -46,7 +46,7 @@ class Plugin {
     /*
      * Only embed ACF for pro users
      */
-    if ( $plugin->freemius()->is__premium_only() ) :
+    if ( $this->freemius()->is__premium_only() ) :
 
       // embed acf
       require_once( ACF_ENGINE_PATH . 'vendor/acf/advanced-custom-fields-pro/acf.php' );
@@ -92,7 +92,7 @@ class Plugin {
     $opm->setup();
 
     /* load pro component managers */
-    if ( $plugin->freemius()->is__premium_only() ) :
+    if ( $this->freemius()->is__premium_only() ) :
 
       // init component manager
       $opm = new ComponentManager();
@@ -162,17 +162,18 @@ class Plugin {
       $afcgFreemius = fs_dynamic_init( array(
         'id'                  => '7042',
         'slug'                => 'acfengine',
-        'premium_slug'        => 'acf-engine-premium',
+        'premium_slug'        => 'acfengine-pro',
         'type'                => 'plugin',
         'public_key'          => 'pk_1cfe4c350f5a0a42d9f2b9960fce6',
-        'is_premium'          => false,
+        'is_premium'          => true,
         'has_addons'          => false,
-        'has_paid_plans'      => true,
+        'has_paid_plans'      => false,
         'menu' => array(
           'slug'           => 'acf-engine',
           'account'        => false,
           'contact'        => false,
           'support'        => false,
+          'upgrade'        => false,
         ),
         'secret_key'          => 'sk_rcg1N_(M~ga=dy*_6C<XyrqomrW~K',
       )
