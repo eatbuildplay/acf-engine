@@ -11,6 +11,8 @@
  * License: GPL3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  *
+ * @fs_premium_only /vendor/acf/, /vendor/acf-code-field/, /src/Component.php, /src/ComponentCustom.php, /src/ComponentManager.php, /src/RenderCode.php, /src/RenderCodeCustom.php, /src/RenderCodeManager.php
+ *
  */
 
 namespace AcfEngine;
@@ -41,11 +43,19 @@ class Plugin {
     // integrate freemium
     $this->freemius();
 
-    // embed acf
-    require_once( ACF_ENGINE_PATH . 'vendor/acf/advanced-custom-fields-pro/acf.php' );
+    /*
+     * Only embed ACF for pro users
+     */
+    if ( $plugin->freemius()->is__premium_only() ) :
 
-    // embed acf code field
-    require_once( ACF_ENGINE_PATH . 'vendor/acf-code-field/acf-code-field.php' );
+      // embed acf
+      require_once( ACF_ENGINE_PATH . 'vendor/acf/advanced-custom-fields-pro/acf.php' );
+
+      // embed acf code field
+      require_once( ACF_ENGINE_PATH . 'vendor/acf-code-field/acf-code-field.php' );
+
+    endif;
+    /* end check for pro */
 
     // setup autoloader
     spl_autoload_register( [$this, 'autoloader'] );
@@ -73,10 +83,6 @@ class Plugin {
     $opm = new OptionsPageManager();
     $opm->setup();
 
-    // init component manager
-    $opm = new ComponentManager();
-    $opm->setup();
-
     // init block type manager
     $opm = new BlockTypeManager();
     $opm->setup();
@@ -85,8 +91,18 @@ class Plugin {
     $opm = new TemplateManager();
     $opm->setup();
 
-    $rcm = new RenderCodeManager();
-    $rcm->setup();
+    /* load pro component managers */
+    if ( $plugin->freemius()->is__premium_only() ) :
+
+      // init component manager
+      $opm = new ComponentManager();
+      $opm->setup();
+
+      // init render code manager
+      $rcm = new RenderCodeManager();
+      $rcm->setup();
+
+    endif; /* end load pro component managers */
 
     /* enqueue scripts */
     add_action('wp_enqueue_scripts', [$this, 'scripts']);
