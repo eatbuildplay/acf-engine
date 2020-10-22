@@ -66,6 +66,10 @@ class OptionsPageManager {
 				if( $data->menuTitle ) {
 					$op->setMenuTitle( $data->menuTitle );
 				}
+
+				$op->setAutoload( $data->autoload );
+				$op->setUpdateButton( $data->updateButton );
+				$op->setUpdatedMessage( $data->updatedMessage );
         $op->init();
 
       }

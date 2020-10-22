@@ -37,11 +37,14 @@ abstract class OptionsPage {
   public function register() {
 
     acf_add_options_page(array(
-  		'page_title' 	=> $this->pageTitle(),
-  		'menu_title'	=> $this->menuTitle(),
-  		'menu_slug' 	=> $this->getPrefixedSlug(),
-  		'capability'	=> 'edit_posts',
-  		'redirect'		=> false
+  		'page_title' 			=> $this->pageTitle(),
+  		'menu_title'			=> $this->menuTitle(),
+  		'menu_slug' 			=> $this->getPrefixedSlug(),
+  		'capability'			=> 'edit_posts',
+  		'redirect'				=> false,
+			'autoload'				=> $this->autoload(),
+			'update_button'		=> $this->updateButton(),
+			'updated_message' => $this->updatedMessage()
   	));
 
 	}
@@ -82,7 +85,7 @@ abstract class OptionsPage {
 		$this->position = $v;
 	}
 
-	public function menuPosition() {
+	public function position() {
 		return $this->position;
 	}
 

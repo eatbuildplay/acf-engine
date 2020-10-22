@@ -3,6 +3,22 @@
     "title": "ACF Engine > Options Page",
     "fields": [
         {
+            "key": "field_5f90e425cc0c5",
+            "label": "Basic",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
             "key": "field_5f7e960fe2162",
             "label": "Menu Slug",
             "name": "menu_slug",
@@ -60,6 +76,22 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
+        },
+        {
+            "key": "field_5f90e42ccc0c6",
+            "label": "Advanced",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
         },
         {
             "key": "field_5f7e962be2163",
@@ -180,8 +212,8 @@
             "key": "field_5f8912dfaa8d8",
             "label": "Autoload",
             "name": "autoload",
-            "type": "text",
-            "instructions": "",
+            "type": "true_false",
+            "instructions": "Whether to instruct WordPress to autoload the options values.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -189,11 +221,11 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
             "key": "field_5f8912e4aa8d9",
@@ -251,5 +283,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1602868763
+    "modified": 1603334906
 }
