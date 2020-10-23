@@ -58,7 +58,7 @@ class TemplateManager {
   public function registerTaxonomies() {
 
     // get all the data files stored
-    $dataFiles = $this->findTemplateDataFiles();
+    $dataFiles = $this->findDataFiles();
 
     if( !empty( $dataFiles )) {
 
@@ -78,7 +78,11 @@ class TemplateManager {
 
   }
 
-  protected function findTemplateDataFiles() {
+	public function getDataFiles() {
+		return $this->findDataFiles();
+	}
+
+  protected function findDataFiles() {
 
 		if( !is_dir( ACF_ENGINE_DATA_PATH . 'templates')) {
 			return [];
