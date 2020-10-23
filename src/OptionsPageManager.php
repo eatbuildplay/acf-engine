@@ -60,7 +60,7 @@ class OptionsPageManager {
   public function registerOptionsPages() {
 
     // get all the data files stored
-    $dataFiles = $this->findOptionsPageDataFiles();
+    $dataFiles = $this->findDataFiles();
 
     if( !empty( $dataFiles )) {
 
@@ -69,24 +69,8 @@ class OptionsPageManager {
         $json = file_get_contents( ACF_ENGINE_PATH . 'data/options-pages/' . $filename );
         $data = json_decode( $json );
 
-        $op = new OptionsPageCustom();
-        $op->setMenuSlug( $data->menuSlug );
-				$op->setPageTitle( $data->pageTitle );
-
-				if( $data->menuTitle ) {
-					$op->setMenuTitle( $data->menuTitle );
-				}
-
-				$op->setCapability( $data->capability );
-				$op->setPosition( $data->position );
-				$op->setParentSlug( $data->parentSlug );
-				$op->setIconUrl( $data->iconUrl );
-				$op->setRedirect( $data->redirect );
-				$op->setPostId( $data->postId );
-				$op->setAutoload( $data->autoload );
-				$op->setUpdateButton( $data->updateButton );
-				$op->setUpdatedMessage( $data->updatedMessage );
-        $op->init();
+        $obj = $this->initObject( $data );
+        $obj->init();
 
       }
 
@@ -94,7 +78,58 @@ class OptionsPageManager {
 
   }
 
-  protected function findOptionsPageDataFiles() {
+	public function loadDataFile( $filename ) {
+		$json = file_get_contents( ACF_ENGINE_PATH . 'data/options-pages/' . $filename );
+		return json_decode( $json );
+	}
+
+	public function initObject( $data ) {
+		$obj = new OptionsPageCustom();
+		$obj->setMenuSlug( $data->menuSlug );
+		$obj->setPageTitle( $data->pageTitle );
+
+		if( $data->menuTitle ) {
+			$obj->setMenuTitle( $data->menuTitle );
+		}
+
+		$obj->setCapability( $data->capability );
+		$obj->setPosition( $data->position );
+		$obj->setParentSlug( $data->parentSlug );
+		$obj->setIconUrl( $data->iconUrl );
+		$obj->setRedirect( $data->redirect );
+		$obj->setPostId( $data->postId );
+		$obj->setAutoload( $data->autoload );
+		$obj->setUpdateButton( $data->updateButton );
+		$obj->setUpdatedMessage( $data->updatedMessage );
+		return $obj;
+	}
+
+	public function getDataFiles() {
+		return $this->findDataFiles();
+	}
+
+	public function fetchByKey( $key ) {
+
+		$posts = get_posts([
+			'post_type' 	=> 'acfg_options_page',
+			'numberposts' => -1,
+			'meta_query' => [
+				[
+					'key' 	=> 'key',
+					'value' => $key
+				]
+			]
+		]);
+
+		if( !$posts || empty( $posts )) {
+			return false;
+		}
+
+		return $posts[0];
+
+	}
+
+  protected function findDataFiles() {
 
 		if( !is_dir( ACF_ENGINE_DATA_PATH . 'options-pages')) {
 			return [];

@@ -182,6 +182,10 @@ abstract class OptionsPage {
 		return $this->menuSlug;
 	}
 
+	public function postType() {
+		return $this->postType;
+	}
+
 	public function import() {
 
 		/*

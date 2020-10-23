@@ -49,7 +49,7 @@ class Import {
 
           $data = $manager->loadDataFile( $filename );
   				$obj 	= $manager->initObject( $data );
-          $post = $manager->fetchByKey( $obj->key );
+          $post = $manager->fetchByKey( $obj->key() );
 
           if( $post ) {
             continue; // already exists in db
