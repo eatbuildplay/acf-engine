@@ -34,6 +34,9 @@ class Import {
       return;
     }
 
+    /* Reset the sync_object_files field */
+    update_field('sync_object_files', 0, 'option');
+
     /*
      * Fetch and loop over the available object types
      */

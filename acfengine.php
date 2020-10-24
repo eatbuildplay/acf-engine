@@ -6,7 +6,7 @@
  * Plugin URI: https://eatbuildplay.com/plugins/acfengine/
  * Description: Provides data-driven solutions powered by ACF including custom post types, custom taxonomies, options pages and rendering templates.
  * Version: 1.0.0
- * Author: Casey Milne, Eat/Build/Play
+ * Author: Eat/Build/Play
  * Author URI: https://eatbuildplay.com
  * License: GPL3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html

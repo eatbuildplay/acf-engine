@@ -207,4 +207,36 @@ class TemplateManager {
 
 	}
 
+	public function loadDataFile( $filename ) {
+		$json = file_get_contents( ACF_ENGINE_PATH . 'data/templates/' . $filename );
+		return json_decode( $json );
+	}
+
+	public function initObject( $data ) {
+		$obj = new TemplateCustom();
+		$obj->setKey( $data->key );
+		return $obj;
+	}
+
+	public function fetchByKey( $key ) {
+
+		$posts = get_posts([
+			'post_type' 	=> 'acfg_template',
+			'numberposts' => -1,
+			'meta_query' => [
+				[
+					'key' 	=> 'key',
+					'value' => $key
+				]
+			]
+		]);
+
+		if( !$posts || empty( $posts )) {
+			return false;
+		}
+
+		return $posts[0];
+
+	}
+
 }
