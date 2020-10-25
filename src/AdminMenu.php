@@ -59,8 +59,8 @@ class AdminMenu {
      'edit_posts',
      ACF_ENGINE_TEXT_DOMAIN,
      [$this, 'pageDashboard'],
-     'dashicons-welcome-learn-more',
-     2
+     'dashicons-airplane',
+     80.5
    );
 
    \add_submenu_page(
