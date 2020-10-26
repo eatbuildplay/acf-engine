@@ -7,3 +7,11 @@
   box-sizing: border-box;
   padding: 40px;
 }
+
+/**
+ * Content Box Single Templates
+ */
+.acfg-single-content {
+  max-width: 1080px;
+  margin: 0 auto;
+}

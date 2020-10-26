@@ -1,5 +1,7 @@
 <?php get_header(); ?>
 
+<div class="acfg-single-content">
+
 <?php
 
 $singleTemplates = $GLOBALS['acfg_template_singles'];
@@ -27,5 +29,7 @@ foreach ( $blocks as $block ) {
 print $output;
 
 ?>
+
+</div><!-- .acfg-single-content -->
 
 <?php get_footer(); ?>
