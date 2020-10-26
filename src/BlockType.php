@@ -90,7 +90,7 @@ abstract class BlockType {
 		$filename = str_replace('acf/acfg-', '', $block['name']) . '.json';
 		$filename = str_replace('-', '_', $filename);
 
-		$json = file_get_contents( ACF_ENGINE_PATH . 'data/block-types/' . $filename );
+		$json = file_get_contents( \AcfEngine\Plugin::dataStoragePath() . 'block-types/' . $filename );
 		$data = json_decode( $json );
 
 		$code = get_field( 'render_code', $data->id );

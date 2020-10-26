@@ -31,7 +31,6 @@ use AcfEngine\Core\RenderCodeManager;
 use AcfEngine\Core\Import;
 
 define( 'ACF_ENGINE_PATH', plugin_dir_path( __FILE__ ) );
-define( 'ACF_ENGINE_DATA_PATH', ACF_ENGINE_PATH . 'data/' );
 define( 'ACF_ENGINE_URL', plugin_dir_url( __FILE__ ) );
 define( 'ACF_ENGINE_VERSION', '1.0.0' );
 define( 'ACF_ENGINE_TEXT_DOMAIN', 'acf-engine');
@@ -197,7 +196,10 @@ class Plugin {
       'templates'
     ];
 
-    $dataPath = ACF_ENGINE_PATH . 'data/';
+    $dataPath = self::dataStoragePath();
+    if( !file_exists( $dataPath )) {
+      $test = mkdir( $dataPath );
+    }
 
     foreach( $dataDirs as $dirName ) {
       $dirPath = $dataPath . $dirName;
@@ -205,6 +207,14 @@ class Plugin {
         mkdir( $dirPath );
       }
     }
+
+  }
+
+  public static function dataStoragePath() {
+
+    $uploadDir = wp_upload_dir();
+    $storagePath = $uploadDir['basedir'] . '/acfengine/';
+    return $storagePath;
 
   }
 

@@ -67,7 +67,7 @@ class TaxonomyManager {
 		);
 
     $json = json_encode( $data );
-    \file_put_contents( ACF_ENGINE_PATH . 'data/taxonomies/' . $data->key . '.json', $json );
+    \file_put_contents( \AcfEngine\Plugin::dataStoragePath() . 'taxonomies/' . $data->key . '.json', $json );
 
   }
 
@@ -92,12 +92,12 @@ class TaxonomyManager {
 
   protected function findTaxonomyDataFiles() {
 
-		if( !is_dir( ACF_ENGINE_DATA_PATH . 'taxonomies')) {
+		if( !is_dir( \AcfEngine\Plugin::dataStoragePath() . 'taxonomies')) {
 			return [];
 		}
 
 		$files = [];
-    $dir = new \DirectoryIterator( ACF_ENGINE_DATA_PATH . 'taxonomies' );
+    $dir = new \DirectoryIterator( \AcfEngine\Plugin::dataStoragePath() . 'taxonomies' );
 
     foreach ($dir as $fileInfo) {
       if (!$fileInfo->isDot()) {
@@ -114,7 +114,7 @@ class TaxonomyManager {
 	}
 
 	public function loadDataFile( $filename ) {
-		$json = file_get_contents( ACF_ENGINE_PATH . 'data/taxonomies/' . $filename );
+		$json = file_get_contents( \AcfEngine\Plugin::dataStoragePath() . 'taxonomies/' . $filename );
 		return json_decode( $json );
 	}
 

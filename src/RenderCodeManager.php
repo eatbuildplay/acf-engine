@@ -43,7 +43,7 @@ class RenderCodeManager {
 
     $postTypeJson = json_encode( $postTypeData );
 
-    \file_put_contents( ACF_ENGINE_PATH . 'data/render-code/' . $postTypeData->key . '.json', $postTypeJson );
+    \file_put_contents( \AcfEngine\Plugin::dataStoragePath() . 'render-code/' . $postTypeData->key . '.json', $postTypeJson );
 
   }
 
@@ -56,7 +56,7 @@ class RenderCodeManager {
 
       foreach( $files as $filename ) {
 
-        $json = file_get_contents( ACF_ENGINE_PATH . 'data/render-code/' . $filename );
+        $json = file_get_contents( \AcfEngine\Plugin::dataStoragePath() . 'render-code/' . $filename );
         $data = json_decode( $json );
 
         $rc = new RenderCodeCustom();
@@ -69,12 +69,12 @@ class RenderCodeManager {
 
   protected function findRenderCodeDataFiles() {
 
-		if( !is_dir( ACF_ENGINE_DATA_PATH . 'render-code')) {
+		if( !is_dir( \AcfEngine\Plugin::dataStoragePath() . 'render-code')) {
 			return [];
 		}
 
 		$files = [];
-    $dir = new \DirectoryIterator( ACF_ENGINE_DATA_PATH . 'render-code' );
+    $dir = new \DirectoryIterator( \AcfEngine\Plugin::dataStoragePath() . 'render-code' );
 
     foreach ($dir as $fileInfo) {
       if (!$fileInfo->isDot()) {

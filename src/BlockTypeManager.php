@@ -59,7 +59,7 @@ class BlockTypeManager {
 		);
 
     $json = json_encode( $data );
-    \file_put_contents( ACF_ENGINE_PATH . 'data/block-types/' . $data->key . '.json', $json );
+    \file_put_contents( \AcfEngine\Plugin::dataStoragePath() . 'block-types/' . $data->key . '.json', $json );
 
   }
 
@@ -126,7 +126,7 @@ class BlockTypeManager {
 	}
 
 	public function loadDataFile( $filename ) {
-		$json = file_get_contents( ACF_ENGINE_PATH . 'data/block-types/' . $filename );
+		$json = file_get_contents( \AcfEngine\Plugin::dataStoragePath() . 'block-types/' . $filename );
 		return json_decode( $json );
 	}
 
@@ -138,10 +138,10 @@ class BlockTypeManager {
   protected function findBlockTypeDataFiles() {
 
     $files = [];
-		if( !is_dir( ACF_ENGINE_DATA_PATH . 'block-types')) {
+		if( !is_dir( \AcfEngine\Plugin::dataStoragePath() . 'block-types')) {
 			return [];
 		}
-    $dir = new \DirectoryIterator( ACF_ENGINE_DATA_PATH . 'block-types' );
+    $dir = new \DirectoryIterator( \AcfEngine\Plugin::dataStoragePath() . 'block-types' );
 
     foreach ($dir as $fileInfo) {
       if (!$fileInfo->isDot()) {

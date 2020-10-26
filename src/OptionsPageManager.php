@@ -53,7 +53,7 @@ class OptionsPageManager {
 
     $json = json_encode( $data );
 
-    \file_put_contents( ACF_ENGINE_PATH . 'data/options-pages/' . $data->menuSlug . '.json', $json );
+    \file_put_contents( \AcfEngine\Plugin::dataStoragePath() . 'options-pages/' . $data->menuSlug . '.json', $json );
 
   }
 
@@ -66,7 +66,7 @@ class OptionsPageManager {
 
       foreach( $dataFiles as $filename ) {
 
-        $json = file_get_contents( ACF_ENGINE_PATH . 'data/options-pages/' . $filename );
+        $json = file_get_contents( \AcfEngine\Plugin::dataStoragePath() . 'options-pages/' . $filename );
         $data = json_decode( $json );
 
         $obj = $this->initObject( $data );
@@ -79,7 +79,7 @@ class OptionsPageManager {
   }
 
 	public function loadDataFile( $filename ) {
-		$json = file_get_contents( ACF_ENGINE_PATH . 'data/options-pages/' . $filename );
+		$json = file_get_contents( \AcfEngine\Plugin::dataStoragePath() . 'options-pages/' . $filename );
 		return json_decode( $json );
 	}
 
@@ -131,12 +131,12 @@ class OptionsPageManager {
 
   protected function findDataFiles() {
 
-		if( !is_dir( ACF_ENGINE_DATA_PATH . 'options-pages')) {
+		if( !is_dir( \AcfEngine\Plugin::dataStoragePath() . 'options-pages')) {
 			return [];
 		}
 
 		$files = [];
-    $dir = new \DirectoryIterator( ACF_ENGINE_DATA_PATH . 'options-pages' );
+    $dir = new \DirectoryIterator( \AcfEngine\Plugin::dataStoragePath() . 'options-pages' );
 
     foreach ($dir as $fileInfo) {
       if (!$fileInfo->isDot()) {

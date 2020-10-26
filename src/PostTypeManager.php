@@ -107,7 +107,7 @@ class PostTypeManager {
 
     $postTypeJson = json_encode( $data );
 
-    \file_put_contents( ACF_ENGINE_PATH . 'data/post-types/' . $data->key . '.json', $postTypeJson );
+    \file_put_contents( \AcfEngine\Plugin::dataStoragePath() . 'post-types/' . $data->key . '.json', $postTypeJson );
 
   }
 
@@ -172,7 +172,7 @@ class PostTypeManager {
 	}
 
 	public function loadDataFile( $filename ) {
-		$json = file_get_contents( ACF_ENGINE_PATH . 'data/post-types/' . $filename );
+		$json = file_get_contents( \AcfEngine\Plugin::dataStoragePath() . 'post-types/' . $filename );
 		return json_decode( $json );
 	}
 
@@ -205,12 +205,12 @@ class PostTypeManager {
 
   protected function findPostTypeDataFiles() {
 
-		if( !is_dir( ACF_ENGINE_DATA_PATH . 'post-types')) {
+		if( !is_dir( \AcfEngine\Plugin::dataStoragePath() . 'post-types')) {
 			return [];
 		}
 
 		$files = [];
-    $dir = new \DirectoryIterator( ACF_ENGINE_DATA_PATH . 'post-types' );
+    $dir = new \DirectoryIterator( \AcfEngine\Plugin::dataStoragePath() . 'post-types' );
 
     foreach ($dir as $fileInfo) {
       if (!$fileInfo->isDot()) {

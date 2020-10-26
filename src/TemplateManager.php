@@ -51,7 +51,7 @@ class TemplateManager {
 
     $json = json_encode( $data );
 
-    \file_put_contents( ACF_ENGINE_PATH . 'data/templates/' . $data->key . '.json', $json );
+    \file_put_contents( \AcfEngine\Plugin::dataStoragePath() . 'templates/' . $data->key . '.json', $json );
 
   }
 
@@ -64,7 +64,7 @@ class TemplateManager {
 
       foreach( $dataFiles as $filename ) {
 
-        $json = file_get_contents( ACF_ENGINE_PATH . 'data/templates/' . $filename );
+        $json = file_get_contents( \AcfEngine\Plugin::dataStoragePath() . 'templates/' . $filename );
         $data = json_decode( $json );
 
         $tc = new TemplateCustom();
@@ -84,12 +84,12 @@ class TemplateManager {
 
   protected function findDataFiles() {
 
-		if( !is_dir( ACF_ENGINE_DATA_PATH . 'templates')) {
+		if( !is_dir( \AcfEngine\Plugin::dataStoragePath() . 'templates')) {
 			return [];
 		}
 
 		$files = [];
-    $dir = new \DirectoryIterator( ACF_ENGINE_DATA_PATH . 'templates' );
+    $dir = new \DirectoryIterator( \AcfEngine\Plugin::dataStoragePath() . 'templates' );
 
     foreach ($dir as $fileInfo) {
       if (!$fileInfo->isDot()) {
@@ -208,7 +208,7 @@ class TemplateManager {
 	}
 
 	public function loadDataFile( $filename ) {
-		$json = file_get_contents( ACF_ENGINE_PATH . 'data/templates/' . $filename );
+		$json = file_get_contents( \AcfEngine\Plugin::dataStoragePath() . 'templates/' . $filename );
 		return json_decode( $json );
 	}
 
