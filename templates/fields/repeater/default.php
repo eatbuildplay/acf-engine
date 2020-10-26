@@ -3,6 +3,9 @@
 $subfields = $field['sub_fields'];
 
 if( have_rows( $field['key'], $postId )):
+
+  print '<div class="acfg-repeater">';
+
   while ( have_rows( $field['key'], $postId )) :
 
     the_row();
@@ -23,6 +26,9 @@ if( have_rows( $field['key'], $postId )):
     }
 
   endwhile;
+
+  print '</div>';
+
 else :
     // no rows found
 endif;

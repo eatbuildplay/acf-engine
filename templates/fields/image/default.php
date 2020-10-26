@@ -7,7 +7,7 @@
 @TODO support different sizes
 @TODO support attachment format
 @TODO support object format
-@TODO support wrap in link 
+@TODO support wrap in link
 
  */
 
@@ -16,4 +16,6 @@ $imageSource = $value['sizes']['medium'];
 
 ?>
 
-<img src="<?php echo esc_url($imageSource); ?>" alt="<?php echo esc_attr($alt); ?>" />
+<div class="acfg-image-wrap">
+  <img src="<?php echo esc_url($imageSource); ?>" alt="<?php echo esc_attr($alt); ?>" />
+</div>
