@@ -42,8 +42,10 @@ class BlockTypeAcfField extends BlockType {
 	    $fieldPostId = get_field('post_id');
 			if( $fieldPostId == 'current' ) {
 				$fieldValue = get_field( $fieldKey, $previewPost->ID );
+				$fieldObject = get_field_object( $fieldKey, $previewPost->ID);
 			} else {
 				$fieldValue = get_field( $fieldKey, $fieldPostId );
+				$fieldObject = get_field_object( $fieldKey, $fieldPostId);
 			}
 
 			print '<h2>';
@@ -60,8 +62,10 @@ class BlockTypeAcfField extends BlockType {
 
 		if( $fieldPostId == 'current' ) {
 			$fieldValue = get_field( $fieldKey, $editorPostId );
+			$fieldObject = get_field_object( $fieldKey, $editorPostId );
 		} else {
 			$fieldValue = get_field( $fieldKey, $fieldPostId );
+			$fieldObject = get_field_object( $fieldKey, $fieldPostId );
 		}
 
 		if( $fieldValue == '' || $wrapTag == '' ) {
@@ -69,9 +73,34 @@ class BlockTypeAcfField extends BlockType {
 		}
 
     print '<' . $wrapTag . '>';
-    print $fieldValue;
+
+		$tl = new TemplateLoader();
+		$tl->path = 'templates/fields/' . $fieldObject['type'] . '/';
+		$tl->name = 'default';
+		$tl->data = [
+			'field' => $fieldObject,
+			'postId' => $editorPostId
+		];
+
+		//var_dump( $tl );
+
+		$tl->render();
+
     print '</' . $wrapTag . '>';
 
   }
+
+	protected function renderPreview() {
+
+
+
+
+	}
+
+	protected function renderFront() {
+
+
+
+	}
 
 }
