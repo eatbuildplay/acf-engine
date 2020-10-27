@@ -23,9 +23,16 @@ $blocks = parse_blocks( $content );
 
 $output = '';
 
-$GLOBALS['acfg_template_loop'] = 21;
+/* set global that blocks will be checking for if they need the template */
+$GLOBALS['acfg_loop_template'] = $templateId;
 
 foreach ( $blocks as $block ) {
+
+	if( 'acf/acfg-acf-repeater-gallery' == $block['blockName'] ) {
+		/* set inner blocks global var so they are available in the block render method */
+		$GLOBALS['acfg_loop_inner_blocks'] = $block['innerBlocks'];
+	}
+
   $output .= render_block( $block );
 }
 

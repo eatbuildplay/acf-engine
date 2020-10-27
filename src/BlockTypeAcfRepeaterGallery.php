@@ -38,34 +38,44 @@ class BlockTypeAcfRepeaterGallery extends BlockType {
 
 	protected function render( $block, $content, $postId ) {
 
-		$templateId = $GLOBALS['acfg_template_loop'];
-		$templatePost = get_post( $templateId );
-		$templateContent = $templatePost->post_content;
-		$templateBlocks = parse_blocks( $templateContent );
+		print '
 
-		// here we need to loop over all templateBlocks
-		// and find "this one" by matching the ID found in $block
+		<div class="splide">
+			<div class="splide__track">
+				<ul class="splide__list">
+					<li class="splide__slide">Slide 01</li>
+					<li class="splide__slide">Slide 02</li>
+					<li class="splide__slide">Slide 03</li>
+				</ul>
+			</div>
+		</div>
 
-		$innerBlocks = $templateBlocks[0]['innerBlocks']; // temporary presume first block is this one
-		$imageBlock = $innerBlocks[0];
+		';
 
+		// set inner blocks that were parsed from block already before calling render_block()
+		$innerBlocks = $GLOBALS['acfg_loop_inner_blocks'];
+
+		// get the field key and load field object
 		$repeaterFieldKey = get_field( 'meta_key' );
 		$repeaterFieldObject = get_field_object( $repeaterFieldKey, $postId );
 
-		$subfields = $repeaterFieldObject['sub_fields'];
+		// arrange subfields by name so they can be referenced
+		$subfieldsOriginal = $repeaterFieldObject['sub_fields'];
+		$subfieldsKeyed = [];
+		foreach( $subfieldsOriginal as $subfield ) {
+			$subfieldsKeyed[ $subfield['name'] ] = $subfield;
+		}
+
 		while ( have_rows( $repeaterFieldObject['key'], $postId )) :
 
 			the_row();
 
-			foreach( $subfields as $index => $subfield ) {
+			foreach( $innerBlocks as $block ) {
 
-				if( $subfield['type'] != 'image' ) { continue; }
-
-				$subfieldValue = get_sub_field( $subfield['key'] );
-
-				$GLOBALS['acfg_dynamic_image_id'] = $subfieldValue;
-				print render_block( $imageBlock );
-
+				$metaKey = $block['attrs']['data']['meta_key'];
+				$subfieldValue = get_sub_field( $subfieldsKeyed[$metaKey]['key'] );
+				$GLOBALS['acfg_loop_field_value'] = $subfieldValue;
+				print render_block( $block );
 
 			}
 

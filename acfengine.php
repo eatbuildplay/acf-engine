@@ -146,6 +146,23 @@ class Plugin {
       true
     );
 
+    /* splide slider */
+
+    wp_enqueue_script(
+      'acfg-splide-js',
+      ACF_ENGINE_URL . 'vendor/splide/js/splide.min.js',
+      array(),
+      '1.0.0',
+      true
+    );
+
+    wp_enqueue_style(
+      'acfg-splide-css',
+      ACF_ENGINE_URL . 'vendor/splide/css/splide.min.css',
+      array(),
+      true
+    );
+
   }
 
   // Create a helper function for easy SDK access.

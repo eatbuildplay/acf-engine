@@ -63,9 +63,9 @@ class BlockTypeAcfFieldImage extends BlockType {
 
 	protected function render( $block, $content, $editorPostId ) {
 
-		if( isset( $GLOBALS['acfg_dynamic_image_id'] )) {
+		if( isset( $GLOBALS['acfg_loop_field_value'] )) {
 			$size = 'full';
-	    print wp_get_attachment_image( $GLOBALS['acfg_dynamic_image_id'], $size );
+	    print wp_get_attachment_image( $GLOBALS['acfg_loop_field_value'], $size );
 			return;
 		}
 
