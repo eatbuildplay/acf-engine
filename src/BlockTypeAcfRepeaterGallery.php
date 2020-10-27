@@ -38,19 +38,10 @@ class BlockTypeAcfRepeaterGallery extends BlockType {
 
 	protected function render( $block, $content, $postId ) {
 
-		print '
-
-		<div class="splide">
-			<div class="splide__track">
-				<ul class="splide__list">
-					<li class="splide__slide">Slide 01</li>
-					<li class="splide__slide">Slide 02</li>
-					<li class="splide__slide">Slide 03</li>
-				</ul>
-			</div>
-		</div>
-
-		';
+		// open slider tags
+		print '<div class="splide">';
+		print '<div class="splide__track">';
+		print '<ul class="splide__list">';
 
 		// set inner blocks that were parsed from block already before calling render_block()
 		$innerBlocks = $GLOBALS['acfg_loop_inner_blocks'];
@@ -70,6 +61,8 @@ class BlockTypeAcfRepeaterGallery extends BlockType {
 
 			the_row();
 
+			print '<li class="splide__slide">';
+
 			foreach( $innerBlocks as $block ) {
 
 				$metaKey = $block['attrs']['data']['meta_key'];
@@ -79,7 +72,12 @@ class BlockTypeAcfRepeaterGallery extends BlockType {
 
 			}
 
+			print '</li>';
+
 		endwhile;
+
+		// closing slider tags
+		print '</ul></div></div>';
 
 	}
 
