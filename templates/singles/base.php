@@ -20,7 +20,10 @@ if ( false !== $priority && doing_filter( 'the_content' ) && has_blocks( $conten
 }
 
 $blocks = parse_blocks( $content );
+
 $output = '';
+
+$GLOBALS['acfg_template_loop'] = 21;
 
 foreach ( $blocks as $block ) {
   $output .= render_block( $block );

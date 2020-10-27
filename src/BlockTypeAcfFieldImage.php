@@ -24,39 +24,58 @@ class BlockTypeAcfFieldImage extends BlockType {
     return [$this, 'callback'];
   }
 
-  public function callback( $block, $content = '', $isPreview, $editorPostId ) {
-
+  public function callback( $block, $content, $isPreview, $editorPostId ) {
 		if( $isPreview ) {
-			$templatePostType = get_field('post_type', $editorPostId);
+			$this->renderPreview( $block, $content, $editorPostId );
+		} else {
+			$this->render( $block, $content, $editorPostId );
+		}
+  }
 
-			$previewPosts = get_posts([
-				'post_type' => $templatePostType
-			]);
-			if( empty( $previewPosts )) {
-				print 'SORRY NO POSTS AVAILABLE TO USE FOR PREVIEW.';
-				return;
-			}
+	protected function renderPreview( $block, $content, $editorPostId ) {
 
-			$previewPost = $previewPosts[0];
-			$fieldKey = get_field('meta_key');
-	    $fieldPostId = get_field('post_id');
-			if( $fieldPostId == 'current' ) {
-				$fieldValue = get_field( $fieldKey, $previewPost->ID );
-			} else {
-				$fieldValue = get_field( $fieldKey, $fieldPostId );
-			}
+		$templatePostType = get_field('post_type', $editorPostId);
 
-			$size = 'full'; // (thumbnail, medium, large, full or custom size)
-	    if( $fieldValue ) {
-	      print wp_get_attachment_image( $fieldValue, $size );
-	    }
+		$previewPosts = get_posts([
+			'post_type' => $templatePostType
+		]);
+		if( empty( $previewPosts )) {
+			print 'SORRY NO POSTS AVAILABLE TO USE FOR PREVIEW.';
 			return;
-
 		}
 
-    $data = $block['data'];
+		$previewPost = $previewPosts[0];
+		$fieldKey = get_field('meta_key');
+		$fieldPostId = get_field('post_id');
+		if( $fieldPostId == 'current' ) {
+			$fieldValue = get_field( $fieldKey, $previewPost->ID );
+		} else {
+			$fieldValue = get_field( $fieldKey, $fieldPostId );
+		}
+
+		$size = 'full'; // (thumbnail, medium, large, full or custom size)
+		if( $fieldValue ) {
+			print wp_get_attachment_image( $fieldValue, $size );
+		}
+		return;
+
+	}
+
+	protected function render( $block, $content, $editorPostId ) {
+
+		if( isset( $GLOBALS['acfg_dynamic_image_id'] )) {
+			$size = 'full';
+	    print wp_get_attachment_image( $GLOBALS['acfg_dynamic_image_id'], $size );
+			return;
+		}
+
+		$data = $block['data'];
     $fieldKey = get_field('meta_key');
     $fieldPostId = get_field('post_id');
+
+		var_dump( $fieldKey );
+		var_dump( $fieldPostId );
+		var_dump( $editorPostId );
 
 		if( $fieldPostId == 'current' ) {
 			$fieldValue = get_field( $fieldKey, $editorPostId );
@@ -69,6 +88,6 @@ class BlockTypeAcfFieldImage extends BlockType {
       print wp_get_attachment_image( $fieldValue, $size );
     }
 
-  }
+	}
 
 }
