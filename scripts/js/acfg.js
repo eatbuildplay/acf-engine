@@ -5,12 +5,12 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	 */
 	var splide = new Splide( '.splide', {
 			type   : 'slide', // slide | loop | fade
-			perPage: 2,
+			perPage: 3,
+			height: '60vh',
 			speed: 800,
-			height: '50vh',
 			gap: 10,
 			autoplay: false,
-			cover: true
+			cover: false
 		}
 	);
 	splide.mount();

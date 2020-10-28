@@ -65,17 +65,15 @@ class BlockTypeAcfFieldImage extends BlockType {
 
 		if( isset( $GLOBALS['acfg_loop_field_value'] )) {
 			$size = 'full';
+			print '<div class="acfg-image">';
 	    print wp_get_attachment_image( $GLOBALS['acfg_loop_field_value'], $size );
+			print '</div>';
 			return;
 		}
 
 		$data = $block['data'];
     $fieldKey = get_field('meta_key');
     $fieldPostId = get_field('post_id');
-
-		var_dump( $fieldKey );
-		var_dump( $fieldPostId );
-		var_dump( $editorPostId );
 
 		if( $fieldPostId == 'current' ) {
 			$fieldValue = get_field( $fieldKey, $editorPostId );

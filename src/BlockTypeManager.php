@@ -84,6 +84,9 @@ class BlockTypeManager {
 		$bt = new BlockTypeAcfRepeaterGallery();
 		$bt->init();
 
+		$bt = new BlockTypeBigHeadline();
+		$bt->init();
+
     // get all the data files stored
     $dataFiles = $this->findBlockTypeDataFiles();
 

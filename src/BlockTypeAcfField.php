@@ -27,7 +27,9 @@ class BlockTypeAcfField extends BlockType {
   public function callback( $block, $content = '', $isPreview, $editorPostId ) {
 
 		if( isset( $GLOBALS['acfg_loop_field_value'] )) {
+			print '<div class="acfg-field">';
 	    print $GLOBALS['acfg_loop_field_value'];
+			print '</div>';
 			return;
 		}
 
