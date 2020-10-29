@@ -90,6 +90,9 @@ class BlockTypeManager {
 		$bt = new Image();
 		$bt->init();
 
+		$bt = new Header();
+		$bt->init();
+
     // get all the data files stored
     $dataFiles = $this->findBlockTypeDataFiles();
 
