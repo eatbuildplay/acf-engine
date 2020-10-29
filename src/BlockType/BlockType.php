@@ -283,4 +283,22 @@ abstract class BlockType {
 
 	}
 
+	protected function getPreviewPost( $editorPostId ) {
+
+		$templatePostType = get_field('post_type', $editorPostId);
+		if( !$templatePostType ) {
+			return false;
+		}
+
+		$previewPosts = get_posts([
+			'post_type' => $templatePostType
+		]);
+		if( empty( $previewPosts )) {
+			return false;
+		}
+
+		return $previewPosts[0];
+	
+	}
+
 }
