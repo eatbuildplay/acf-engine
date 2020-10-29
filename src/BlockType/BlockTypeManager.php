@@ -99,6 +99,9 @@ class BlockTypeManager {
 		$bt = new Heading();
 		$bt->init();
 
+		$bt = new TextEditor();
+		$bt->init();
+
     // get all the data files stored
     $dataFiles = $this->findBlockTypeDataFiles();
 
