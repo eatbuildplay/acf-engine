@@ -25,7 +25,7 @@ use AcfEngine\Core\TaxonomyCustom;
 use AcfEngine\Core\TaxonomyTaxonomy;
 use AcfEngine\Core\OptionsPageManager;
 use AcfEngine\Core\ComponentManager;
-use AcfEngine\Core\BlockTypeManager;
+use AcfEngine\Core\BlockType\BlockTypeManager;
 use AcfEngine\Core\TemplateManager;
 use AcfEngine\Core\RenderCodeManager;
 use AcfEngine\Core\Import;
@@ -123,11 +123,35 @@ class Plugin {
       return;
     }
 
-    // strip the namespace leaving only the final class name
-    $className = str_replace('AcfEngine\Core\\', '', $className);
+    if ( 0 === strpos( $className, 'AcfEngine\Core\BlockType' ) ) {
+
+      $className = str_replace('AcfEngine\Core\BlockType\\', '', $className);
+      if( $className == 'BlockType' || $className == 'BlockTypeCustom' || $className == 'BlockTypeManager' ) {
+        // do not add dir
+      } else {
+        $className = $className . '/' . $className;
+      }
+      $className = 'BlockType/' . $className;
+
+    } else {
+
+      $className = str_replace('AcfEngine\Core\\', '', $className);
+      $className = str_replace('\\', '/', $className);
+      
+    }
+
     require( ACF_ENGINE_PATH . 'src/' . $className . '.php' );
 
   }
+
+  private function __camelCaseToHyphenated( $input ) {
+		preg_match_all('!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!', $input, $matches);
+		$ret = $matches[0];
+		foreach ($ret as &$match) {
+			$match = $match == strtoupper($match) ? strtolower($match) : lcfirst($match);
+		}
+		return implode('-', $ret);
+	}
 
   public function scripts() {
 

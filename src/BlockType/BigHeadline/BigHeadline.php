@@ -1,12 +1,12 @@
 <?php
 
-namespace AcfEngine\Core;
+namespace AcfEngine\Core\BlockType;
 
 if (!defined('ABSPATH')) {
 	exit;
 }
 
-class BlockTypeBigHeadline extends BlockType {
+class BigHeadline extends BlockType {
 
   public function key() {
 		return 'big_headline';

@@ -1,12 +1,12 @@
 <?php
 
-namespace AcfEngine\Core;
+namespace AcfEngine\Core\BlockType;
 
 if (!defined('ABSPATH')) {
 	exit;
 }
 
-class BlockTypeAcfTemplate extends BlockType {
+class AcfTemplate extends BlockType {
 
   public function key() {
 		return 'acf_template';

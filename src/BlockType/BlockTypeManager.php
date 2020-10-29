@@ -1,6 +1,6 @@
 <?php
 
-namespace AcfEngine\Core;
+namespace AcfEngine\Core\BlockType;
 
 if (!defined('ABSPATH')) {
 	exit;
@@ -69,22 +69,22 @@ class BlockTypeManager {
 		 * Register our internal default block types
 		 */
 
-		$bt = new BlockTypeAcfTemplate();
+		$bt = new AcfTemplate();
  		$bt->init();
 
-		$bt = new BlockTypeAcfField();
+		$bt = new AcfField();
 		$bt->init();
 
-		$bt = new BlockTypeAcfFieldNumber();
+		$bt = new AcfFieldNumber();
 		$bt->init();
 
-		$bt = new BlockTypeAcfFieldImage();
+		$bt = new AcfFieldImage();
 		$bt->init();
 
-		$bt = new BlockTypeAcfRepeaterGallery();
+		$bt = new AcfRepeaterGallery();
 		$bt->init();
 
-		$bt = new BlockTypeBigHeadline();
+		$bt = new BigHeadline();
 		$bt->init();
 
     // get all the data files stored

@@ -1,12 +1,12 @@
 <?php
 
-namespace AcfEngine\Core;
+namespace AcfEngine\Core\BlockType;
 
 if (!defined('ABSPATH')) {
 	exit;
 }
 
-class BlockTypeAcfFieldImage extends BlockType {
+class AcfFieldImage extends BlockType {
 
   public function key() {
 		return 'acf_field_image';

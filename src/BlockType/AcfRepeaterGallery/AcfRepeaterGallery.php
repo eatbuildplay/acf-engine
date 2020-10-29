@@ -1,12 +1,12 @@
 <?php
 
-namespace AcfEngine\Core;
+namespace AcfEngine\Core\BlockType;
 
 if (!defined('ABSPATH')) {
 	exit;
 }
 
-class BlockTypeAcfRepeaterGallery extends BlockType {
+class AcfRepeaterGallery extends BlockType {
 
   public function key() {
 		return 'acf_repeater_gallery';

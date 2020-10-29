@@ -1,23 +1,23 @@
 <?php
 
-namespace AcfEngine\Core;
+namespace AcfEngine\Core\BlockType;
 
 if (!defined('ABSPATH')) {
 	exit;
 }
 
-class BlockTypeAcfFieldNumber extends BlockType {
+class AcfField extends BlockType {
 
   public function key() {
-		return 'acf_field_number';
+		return 'acf_field';
 	}
 
   public function title() {
-    return 'ACF Number Field';
+    return 'ACF Field';
   }
 
   public function description() {
-    return 'Render a single ACF number field with formatting options.';
+    return 'Render a single ACF field using default render template or custom template';
   }
 
   public function renderCallback() {
@@ -25,6 +25,13 @@ class BlockTypeAcfFieldNumber extends BlockType {
   }
 
   public function callback( $block, $content = '', $isPreview, $editorPostId ) {
+
+		if( isset( $GLOBALS['acfg_loop_field_value'] )) {
+			print '<div class="acfg-field">';
+	    print $GLOBALS['acfg_loop_field_value'];
+			print '</div>';
+			return;
+		}
 
 		if( $isPreview ) {
 			$templatePostType = get_field('post_type', $editorPostId);
@@ -40,17 +47,16 @@ class BlockTypeAcfFieldNumber extends BlockType {
 			$previewPost = $previewPosts[0];
 			$fieldKey = get_field('meta_key');
 	    $fieldPostId = get_field('post_id');
-			$numberPrepend = get_field('number_prepend');
-	    $numberAppend = get_field('number_append');
-
 			if( $fieldPostId == 'current' ) {
 				$fieldValue = get_field( $fieldKey, $previewPost->ID );
+				$fieldObject = get_field_object( $fieldKey, $previewPost->ID);
 			} else {
 				$fieldValue = get_field( $fieldKey, $fieldPostId );
+				$fieldObject = get_field_object( $fieldKey, $fieldPostId);
 			}
 
 			print '<h2>';
-	    print $numberPrepend . $fieldValue . $numberAppend;
+	    print $fieldValue;
 	    print '</h2>';
 			return;
 
@@ -59,19 +65,49 @@ class BlockTypeAcfFieldNumber extends BlockType {
     $data = $block['data'];
     $fieldKey = get_field('meta_key');
     $fieldPostId = get_field('post_id');
-    $numberPrepend = get_field('number_prepend');
-    $numberAppend = get_field('number_append');
+		$wrapTag = get_field('wrap_tag');
 
 		if( $fieldPostId == 'current' ) {
 			$fieldValue = get_field( $fieldKey, $editorPostId );
+			$fieldObject = get_field_object( $fieldKey, $editorPostId );
 		} else {
 			$fieldValue = get_field( $fieldKey, $fieldPostId );
+			$fieldObject = get_field_object( $fieldKey, $fieldPostId );
 		}
 
-    print '<h2>';
-    print $numberPrepend . $fieldValue . $numberAppend;
-    print '</h2>';
+		if( $fieldValue == '' || $wrapTag == '' ) {
+			return;
+		}
+
+    print '<' . $wrapTag . '>';
+
+		$tl = new TemplateLoader();
+		$tl->path = 'templates/fields/' . $fieldObject['type'] . '/';
+		$tl->name = 'default';
+		$tl->data = [
+			'field' => $fieldObject,
+			'postId' => $editorPostId
+		];
+
+		//var_dump( $tl );
+
+		$tl->render();
+
+    print '</' . $wrapTag . '>';
 
   }
+
+	protected function renderPreview() {
+
+
+
+
+	}
+
+	protected function renderFront() {
+
+
+
+	}
 
 }
