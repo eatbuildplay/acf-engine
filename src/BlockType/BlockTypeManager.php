@@ -93,6 +93,12 @@ class BlockTypeManager {
 		$bt = new Header();
 		$bt->init();
 
+		$bt = new Footer();
+		$bt->init();
+
+		$bt = new Heading();
+		$bt->init();
+
     // get all the data files stored
     $dataFiles = $this->findBlockTypeDataFiles();
 
