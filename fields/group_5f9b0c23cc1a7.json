@@ -1,0 +1,45 @@
+{
+    "key": "group_5f9b0c23cc1a7",
+    "title": "ACF Engine > Block Types > Star Rating",
+    "fields": [
+        {
+            "key": "field_5f9b0c2e35d1a",
+            "label": "Rating",
+            "name": "rating",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 4,
+            "placeholder": "",
+            "prepend": "",
+            "append": "out of 5 stars",
+            "min": "0.00",
+            "max": "5.00",
+            "step": "0.1"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/acfg-star-rating"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1603996756
+}

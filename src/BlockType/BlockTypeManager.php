@@ -102,6 +102,15 @@ class BlockTypeManager {
 		$bt = new TextEditor();
 		$bt->init();
 
+		$bt = new Video();
+		$bt->init();
+
+		$bt = new Button();
+		$bt->init();
+
+		$bt = new StarRating();
+		$bt->init();
+
     // get all the data files stored
     $dataFiles = $this->findBlockTypeDataFiles();
 
