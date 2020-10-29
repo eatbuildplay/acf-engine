@@ -298,7 +298,25 @@ abstract class BlockType {
 		}
 
 		return $previewPosts[0];
-	
+
+	}
+
+	protected function replaceDynamicTags( $content, $postId ) {
+
+		// check for field placeholders
+		if( strpos( $content, '{{' ) !== false ) {
+
+			preg_match_all('/{{(.*?)}}/', $content, $matches);
+			if( !empty( $matches[1] )) {
+				foreach( $matches[1] as $placeholder ) {
+					$placeholderValue = get_field( $placeholder, $postId );
+					$content = str_replace('{{'.$placeholder.'}}', $placeholderValue, $content);
+				}
+			}
+		}
+
+		return $content;
+
 	}
 
 }

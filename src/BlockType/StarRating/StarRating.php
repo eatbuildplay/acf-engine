@@ -30,8 +30,18 @@ class StarRating extends BlockType {
 
 	protected function render( $block, $content, $postId ) {
 
+		$type = get_field('type');
+
+		if( $type == 'dynamic' ) {
+			$ratingDynamic = get_field('rating_dynamic');
+			$rating = $this->replaceDynamicTags( $ratingDynamic, $postId );
+		} else {
+			$rating = get_field('rating');
+		}
+
+
 		print '<div class="acfg-star-rating">';
-    print get_field('rating');
+    print $rating;
 		print '</div>';
 
 	}

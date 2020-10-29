@@ -3,13 +3,43 @@
     "title": "ACF Engine > Block Types > Star Rating",
     "fields": [
         {
+            "key": "field_5f9b1090569a3",
+            "label": "Type",
+            "name": "type",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "static": "Static",
+                "dynamic": "Dynamic"
+            },
+            "allow_null": 0,
+            "default_value": "",
+            "layout": "horizontal",
+            "return_format": "value"
+        },
+        {
             "key": "field_5f9b0c2e35d1a",
             "label": "Rating",
             "name": "rating",
             "type": "number",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5f9b1090569a3",
+                        "operator": "==",
+                        "value": "static"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -22,6 +52,33 @@
             "min": "0.00",
             "max": "5.00",
             "step": "0.1"
+        },
+        {
+            "key": "field_5f9b10e1569a4",
+            "label": "Rating",
+            "name": "rating_dynamic",
+            "type": "text",
+            "instructions": "Enter a dynamic placeholder such as {{rating}} using the name of the number field where the rating data is stored.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5f9b1090569a3",
+                        "operator": "==",
+                        "value": "dynamic"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "{{rating}}",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -41,5 +98,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1603996756
+    "modified": 1603998196
 }

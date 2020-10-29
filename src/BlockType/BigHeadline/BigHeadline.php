@@ -39,17 +39,7 @@ class BigHeadline extends BlockType {
 		$size = get_field('size');
 		$color = get_field('color');
 
-		// check for field placeholders
-		if( strpos( $value, '{{' ) !== false ) {
-
-			preg_match_all('/{{(.*?)}}/', $value, $matches);
-			if( !empty( $matches[1] )) {
-				foreach( $matches[1] as $placeholder ) {
-					$placeholderValue = get_field( 'heading', $postId );
-					$value = str_replace('{{'.$placeholder.'}}', $placeholderValue, $value);
-				}
-			}
-		}
+		$this->replaceDynamicTags( $value, $postId );
 
     print '<h2 class="acfg-big-headline">';
     print $value;
