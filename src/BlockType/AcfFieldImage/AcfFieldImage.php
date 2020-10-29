@@ -26,40 +26,12 @@ class AcfFieldImage extends BlockType {
 
   public function callback( $block, $content, $isPreview, $editorPostId ) {
 		if( $isPreview ) {
-			$this->renderPreview( $block, $content, $editorPostId );
-		} else {
-			$this->render( $block, $content, $editorPostId );
+			$previewPost = $this->getPreviewPost( $editorPostId );
+			$editorPostId = $previewPost->ID;
 		}
+
+		$this->render( $block, $content, $editorPostId );
   }
-
-	protected function renderPreview( $block, $content, $editorPostId ) {
-
-		$templatePostType = get_field('post_type', $editorPostId);
-
-		$previewPosts = get_posts([
-			'post_type' => $templatePostType
-		]);
-		if( empty( $previewPosts )) {
-			print 'SORRY NO POSTS AVAILABLE TO USE FOR PREVIEW.';
-			return;
-		}
-
-		$previewPost = $previewPosts[0];
-		$fieldKey = get_field('meta_key');
-		$fieldPostId = get_field('post_id');
-		if( $fieldPostId == 'current' ) {
-			$fieldValue = get_field( $fieldKey, $previewPost->ID );
-		} else {
-			$fieldValue = get_field( $fieldKey, $fieldPostId );
-		}
-
-		$size = 'full'; // (thumbnail, medium, large, full or custom size)
-		if( $fieldValue ) {
-			print wp_get_attachment_image( $fieldValue, $size );
-		}
-		return;
-
-	}
 
 	protected function render( $block, $content, $editorPostId ) {
 

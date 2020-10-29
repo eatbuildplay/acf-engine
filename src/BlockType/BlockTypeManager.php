@@ -87,6 +87,9 @@ class BlockTypeManager {
 		$bt = new BigHeadline();
 		$bt->init();
 
+		$bt = new Image();
+		$bt->init();
+
     // get all the data files stored
     $dataFiles = $this->findBlockTypeDataFiles();
 

@@ -34,6 +34,9 @@ class AcfRepeaterGallery extends BlockType {
 
 	protected function renderPreview( $block, $content, $postId ) {
 		print '<InnerBlocks />';
+		$previewPost = $this->getPreviewPost( $postId );
+		$postId = $previewPost->ID;
+		$this->render( $block, $content, $postId );
 	}
 
 	protected function render( $block, $content, $postId ) {
@@ -45,6 +48,21 @@ class AcfRepeaterGallery extends BlockType {
 
 		// set inner blocks that were parsed from block already before calling render_block()
 		$innerBlocks = $GLOBALS['acfg_loop_inner_blocks'];
+		if( !$innerBlocks ) {
+
+			$editorPostId = intval( acf_maybe_get_POST( 'post_id' ) );
+			$editorPost = get_post( $editorPostId );
+			$editorPostContent = $editorPost->post_content;
+			$editorPostBlocks = parse_blocks( $editorPostContent );
+			foreach ( $editorPostBlocks as $block ) {
+
+				if( 'acf/acfg-acf-repeater-gallery' == $block['blockName'] ) {
+					$innerBlocks = $block['innerBlocks'];
+				}
+
+			}
+
+		}
 
 		// get the field key and load field object
 		$repeaterFieldKey = get_field( 'meta_key' );
