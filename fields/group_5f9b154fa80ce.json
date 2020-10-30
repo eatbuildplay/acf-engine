@@ -1,0 +1,109 @@
+{
+    "key": "group_5f9b154fa80ce",
+    "title": "ACF Engine > Block Types > Box Settings",
+    "fields": [
+        {
+            "key": "field_5f9b156960747",
+            "label": "Boxed Width",
+            "name": "boxed_width",
+            "type": "true_false",
+            "instructions": "Used to constrain the block to a maximum width, with equal margin left and right to center the block in \"boxed format\". This is most useful if the page template does not offer boxing or max-width and as a result the default is for blocks to be full-screen without margins.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5f9b16e6a80f8",
+            "label": "Max Width",
+            "name": "max_width",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5f9b156960747",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 1200,
+            "placeholder": "",
+            "prepend": "",
+            "append": "px",
+            "min": 240,
+            "max": 1800,
+            "step": 10
+        },
+        {
+            "key": "field_5f9b1e4829d44",
+            "label": "Alignment",
+            "name": "alignment",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "left": "Left",
+                "center": "Center",
+                "right": "Right"
+            },
+            "allow_null": 0,
+            "default_value": "left",
+            "layout": "horizontal",
+            "return_format": "value"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/acfg-text-editor"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/acfg-image"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/acfg-icon"
+            }
+        ]
+    ],
+    "menu_order": 5,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1604001394
+}

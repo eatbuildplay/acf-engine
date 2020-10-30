@@ -34,6 +34,18 @@ class TextEditor extends BlockType {
 
 		print '<div class="acfg-text-editor">' . $text . '</div>';
 
+		$boxedWidth = get_field( 'boxed_width' );
+		if( $boxedWidth ) {
+			$maxWidth = get_field('max_width');
+			print '<style>';
+			print '.acfg-text-editor {';
+			print 'max-width: ' . $maxWidth . 'px;';
+			print 'margin-left: auto;';
+			print 'margin-right: auto;';
+			print '}';
+			print '</style>';
+		}
+
 	}
 
 }

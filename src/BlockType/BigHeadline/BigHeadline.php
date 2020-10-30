@@ -39,7 +39,7 @@ class BigHeadline extends BlockType {
 		$size = get_field('size');
 		$color = get_field('color');
 
-		$this->replaceDynamicTags( $value, $postId );
+		$value = $this->replaceDynamicTags( $value, $postId );
 
     print '<h2 class="acfg-big-headline">';
     print $value;

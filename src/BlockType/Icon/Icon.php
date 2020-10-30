@@ -6,18 +6,18 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-class Image extends BlockType {
+class Icon extends BlockType {
 
   public function key() {
-		return 'image';
+		return 'icon';
 	}
 
   public function title() {
-    return 'ACFG Image';
+    return 'ACFG Icon';
   }
 
   public function description() {
-    return 'Displays a single image.';
+    return 'A single icon.';
   }
 
   public function renderCallback() {
@@ -25,42 +25,43 @@ class Image extends BlockType {
   }
 
   public function callback( $block, $content, $isPreview, $postId ) {
-
-    /*if( $isPreview ) {
-			$previewPost = $this->getPreviewPost( $postId );
-			$postId = $previewPost->ID;
-    }*/
-
 		$this->render( $block, $content, $postId );
   }
 
 	protected function render( $block, $content, $postId ) {
 
-		$image  = get_field('image');
-    $size = 'full';
+    $icon = get_field( 'icon' );
+    $width = get_field( 'width' );
+    $height = get_field( 'height' );
 
-    print '<div class="acfg-image">';
-    print wp_get_attachment_image( $image, $size );
+		print '<div class="acfg-icon">';
+    print '<span class="dashicons ' . $icon . '"></span>';
     print '</div>';
 
-		print '<style>';
-		print '.acfg-image {';
-    print 'max-width: 100%;';
-		print '}';
-		print '</style>';
+    print '<style>';
 
-		/* apply box settings */
+    print '.acfg-icon .dashicons {';
+    print 'font-size: ' . $width . 'px;';
+    print 'width: ' . $width . 'px;';
+    print 'height: ' . $height . 'px;';
+    print '}';
+
 		$boxedWidth = get_field( 'boxed_width' );
 		if( $boxedWidth ) {
 			$maxWidth = get_field('max_width');
-			print '<style>';
-			print '.acfg-image {';
+			print '.acfg-icon {';
 			print 'max-width: ' . $maxWidth . 'px;';
 			print 'margin-left: auto;';
 			print 'margin-right: auto;';
 			print '}';
-			print '</style>';
 		}
+
+    $alignment = get_field( 'alignment' );
+    print '.acfg-icon {';
+    print 'text-align: ' . $alignment . ';';
+    print '}';
+
+    print '</style>';
 
 	}
 

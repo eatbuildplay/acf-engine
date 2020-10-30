@@ -111,6 +111,9 @@ class BlockTypeManager {
 		$bt = new StarRating();
 		$bt->init();
 
+		$bt = new Icon();
+		$bt->init();
+
     // get all the data files stored
     $dataFiles = $this->findBlockTypeDataFiles();
 
