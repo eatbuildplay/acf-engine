@@ -114,9 +114,6 @@ class BlockTypeManager {
 		$bt = new Icon();
 		$bt->init();
 
-		$bt = new Content();
-		$bt->init();
-
     // get all the data files stored
     $dataFiles = $this->findBlockTypeDataFiles();
 
