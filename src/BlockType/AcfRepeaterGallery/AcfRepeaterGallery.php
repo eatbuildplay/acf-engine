@@ -97,6 +97,13 @@ class AcfRepeaterGallery extends BlockType {
 		// closing slider tags
 		print '</ul></div></div>';
 
+		print '<style>';
+		print '.splide {';
+		print 'max-width: 1200px;';
+		print 'margin: 30px auto;';
+		print '}';
+		print '</style>';
+
 	}
 
 }

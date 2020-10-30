@@ -25,12 +25,14 @@ class BigHeadline extends BlockType {
   }
 
   public function callback( $block, $content, $isPreview, $postId ) {
+
 		if( $isPreview ) {
 			$previewPost = $this->getPreviewPost( $postId );
 			$postId = $previewPost->ID;
     }
 
 		$this->render( $block, $content, $postId );
+
   }
 
 	protected function render( $block, $content, $postId ) {
@@ -50,6 +52,14 @@ class BigHeadline extends BlockType {
 		print 'font-size: ' . $size . 'em;';
 		print 'color: ' . $color . ';';
 		print '}';
+
+		if( $block['align'] == '' ) {
+			print '.acfg-big-headline {';
+			print 'max-width: 1200px;';
+			print 'margin: 25px auto;';
+			print '}';
+		}
+
 		print '</style>';
 
 	}
