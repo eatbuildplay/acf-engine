@@ -30,7 +30,16 @@ class Footer extends BlockType {
 
 	protected function render( $block, $content, $postId ) {
 
-		print 'FOOTER AREA';
+		$key = get_field('key');
+		$tm = new \AcfEngine\Core\TemplateManager();
+		$template = $tm->fetchByKey( $key );
+
+		if( !$template ) {
+			print 'SORRY THAT TEMPLATE COULD NOT BE FOUND.';
+		}
+
+		$content = $this->parseBlockContent( $template->post_content );
+		print $content;
 
 	}
 
