@@ -57,7 +57,9 @@
             "choices": {
                 "single_post": "Single Post",
                 "archive_page": "Archive Page",
-                "loop_post": "Post Loop"
+                "loop_post": "Post Loop",
+                "header": "Header",
+                "footer": "Footer"
             },
             "allow_null": 0,
             "other_choice": 0,
@@ -118,5 +120,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1602868703
+    "modified": 1604085026
 }

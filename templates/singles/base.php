@@ -1,7 +1,5 @@
 <?php get_header(); ?>
 
-<?php the_content(); ?>
-
 <div class="acfg-single-content">
 
 <?php

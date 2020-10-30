@@ -36,18 +36,4 @@ class AcfTemplate extends BlockType {
 
   }
 
-  protected function parseBlockContent( $content ) {
-    $priority = has_filter( 'the_content', 'wpautop' );
-    if ( false !== $priority && doing_filter( 'the_content' ) && has_blocks( $content ) ) {
-    	remove_filter( 'the_content', 'wpautop', $priority );
-    	add_filter( 'the_content', '_restore_wpautop_hook', $priority + 1 );
-    }
-    $blocks = parse_blocks( $content );
-    $output = '';
-    foreach ( $blocks as $block ) {
-      $output .= render_block( $block );
-    }
-    return $output;
-  }
-
 }

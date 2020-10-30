@@ -6,18 +6,18 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-class Header extends BlockType {
+class Content extends BlockType {
 
   public function key() {
-		return 'header';
+		return 'content';
 	}
 
   public function title() {
-    return 'ACFG Header';
+    return 'ACFG Content';
   }
 
   public function description() {
-    return 'Renders a site header.';
+    return 'Renders the current post content equivalent to calling the_content() core WP function.';
   }
 
   public function renderCallback() {
@@ -30,16 +30,7 @@ class Header extends BlockType {
 
 	protected function render( $block, $content, $postId ) {
 
-		$key = get_field('key');
-		$tm = new \AcfEngine\Core\TemplateManager();
-		$template = $tm->fetchByKey( $key );
-
-		if( !$template ) {
-			print 'SORRY THAT TEMPLATE COULD NOT BE FOUND.';
-		}
-
-		$content = $this->parseBlockContent( $template->post_content );
-		print $content;
+		the_content();
 
 	}
 
