@@ -31,6 +31,7 @@ class TextEditor extends BlockType {
 	protected function render( $block, $content, $postId ) {
 
     $text = get_field( 'text' );
+		$text = $this->replaceDynamicTags( $text, $postId );
 
 		print '<div class="acfg-text-editor">' . $text . '</div>';
 
