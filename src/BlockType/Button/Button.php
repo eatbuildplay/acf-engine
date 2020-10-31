@@ -30,11 +30,40 @@ class Button extends BlockType {
 
 	protected function render( $block, $content, $postId ) {
 
+		/* content */
+		print '<div class="acfg-button">';
     print '<a href="' . get_field('link') . '">';
 		print '<button>';
     print get_field('text');
     print '</button>';
     print '</a>';
+		print '</div>';
+
+		/* styles */
+		print '<style>';
+		print '.acfg-button button {';
+
+		print 'display: inline-block;';
+		print 'cursor: pointer;';
+
+		if( $padding = get_field('padding') ) {
+			print 'padding: ' . $padding . 'px;';
+		}
+
+		if( $margin = get_field('margin') ) {
+			print 'margin: ' . $margin . 'px;';
+		}
+
+		if( $fontSize = get_field('font_size') ) {
+			print 'font-size: ' . $fontSize . 'em;';
+		}
+
+		if( $backgroundColor = get_field('background_color') ) {
+			print 'background-color: ' . $backgroundColor . ';';
+		}
+
+		print '}';
+		print '</style>';
 
 	}
 
