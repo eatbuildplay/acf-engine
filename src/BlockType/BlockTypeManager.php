@@ -120,6 +120,102 @@ class BlockTypeManager {
 		$bt = new CallToAction();
 		$bt->init();
 
+		$bt = new Alert();
+		$bt->init();
+
+		$bt = new BlockQuote();
+		$bt->init();
+
+		$bt = new CountDown();
+		$bt->init();
+
+		$bt = new Counter();
+		$bt->init();
+
+		$bt = new FlipBox();
+		$bt->init();
+
+		$bt = new Form();
+		$bt->init();
+
+		$bt = new GoogleMap();
+		$bt->init();
+
+		$bt = new Gallery();
+		$bt->init();
+
+		$bt = new Html();
+		$bt->init();
+
+		$bt = new IconBox();
+		$bt->init();
+
+		$bt = new IconList();
+		$bt->init();
+
+		$bt = new ImageBox();
+		$bt->init();
+
+		$bt = new ImageCarousel();
+		$bt->init();
+
+		$bt = new Login();
+		$bt->init();
+
+		$bt = new Logo();
+		$bt->init();
+
+		$bt = new Lottie();
+		$bt->init();
+
+		$bt = new Menu();
+		$bt->init();
+
+		$bt = new Posts();
+		$bt->init();
+
+		$bt = new PriceTable();
+		$bt->init();
+
+		$bt = new MenuAnchor();
+		$bt->init();
+
+		$bt = new Portfolio();
+		$bt->init();
+
+		$bt = new Slides();
+		$bt->init();
+
+		$bt = new ShareButtons();
+		$bt->init();
+
+		$bt = new Register();
+		$bt->init();
+
+		$bt = new Reviews();
+		$bt->init();
+
+		$bt = new ProgressBar();
+		$bt->init();
+
+		$bt = new Testimonial();
+		$bt->init();
+
+		$bt = new TableOfContents();
+		$bt->init();
+
+		$bt = new Tabs();
+		$bt->init();
+
+		$bt = new SocialIcons();
+		$bt->init();
+
+		$bt = new Users();
+		$bt->init();
+
+		$bt = new Toggle();
+		$bt->init();
+
     // get all the data files stored
     $dataFiles = $this->findBlockTypeDataFiles();
 
