@@ -17,7 +17,7 @@ class BlockQuote extends BlockType {
   }
 
   public function description() {
-    return 'A single  Block Quote.';
+    return 'Render a block quote.';
   }
 
   public function renderCallback() {

@@ -13,11 +13,11 @@ class FlipBox extends BlockType {
 	}
 
   public function title() {
-    return 'FlipBox';
+    return 'Flip Box';
   }
 
   public function description() {
-    return 'A single FlipBox.';
+    return 'Render a flip box.';
   }
 
   public function renderCallback() {
@@ -36,7 +36,9 @@ class FlipBox extends BlockType {
   }
 
 	protected function render( $block, $content, $postId ) {
-		print 'FLIPBOX';
+
+		print 'Flip Box';
+
 	}
 
 }

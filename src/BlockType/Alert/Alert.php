@@ -19,7 +19,7 @@ class Alert extends BlockType {
   public function description() {
     return 'A single alert with content.';
   }
-
+  
   public function renderCallback() {
     return [$this, 'callback'];
   }
