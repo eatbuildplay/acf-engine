@@ -120,6 +120,15 @@ class BlockTypeManager {
 		$bt = new CallToAction();
 		$bt->init();
 
+		$bt = new BlockQuote();
+		$bt->init();
+
+		$bt = new Alert();
+		$bt->init();
+
+		$bt = new FlipBox();
+		$bt->init();
+
     // get all the data files stored
     $dataFiles = $this->findBlockTypeDataFiles();
 
