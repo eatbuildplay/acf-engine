@@ -31,10 +31,12 @@ class CallToAction extends BlockType {
 	protected function render( $block, $content, $postId ) {
 
 		$heading = get_field('heading');
+		$body = get_field('body');
 
 		/* content */
 		print '<div class="acfg-call-to-action">';
     print '<h2>' . $heading . '</h2>';
+		print '<p>' . $body . '</p>';
 		print '</div>';
 
 		/* styles */

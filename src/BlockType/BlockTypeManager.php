@@ -69,6 +69,9 @@ class BlockTypeManager {
 		 * Register our internal default block types
 		 */
 
+		$bt = new Accordion();
+		$bt->init();
+
 		$bt = new AcfTemplate();
  		$bt->init();
 
