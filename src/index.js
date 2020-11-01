@@ -1,35 +1,26 @@
-const { render, useState } = wp.element;
+// import { registerBlockType } from '@wordpress/blocks';
 
-class Clock extends React.Component {
+const { registerBlockType } = wp.blocks;
 
-  constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
-  }
+const blockStyle = {
+    backgroundColor: '#900',
+    color: '#fff',
+    padding: '20px',
+};
 
-  componentDidMount() {
-   this.timerID = setInterval(
-     () => this.tick(),
-     1000
-   );
- }
-
- componentWillUnmount() {
-   clearInterval(this.timerID);
- }
-
- tick() {    this.setState({      date: new Date()    });  }
-
-  render() {
-    return (
-      <div>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-      </div>
-    );
-  }
-
+function Test123() {
+  return 'love yourself!';
 }
 
-ReactDOM.render(
-  <Clock />,  document.getElementById('react-app')
-);
+registerBlockType( 'acfg/fancytext', {
+  title: 'ACFG / Fancy Text',
+  icon: 'universal-access-alt',
+  category: 'design',
+  example: {},
+  edit() {
+      return <Test123 />;
+  },
+  save() {
+      return <div style={ blockStyle }>Hello World, step 1 (from the frontend).</div>;
+  },
+});

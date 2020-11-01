@@ -65,8 +65,14 @@ class BlockTypeManager {
 
   public function registerBlockTypes() {
 
+
 		/*
-		 * Register our internal default block types
+		 * Register internal React block types
+		 */
+		new FancyText();
+
+		/*
+		 * Register internal ACF block types
 		 */
 
 		$bt = new Accordion();
@@ -120,7 +126,6 @@ class BlockTypeManager {
 		$bt = new CallToAction();
 		$bt->init();
 
-<<<<<<< HEAD
 		$bt = new Alert();
 		$bt->init();
 
@@ -131,18 +136,17 @@ class BlockTypeManager {
 		$bt->init();
 
 		$bt = new Counter();
-=======
+		$bt->init();
+
 		$bt = new BlockQuote();
 		$bt->init();
 
 		$bt = new Alert();
->>>>>>> 564937b9c775e900b5c122cb647c5f9d1f375af3
 		$bt->init();
 
 		$bt = new FlipBox();
 		$bt->init();
 
-<<<<<<< HEAD
 		$bt = new Form();
 		$bt->init();
 
@@ -224,8 +228,6 @@ class BlockTypeManager {
 		$bt = new Toggle();
 		$bt->init();
 
-=======
->>>>>>> 564937b9c775e900b5c122cb647c5f9d1f375af3
     // get all the data files stored
     $dataFiles = $this->findBlockTypeDataFiles();
 
