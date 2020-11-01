@@ -20,6 +20,10 @@ class BigHeadline extends BlockType {
     return 'A big bold and beautiful headline.';
   }
 
+	public function enqueueScript() {
+		return ACF_ENGINE_URL . 'src/BlockType/BigHeadline/assets/script.js';
+	}
+
   public function renderCallback() {
     return [$this, 'callback'];
   }

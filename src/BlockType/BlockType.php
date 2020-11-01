@@ -61,6 +61,10 @@ abstract class BlockType {
 			$args['render_callback'] = [$this, 'defaultCallback'];
 		}
 
+		if( $this->enqueueScript() ) {
+			$args['enqueue_script'] = $this->enqueueScript();
+		}
+
     acf_register_block_type( $args );
 
 	}
@@ -332,7 +336,7 @@ abstract class BlockType {
       $output .= render_block( $block );
     }
     return $output;
-		
+
   }
 
 }

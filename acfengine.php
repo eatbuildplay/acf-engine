@@ -137,7 +137,7 @@ class Plugin {
 
       $className = str_replace('AcfEngine\Core\\', '', $className);
       $className = str_replace('\\', '/', $className);
-      
+
     }
 
     require( ACF_ENGINE_PATH . 'src/' . $className . '.php' );
@@ -159,6 +159,14 @@ class Plugin {
       'acfg-js',
       ACF_ENGINE_URL . 'scripts/js/acfg.js',
       array( 'jquery' ),
+      '1.0.0',
+      false
+    );
+
+    wp_enqueue_script(
+      'acfg-react',
+      ACF_ENGINE_URL . 'build/index.js',
+      array( 'jquery', 'wp-element' ),
       '1.0.0',
       true
     );
