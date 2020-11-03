@@ -8,6 +8,22 @@ if (!defined('ABSPATH')) {
 
 class BigHeadline extends BlockType {
 
+	public function __construct() {
+
+		add_filter('script_loader_tag', [$this, 'addScriptTypeAttribute'] , 500, 3);
+
+	}
+
+	public function addScriptTypeAttribute( $tag, $handle, $src ) {
+
+		if ( 'block-acf-acfg-big-headline-js' !== $handle ) {
+      return $tag;
+    }
+
+    return '<script type="module" src="' . esc_url( $src ) . '"></script>';
+
+	}
+
   public function key() {
 		return 'big_headline';
 	}
@@ -47,6 +63,8 @@ class BigHeadline extends BlockType {
 
 		$value = $this->replaceDynamicTags( $value, $postId );
 
+
+
     print '<h2 class="acfg-big-headline">';
     print $value;
     print '</h2>';
@@ -65,6 +83,8 @@ class BigHeadline extends BlockType {
 		}
 
 		print '</style>';
+
+		print '<RenderDate date="2020-11-01" />';
 
 	}
 

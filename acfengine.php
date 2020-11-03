@@ -163,7 +163,6 @@ class Plugin {
       false
     );
 
-    /*
     wp_enqueue_script(
       'acfg-react',
       ACF_ENGINE_URL . 'build/index.js',
@@ -171,7 +170,6 @@ class Plugin {
       '18a3fbe1ffe108ec652b0df97bee372e',
       true
     );
-    */
 
     wp_enqueue_style(
       'acfg-css',

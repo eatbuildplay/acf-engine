@@ -65,6 +65,14 @@ abstract class BlockType {
 			$args['enqueue_script'] = $this->enqueueScript();
 		}
 
+		if( $this->enqueueStyle() ) {
+			$args['enqueue_style'] = $this->enqueueStyle();
+		}
+
+		if( $this->enqueueAssets() ) {
+			$args['enqueue_assets'] = $this->enqueueAssets();
+		}
+
     acf_register_block_type( $args );
 
 	}
