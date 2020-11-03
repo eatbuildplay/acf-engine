@@ -40,9 +40,6 @@ abstract class OptionsPage {
 			'page_title' 			=> $this->pageTitle(),
   		'menu_title'			=> $this->menuTitle(),
   		'menu_slug' 			=> $this->getPrefixedSlug(),
-  		'capability'			=> $this->capability(),
-			'position'				=> $this->position(),
-			'parent_slug'			=> $this->parentSlug(),
 			'icon_url'				=> $this->iconUrl(),
   		'redirect'				=> $this->redirect(),
 			'autoload'				=> $this->autoload(),
@@ -50,8 +47,20 @@ abstract class OptionsPage {
 			'updated_message' => $this->updatedMessage()
 		];
 
+		if( $this->parentSlug() ) {
+			$args['parent_slug'] = $this->parentSlug();
+		}
+
+		if( $this->capability() ) {
+			$args['capability'] = $this->capability();
+		}
+
 		if( $this->postId() ) {
 			$args['post_id'] = $this->postId();
+		}
+
+		if( $this->position() ) {
+			$args['position'] = $this->position();
 		}
 
     acf_add_options_page( $args );
