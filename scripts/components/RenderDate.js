@@ -1,7 +1,7 @@
-class RenderDate extends React.Component {
+export default class RenderDate extends React.Component {
 
   render() {
-    return 'January 5, 2020';
+    return <span>{this.props.date}</span>; 
   }
-  
+
 }

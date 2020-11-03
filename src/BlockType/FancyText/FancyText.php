@@ -15,7 +15,7 @@ class FancyText {
     wp_register_script(
       'acfg-block-fancytext',
       ACF_ENGINE_URL . '/build/index.js',
-      ['wp-blocks', 'wp-element'],
+      ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components'],
       '1.0.0'
     );
 
