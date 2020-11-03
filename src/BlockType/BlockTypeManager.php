@@ -126,9 +126,6 @@ class BlockTypeManager {
 		$bt = new CallToAction();
 		$bt->init();
 
-		$bt = new Alert();
-		$bt->init();
-
 		$bt = new BlockQuote();
 		$bt->init();
 
@@ -136,9 +133,6 @@ class BlockTypeManager {
 		$bt->init();
 
 		$bt = new Counter();
-		$bt->init();
-
-		$bt = new BlockQuote();
 		$bt->init();
 
 		$bt = new Alert();
