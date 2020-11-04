@@ -25,12 +25,18 @@ Yes it is modelled after the JetEngine approach and was inspired by the comprehe
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is stored in the /assets directory.
-2. This is the second screen shot
+1. Main Menu
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.2 =
+* Updates Freemius WP API to latest version
+* Fix to call order for admin settings pages
+
+= 1.0.1 =
+* Initial public version submitted to WP plugin directory
+
+= 1.0.0 =
 * First release of ACF Engine.
 
 == Upgrade Notice ==

@@ -12,11 +12,15 @@ class AdminMenu {
 
     $this->init();
 
-    acf_add_options_sub_page(array(
-      'page_title'  => __('ACF Engine Settings'),
-      'menu_title'  => __('Settings'),
-      'parent_slug' => ACF_ENGINE_TEXT_DOMAIN,
-    ));
+    add_action('acf/init', function() {
+
+      acf_add_options_sub_page(array(
+        'page_title'  => __('ACF Engine Settings'),
+        'menu_title'  => __('Settings'),
+        'parent_slug' => ACF_ENGINE_TEXT_DOMAIN,
+      ));
+
+    });
 
   }
 
