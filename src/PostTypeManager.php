@@ -107,6 +107,10 @@ class PostTypeManager {
 
     $postTypeJson = json_encode( $data );
 
+    if (!is_dir(\AcfEngine\Plugin::dataStoragePath() . 'post-types/')) {
+        mkdir(\AcfEngine\Plugin::dataStoragePath() . 'post-types/', 0777, true);
+    }
+
     \file_put_contents( \AcfEngine\Plugin::dataStoragePath() . 'post-types/' . $data->key . '.json', $postTypeJson );
 
   }

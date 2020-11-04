@@ -67,6 +67,11 @@ class TaxonomyManager {
 		);
 
     $json = json_encode( $data );
+
+    if (!is_dir(\AcfEngine\Plugin::dataStoragePath() . 'taxonomies/')) {
+        mkdir(\AcfEngine\Plugin::dataStoragePath() . 'taxonomies/', 0777, true);
+    }
+
     \file_put_contents( \AcfEngine\Plugin::dataStoragePath() . 'taxonomies/' . $data->key . '.json', $json );
 
   }
