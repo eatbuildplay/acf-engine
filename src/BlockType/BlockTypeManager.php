@@ -70,6 +70,7 @@ class BlockTypeManager {
 		 * Register internal React block types
 		 */
 		new FancyText();
+		new NavBar();
 
 		/*
 		 * Register internal ACF block types

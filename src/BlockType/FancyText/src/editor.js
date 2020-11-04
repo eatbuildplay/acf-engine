@@ -1,3 +1,5 @@
+import RenderDate from '../../../../scripts/components/RenderDate';
+
 const {
   RichText,
   AlignmentToolbar,
@@ -46,6 +48,6 @@ registerBlockType( 'acfg/fancytext', {
 
   },
   save() {
-    return <div>Fancy Text Saved Content</div>;
+    return <div>Fancy Text Saved Content <RenderDate date="2021-01-01" /></div>;
   },
 });
