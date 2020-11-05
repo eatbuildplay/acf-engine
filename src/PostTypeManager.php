@@ -40,7 +40,6 @@ class PostTypeManager {
 		$data->labels = [
 		   'name' =>  $field_name,
 		   'menuName' =>  get_field('menu_name', $postId),
-		   'nameAdminBar' =>  get_field('name_admin_bar', $postId),
 		   'archives' =>  get_field('archives', $postId),
 		   'attributes' =>  get_field('attributes', $postId),
 		   'parentItemColon' =>  get_field('parent_item_colon', $postId),
@@ -65,12 +64,17 @@ class PostTypeManager {
 		   'itemsListNavigation' =>  get_field('items_list_navigation', $postId),
 		   'filterItemsList' =>  get_field('filter_items_list', $postId),
         ];
-		$data->menuIcon  = get_field('menu_icon', $postId);
+
 		$data->public  = get_field('public', $postId);
 		$data->supports = get_field('supports', $postId);
 		$data->showUi = get_field('show_ui', $postId);
-		$data->showInMenu = get_field('show_in_menu', $postId);
-		$data->menuPosition = get_field('menu_position', $postId);
+		if ($data->showUi){
+            $data->showInMenu = get_field('menu_settings', $postId)['show_in_menu'];
+            if ($data->showInMenu){
+                $data->menuPosition = get_field('menu_settings', $postId)['menu_position'];
+                $data->menuIcon  = get_field('menu_settings', $postId)['menu_icon'];
+            }
+        }
 		$data->showInAdminBar = get_field('show_in_admin_bar', $postId);
 		$data->showInNavMenus = get_field('show_in_nav_menus', $postId);
 		$data->canExport = get_field('can_export', $postId);

@@ -32,7 +32,7 @@ abstract class PostType {
 	protected 	$capabilityType = null;
 	protected 	$capabilities = '';
 	protected 	$showInAdminBar = true;
-	protected 	$showInNavMenus;
+	protected 	$showInNavMenus = true;
 	protected 	$canExport = true;
 	protected 	$showInRest = true; // default true to better support gutenberg
 
@@ -129,7 +129,6 @@ abstract class PostType {
 		return [
 			'name'                  => $this->nameSingular(),
 			'menu_name'             => $this->namePlural(),
-			'name_admin_bar'        => $this->namePlural(),
 			'archives'              => $this->nameSingular() . __(' Archives', 'acf-engine'),
 			'attributes'            => $this->nameSingular() . __(' Attributes', 'acf-engine'),
 			'parent_item_colon'     => __('Parent ', 'acf-engine') . $this->nameSingular(),
@@ -447,7 +446,6 @@ abstract class PostType {
   	/*labels*/
   	update_field( 'name', $this->nameSingular(), $postId );
   	update_field( 'menu_name', $this->namePlural(), $postId );
-  	update_field( 'name_admin_bar', $this->namePlural(), $postId );
   	update_field( 'archives', $this->nameSingular() . __(' Archives', 'acf-engine'), $postId );
   	update_field( 'attributes', $this->nameSingular() . __(' Attributes', 'acf-engine'), $postId );
   	update_field( 'parent_item_colon', __('Parent ', 'acf-engine') . $this->nameSingular(), $postId );
