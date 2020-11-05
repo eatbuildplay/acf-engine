@@ -6,7 +6,7 @@
             "key": "field_5fa2b189d8b15",
             "label": "Text",
             "name": "text",
-            "type": "text",
+            "type": "textarea",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -17,9 +17,9 @@
             },
             "default_value": "",
             "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "maxlength": "",
+            "rows": "",
+            "new_lines": ""
         },
         {
             "key": "field_5fa2b189d8f38",
@@ -124,7 +124,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/acfg-button"
+                "value": "acf\/acfg-block-quote"
             }
         ]
     ],
@@ -136,5 +136,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1604505259
+    "modified": 1604582851
 }

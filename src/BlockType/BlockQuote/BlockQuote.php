@@ -32,40 +32,86 @@ class BlockQuote extends BlockType {
   }
 
 	protected function render( $block, $content, $postId ) {
-        /* content */
-        print '<div class="acfg-button">';
-        print '<a href="' . get_field('link') . '">';
-        print '<button>';
-        print get_field('text');
-        print '</button>';
-        print '</a>';
-        print '</div>';
+        ob_start(); ?>
+        <div class="acfg-blockquote-container">
+            <blockquote class="acfg-blockquote"><?= get_field('text') ?></blockquote>
+            <cite class="acfg-author">- <?= get_field('author') ?></cite>
+        </div>
+        <style>
+            .acfg-blockquote-container{
+                max-width: 600px !important;
+                margin: auto;
+            }
+            .acfg-blockquote{
+                font-weight: 100;
+                font-style: italic;
+                line-height: 1.4;
+                position: relative;
+                border: none;
 
-        /* styles */
-        print '<style>';
-        print '.acfg-button button {';
+                <?php if( $fontSize = get_field('font_size') ) { ?>
+                font-size: <?= $fontSize ?>px;
+                <?php }else{ ?>
+                font-size: 16px;
+                <?php } ?>
 
-        print 'display: inline-block;';
-        print 'cursor: pointer;';
+                <?php if( $padding = get_field('padding') ) { ?>
+                padding: <?= $padding ?>px;
+                <?php }else{ ?>
+                padding: 8px;
+                <?php } ?>
 
-        if( $padding = get_field('padding') ) {
-            print 'padding: ' . $padding . 'px;';
-        }
+                <?php if( $margin = get_field('margin') ) { ?>
+                margin: <?= $margin ?>px !important;
+                <?php }else{ ?>
+                margin: 0 !important;
+                <?php } ?>
 
-        if( $margin = get_field('margin') ) {
-            print 'margin: ' . $margin . 'px;';
-        }
+                <?php if( $color = get_field('color') ) { ?>
+                    color: <?= $color ?>;
+                <?php }else{ ?>
+                    color: #000;
+                <?php } ?>
+            }
+            .acfg-blockquote:before,
+            .acfg-blockquote:after {
+                position: absolute;
+                color: #777777;
+                font-size: 8rem;
+                width: 4rem;
+                height: 4rem;
+            }
 
-        if( $fontSize = get_field('font_size') ) {
-            print 'font-size: ' . $fontSize . 'em;';
-        }
+            .acfg-blockquote:before {
+                content: '“';
+                left: -5rem;
+                top: -2rem;
+            }
 
-        if( $color = get_field('color') ) {
-            print 'background-color: ' . $color . ';';
-        }
+            .acfg-blockquote:after {
+                content: '”';
+                right: -4rem;
+                bottom: 1rem;
+            }
+            .acfg-author {
+                text-transform: capitalize;
+                line-height: 3;
+                text-align: left;
+                max-width: 600px;
+                width: 100%;
+                color: #777777;
+                font-weight: 700;
+                <?php if( $padding = get_field('padding') ) { ?>
+                    padding-left: <?= $padding ?>px;
+                <?php }else{ ?>
+                    padding-left: 0;
+                <?php } ?>
+            }
+        </style>
 
-        print '}';
-        print '</style>';
+        <?php
+        print ob_get_clean();
+
 	}
 
 }
