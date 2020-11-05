@@ -34,7 +34,7 @@ class PostTypeManager {
 		$data->description = get_field('description', $postId);
     $data->name = get_field('name', $postId);
 		$data->labels = [
-			'name' =>  $field_name,
+			'name' =>  $data->name,
 			'menuName' =>  get_field('menu_name', $postId),
 			'archives' =>  get_field('archives', $postId),
 			'attributes' =>  get_field('attributes', $postId),
