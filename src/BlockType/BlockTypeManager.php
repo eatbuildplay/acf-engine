@@ -65,8 +65,15 @@ class BlockTypeManager {
 
   public function registerBlockTypes() {
 
+
 		/*
-		 * Register our internal default block types
+		 * Register internal React block types
+		 */
+		new FancyText();
+		new NavBar();
+
+		/*
+		 * Register internal ACF block types
 		 */
 
 		$bt = new Accordion();
@@ -130,6 +137,9 @@ class BlockTypeManager {
 		$bt->init();
 
 		$bt = new Counter();
+		$bt->init();
+
+		$bt = new Alert();
 		$bt->init();
 
 		$bt = new FlipBox();

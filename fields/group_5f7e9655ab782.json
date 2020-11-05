@@ -62,7 +62,7 @@
             "label": "Object Types",
             "name": "object_type",
             "type": "textarea",
-            "instructions": "Enter the post type key(s). If you want to add the taxonomy to multiple post types use a comma to separate your list. You can omit the \"acfe_\" prefix and use only the key you entered in the Post Type registration.",
+            "instructions": "Enter the post type key(s). If you want to add the taxonomy to multiple post types use a comma to separate your list. You can omit the \"acfg_\" prefix and use only the key you entered in the Post Type registration.",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
@@ -829,5 +829,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1603329566
+    "modified": 1604369547
 }

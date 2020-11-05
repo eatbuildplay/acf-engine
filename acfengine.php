@@ -106,6 +106,21 @@ class Plugin {
     /* enqueue scripts */
     add_action('wp_enqueue_scripts', [$this, 'scripts']);
 
+    // add the action delete file json post type or taxonomy
+    add_action( 'before_delete_post',[$this, 'acfg_before_delete_post'], 10, 1 );
+
+  }
+
+  public function acfg_before_delete_post( $id_acfg ) {
+        $acfg_post = get_post($id_acfg);
+        if ($acfg_post->post_type == 'acfg_post_type'){
+            $acfg_key = get_post_meta($id_acfg,'key',true);
+            wp_delete_file(\AcfEngine\Plugin::dataStoragePath() . 'post-types/' . $acfg_key . '.json');
+        }
+        if ($acfg_post->post_type == 'acfg_taxonomy'){
+            $acfg_key = get_post_meta($id_acfg,'key',true);
+            wp_delete_file(\AcfEngine\Plugin::dataStoragePath() . 'taxonomies/' . $acfg_key . '.json');
+        }
   }
 
   public function acfSaveLocal( $path ) {
@@ -137,7 +152,7 @@ class Plugin {
 
       $className = str_replace('AcfEngine\Core\\', '', $className);
       $className = str_replace('\\', '/', $className);
-      
+
     }
 
     require( ACF_ENGINE_PATH . 'src/' . $className . '.php' );
@@ -160,6 +175,14 @@ class Plugin {
       ACF_ENGINE_URL . 'scripts/js/acfg.js',
       array( 'jquery' ),
       '1.0.0',
+      false
+    );
+
+    wp_enqueue_script(
+      'acfg-react',
+      ACF_ENGINE_URL . 'build/index.js',
+      array( 'wp-blocks', 'wp-element', 'wp-polyfill' ),
+      '18a3fbe1ffe108ec652b0df97bee372e',
       true
     );
 

@@ -68,7 +68,7 @@ abstract class Taxonomy {
       $objectTypePrefixed,
       $args
     );
-		
+
 	}
 
   public function setObjectType( $v ) {

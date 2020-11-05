@@ -1,2 +1,4 @@
 data/*
 !data/index.php
+node_modules
+node_modules/*

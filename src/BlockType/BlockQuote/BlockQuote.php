@@ -26,17 +26,46 @@ class BlockQuote extends BlockType {
 
   public function callback( $block, $content, $isPreview, $postId ) {
 
-		if( $isPreview ) {
-			$previewPost = $this->getPreviewPost( $postId );
-			$postId = $previewPost->ID;
-    }
 
 		$this->render( $block, $content, $postId );
 
   }
 
 	protected function render( $block, $content, $postId ) {
-		print 'BLOCK QUOTE';
+        /* content */
+        print '<div class="acfg-button">';
+        print '<a href="' . get_field('link') . '">';
+        print '<button>';
+        print get_field('text');
+        print '</button>';
+        print '</a>';
+        print '</div>';
+
+        /* styles */
+        print '<style>';
+        print '.acfg-button button {';
+
+        print 'display: inline-block;';
+        print 'cursor: pointer;';
+
+        if( $padding = get_field('padding') ) {
+            print 'padding: ' . $padding . 'px;';
+        }
+
+        if( $margin = get_field('margin') ) {
+            print 'margin: ' . $margin . 'px;';
+        }
+
+        if( $fontSize = get_field('font_size') ) {
+            print 'font-size: ' . $fontSize . 'em;';
+        }
+
+        if( $color = get_field('color') ) {
+            print 'background-color: ' . $color . ';';
+        }
+
+        print '}';
+        print '</style>';
 	}
 
 }
