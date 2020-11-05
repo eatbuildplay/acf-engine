@@ -139,9 +139,6 @@ class BlockTypeManager {
 		$bt = new Counter();
 		$bt->init();
 
-		$bt = new Alert();
-		$bt->init();
-
 		$bt = new FlipBox();
 		$bt->init();
 
