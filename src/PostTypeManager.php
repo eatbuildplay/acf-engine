@@ -32,49 +32,40 @@ class PostTypeManager {
 		$data->nameSingular = get_field('singular_name', $postId);
 		$data->namePlural = get_field('plural_name', $postId);
 		$data->description = get_field('description', $postId);
-		if (!empty(get_field('name', $postId))){
-            $field_name = get_field('name', $postId);
-        }else{
-            $field_name = get_field('key', $postId);
-        }
+    $data->name = get_field('name', $postId);
 		$data->labels = [
-		   'name' =>  $field_name,
-		   'menuName' =>  get_field('menu_name', $postId),
-		   'archives' =>  get_field('archives', $postId),
-		   'attributes' =>  get_field('attributes', $postId),
-		   'parentItemColon' =>  get_field('parent_item_colon', $postId),
-		   'allItems' =>  get_field('all_items', $postId),
-		   'addNewItem' =>  get_field('add_new_item', $postId),
-		   'addNew' =>  get_field('add_new', $postId),
-		   'newItem' =>  get_field('new_item', $postId),
-		   'editItem' =>  get_field('edit_item', $postId),
-		   'updateItem' =>  get_field('update_item', $postId),
-		   'viewItem' =>  get_field('view_item', $postId),
-		   'viewItems' =>  get_field('view_items', $postId),
-		   'searchItems' =>  get_field('search_items', $postId),
-		   'notFound' =>  get_field('not_found', $postId),
-		   'notFoundInTrash' =>  get_field('not_found_in_trash', $postId),
-		   'featuredImage' =>  get_field('featured_image', $postId),
-		   'setFeaturedImage' =>  get_field('set_featured_image', $postId),
-		   'removeFeaturedImage' =>  get_field('remove_featured_image', $postId),
-		   'useFeaturedImage' =>  get_field('use_featured_image', $postId),
-		   'insertIntoItem' =>  get_field('insert_into_item', $postId),
-		   'uploadedToThisItem' =>  get_field('uploaded_to_this_item', $postId),
-		   'itemsList' =>  get_field('items_list', $postId),
-		   'itemsListNavigation' =>  get_field('items_list_navigation', $postId),
-		   'filterItemsList' =>  get_field('filter_items_list', $postId),
-        ];
-
+			'name' =>  $field_name,
+			'menuName' =>  get_field('menu_name', $postId),
+			'archives' =>  get_field('archives', $postId),
+			'attributes' =>  get_field('attributes', $postId),
+			'parentItemColon' =>  get_field('parent_item_colon', $postId),
+			'allItems' =>  get_field('all_items', $postId),
+			'addNewItem' =>  get_field('add_new_item', $postId),
+			'addNew' =>  get_field('add_new', $postId),
+			'newItem' =>  get_field('new_item', $postId),
+			'editItem' =>  get_field('edit_item', $postId),
+			'updateItem' =>  get_field('update_item', $postId),
+			'viewItem' =>  get_field('view_item', $postId),
+			'viewItems' =>  get_field('view_items', $postId),
+			'searchItems' =>  get_field('search_items', $postId),
+			'notFound' =>  get_field('not_found', $postId),
+			'notFoundInTrash' =>  get_field('not_found_in_trash', $postId),
+			'featuredImage' =>  get_field('featured_image', $postId),
+			'setFeaturedImage' =>  get_field('set_featured_image', $postId),
+			'removeFeaturedImage' =>  get_field('remove_featured_image', $postId),
+			'useFeaturedImage' =>  get_field('use_featured_image', $postId),
+			'insertIntoItem' =>  get_field('insert_into_item', $postId),
+			'uploadedToThisItem' =>  get_field('uploaded_to_this_item', $postId),
+			'itemsList' =>  get_field('items_list', $postId),
+			'itemsListNavigation' =>  get_field('items_list_navigation', $postId),
+			'filterItemsList' =>  get_field('filter_items_list', $postId),
+    ];
 		$data->public  = get_field('public', $postId);
 		$data->supports = get_field('supports', $postId);
 		$data->showUi = get_field('show_ui', $postId);
-		if ($data->showUi){
-            $data->showInMenu = get_field('menu_settings', $postId)['show_in_menu'];
-            if ($data->showInMenu){
-                $data->menuPosition = get_field('menu_settings', $postId)['menu_position'];
-                $data->menuIcon  = get_field('menu_settings', $postId)['menu_icon'];
-            }
-        }
+		$data->showInMenu = get_field('menu_settings', $postId)['show_in_menu'];
+    $data->menuPosition = get_field('menu_settings', $postId)['menu_position'];
+    $data->menuIcon  = get_field('menu_settings', $postId)['menu_icon'];
 		$data->showInAdminBar = get_field('show_in_admin_bar', $postId);
 		$data->showInNavMenus = get_field('show_in_nav_menus', $postId);
 		$data->canExport = get_field('can_export', $postId);
@@ -88,17 +79,17 @@ class PostTypeManager {
 		$data->restBase = get_field('rest_base', $postId);
 		$data->publiclyQueryable = get_field('publicly_queryable', $postId);
 		$data->capabilityType = get_field('capability_type', $postId);
-		if (get_field('rewrite', $postId)){
-            $data->rewrite = [
-                'slug'          => get_field('slug', $postId),
-                'withFront'    => get_field('with_front', $postId),
-                'feeds'    => get_field('feeds', $postId),
-                'pages'    => get_field('pages', $postId),
-                'epMask'    => get_field('ep_mask', $postId),
-            ];
-        }else{
-            $data->rewrite = get_field('rewrite', $postId);
-        }
+		if (get_field('rewrite', $postId)) {
+	    $data->rewrite = [
+	      'slug'          => get_field('slug', $postId),
+	      'withFront'    => get_field('with_front', $postId),
+	      'feeds'    => get_field('feeds', $postId),
+	      'pages'    => get_field('pages', $postId),
+	      'epMask'    => get_field('ep_mask', $postId),
+	    ];
+    } else {
+      $data->rewrite = get_field('rewrite', $postId);
+    }
 
 		/* update post title */
 		remove_action( 'save_post', [$this, 'savePost'] );
@@ -112,7 +103,8 @@ class PostTypeManager {
     $postTypeJson = json_encode( $data );
 
     if (!is_dir(\AcfEngine\Plugin::dataStoragePath() . 'post-types/')) {
-        mkdir(\AcfEngine\Plugin::dataStoragePath() . 'post-types/', 0777, true);
+    	// @TODO throw error here
+			return;
     }
 
     \file_put_contents( \AcfEngine\Plugin::dataStoragePath() . 'post-types/' . $data->key . '.json', $postTypeJson );
