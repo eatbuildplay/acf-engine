@@ -126,6 +126,7 @@ class Testimonial extends BlockType {
                 font-style: italic;
                 margin: <?= get_field('body_testimonial')['margin'] ?>px;
                 padding: <?= get_field('body_testimonial')['padding'] ?>px;
+                text-align: <?= get_field( 'alignment' ) ?>;
             }
 
         </style>
