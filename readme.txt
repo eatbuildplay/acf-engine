@@ -5,7 +5,7 @@ Tags: acf, post types, taxonomies, blocks, builder
 Requires at least: 5.0
 Tested up to: 5.5
 Stable tag: 1.0
-Requires PHP: 7.4
+Requires PHP: 7.3
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
