@@ -184,7 +184,7 @@ class PostTypeManager {
 		$obj->setKey( $data->key );
 		$obj->setNameSingular( $data->nameSingular );
 
-		if( $data->namePlural ) {
+		if( isset($data->namePlural) && $data->namePlural ) {
 			$obj->setNamePlural( $data->namePlural );
 		}
 
@@ -200,7 +200,7 @@ class PostTypeManager {
 			$obj->setSupports( $data->supports );
 		}
 
-    if( $data->description ) {
+    if( isset($data->description) && $data->description ) {
       $obj->setDescription( $data->description );
     }
 
@@ -208,7 +208,7 @@ class PostTypeManager {
       $obj->setShowInRest( false );
     }
 
-    if( $data->menuIcon ) {
+    if( isset($data->menuIcon) && $data->menuIcon ) {
       $obj->setMenuIcon( $data->menuIcon );
     }
 
@@ -248,19 +248,19 @@ class PostTypeManager {
       $obj->setDeleteWithUser( true );
     }
 
-    if( $data->restBase ) {
+    if( isset($data->restBase) && $data->restBase ) {
       $obj->setRestBase( $data->restBase );
     }
 
-    if( isset( $data->restControllerClass )) {
+    if( isset( $data->restControllerClass ) && $data->restControllerClass ) {
       $obj->setRestControllerClass( $data->restControllerClass );
     }
 
-    if( isset( $data->capabilityType )) {
+    if( isset( $data->capabilityType ) && $data->capabilityType) {
       $obj->setCapabilityType( $data->capabilityType );
     }
 
-    if( $data->capabilities ) {
+    if( isset($data->capabilities) && $data->capabilities ) {
       $obj->setCapabilities( $data->capabilities );
     }
 

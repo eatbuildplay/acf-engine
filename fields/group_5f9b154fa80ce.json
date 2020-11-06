@@ -95,6 +95,13 @@
                 "operator": "==",
                 "value": "acf\/acfg-icon"
             }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/acfg-image-box"
+            }
         ]
     ],
     "menu_order": 5,
@@ -105,5 +112,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1604001394
+    "modified": 1604665256
 }
