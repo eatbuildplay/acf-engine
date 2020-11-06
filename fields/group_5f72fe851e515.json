@@ -1206,25 +1206,6 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_5fa416b7f176d",
-            "label": "Show in Menu",
-            "name": "show_in_menu",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 1,
-            "ui": 1,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
             "key": "field_5f7f132aba017",
             "label": "Show in Nav Menus",
             "name": "show_in_nav_menus",
@@ -1394,5 +1375,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1604591844
+    "modified": 1604623131
 }

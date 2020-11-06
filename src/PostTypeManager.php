@@ -77,8 +77,10 @@ class PostTypeManager {
 		$data->excludeFromSearch = get_field('exclude_from_search', $postId);
 		$data->showInRest = get_field('show_in_rest', $postId);
 		$data->restBase = get_field('rest_base', $postId);
+		$data->restControllerClass = get_field('rest_controller_class', $postId);
 		$data->publiclyQueryable = get_field('publicly_queryable', $postId);
 		$data->capabilityType = get_field('capability_type', $postId);
+        $data->capabilities = get_field('capabilities', $postId);
 		if (get_field('rewrite', $postId)) {
 	    $data->rewrite = [
 	      'slug'          => get_field('slug', $postId),
@@ -196,6 +198,103 @@ class PostTypeManager {
 		if( isset($data->supports) ) {
 			$obj->setSupports( $data->supports );
 		}
+
+        if( $data->description ) {
+            $obj->setDescription( $data->description );
+        }
+
+        if( isset($data->showInRest) && !$data->showInRest ) {
+            $obj->setShowInRest( false );
+        }
+
+        if( $data->menuIcon ) {
+            $obj->setMenuIcon( $data->menuIcon );
+        }
+
+        if( isset($data->public) && !$data->public ) {
+            $obj->setPublic( false );
+        }
+
+        if( isset($data->publiclyQueryable) && !$data->publiclyQueryable ) {
+            $obj->setPubliclyQueryable( false );
+        }
+
+        if( isset($data->showUi) && !$data->showUi ) {
+            $obj->setShowUi( false );
+        }
+
+        if( isset($data->hierarchical) && $data->hierarchical ) {
+            $obj->setHierarchical( true );
+        }
+
+        if( isset($data->excludeFromSearch) && !$data->excludeFromSearch ) {
+            $obj->setExcludeFromSearch( false );
+        }
+
+        if( isset($data->showArchive) && !$data->showArchive ) {
+            $obj->setShowArchive( false );
+        }
+
+        if( isset($data->mapMetaCap) && $data->mapMetaCap ) {
+            $obj->setMapMetaCap( true );
+        }
+
+        if( isset($data->queryVar) && !$data->queryVar ) {
+            $obj->setQueryVar( false );
+        }
+
+        if( isset($data->deleteWithUser) && $data->deleteWithUser ) {
+            $obj->setDeleteWithUser( true );
+        }
+
+        if( $data->restBase ) {
+            $obj->setRestBase( $data->restBase );
+        }
+
+        if( $data->restControllerClass ) {
+            $obj->setRestControllerClass( $data->restControllerClass );
+        }
+
+        if( $data->capabilityType ) {
+            $obj->setCapabilityType( $data->capabilityType );
+        }
+
+        if( $data->capabilities ) {
+            $obj->setCapabilities( $data->capabilities );
+        }
+
+        if( isset($data->showInAdminBar) && !$data->showInAdminBar ) {
+            $obj->setShowInAdminBar( false );
+        }
+
+        if( isset($data->showInNavMenus) && !$data->showInNavMenus ) {
+            $obj->setShowInNavMenus( false );
+        }
+
+        if( isset($data->rewrite) && !$data->rewrite ) {
+            $obj->setRewrite( false );
+        }
+
+        if( isset($data->rewrite->slug) && !$data->rewrite->slug ) {
+            $obj->setRewriteSlug( false );
+        }
+
+        if( isset($data->rewrite->withFront) && !$data->rewrite->withFront ) {
+            $obj->setRewriteWithFront( false );
+        }
+
+        if( isset($data->rewrite->feeds) && !$data->rewrite->feeds ) {
+            $obj->setRewriteFeeds( false );
+        }
+
+        if( isset($data->rewrite->pages) && !$data->rewrite->pages ) {
+            $obj->setRewritePages( false );
+        }
+
+        if( isset($data->rewrite->epMask) && !$data->rewrite->epMask ) {
+            $obj->setRewriteEpMask( false );
+        }
+
 		return $obj;
 	}
 

@@ -24,11 +24,11 @@ abstract class PostType {
 	protected 	$hierarchical = false;
 	protected 	$excludeFromSearch = true;
 	protected 	$showArchive = true;
-	protected 	$mapMetaCap  = null;
+	protected 	$mapMetaCap  = null; //false
 	protected 	$queryVar   = true;
-	protected 	$deleteWithUser   = null;
+	protected 	$deleteWithUser   = null; //false
 	protected 	$restBase;
-	protected 	$restControllerClass = false;
+	protected 	$restControllerClass = 'WP_REST_Posts_Controller';
 	protected 	$capabilityType = null;
 	protected 	$capabilities = '';
 	protected 	$showInAdminBar = true;
@@ -37,12 +37,12 @@ abstract class PostType {
 	protected 	$showInRest = true; // default true to better support gutenberg
 
 	// rewrite properties
-	protected 	$rewrite;
+	protected 	$rewrite = true;
 	protected 	$rewriteSlug;
-	protected 	$rewriteWithFront;
-	protected 	$rewriteFeeds;
-	protected 	$rewritePages;
-	protected 	$rewriteEpMask;
+	protected 	$rewriteWithFront = true;
+	protected 	$rewriteFeeds = true;
+	protected 	$rewritePages = true;
+	protected 	$rewriteEpMask = EP_PERMALINK;
 
 	public function init() {
 		$this->parseArgs();
@@ -165,6 +165,10 @@ abstract class PostType {
 		}
 		return (bool) $this->showArchive;
 	}
+
+    public function setShowArchive( $v ) {
+        $this->showArchive = (bool) $v;
+    }
 
 	public function excludeFromSearch() {
 		return $this->excludeFromSearch;
@@ -487,8 +491,10 @@ abstract class PostType {
   	update_field( 'exclude_from_search', $this->excludeFromSearch(), $postId );
   	update_field( 'show_in_rest', $this->showInRest(), $postId );
   	update_field( 'rest_base', $this->restBase(), $postId );
+  	update_field( 'rest_controller_class', $this->restBase(), $postId );
   	update_field( 'publicly_queryable', $this->publiclyQueryable(), $postId );
   	update_field( 'capability_type', $this->capabilityType(), $postId );
+  	update_field( 'capabilities', $this->capabilities(), $postId );
   	update_field( 'rewrite', $this->rewrite(), $postId );
   	update_field( 'rewrite_slug', $this->rewriteSlug(), $postId );
   	update_field( 'with_front', $this->rewriteWithFront(), $postId );
