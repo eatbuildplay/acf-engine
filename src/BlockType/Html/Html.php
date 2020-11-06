@@ -36,7 +36,7 @@ class Html extends BlockType {
   }
 
 	protected function render( $block, $content, $postId ) {
-		print 'HTML';
+		print get_field('code');
 	}
 
 }

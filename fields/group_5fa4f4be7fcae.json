@@ -1,0 +1,42 @@
+{
+    "key": "group_5fa4f4be7fcae",
+    "title": "ACF Engine > Block Types > Html",
+    "fields": [
+        {
+            "key": "field_5fa4f4be86724",
+            "label": "Code",
+            "name": "code",
+            "type": "acf_code_field",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "mode": "htmlmixed",
+            "theme": "twilight"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/acfg-html"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1604646224
+}
