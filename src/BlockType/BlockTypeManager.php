@@ -94,6 +94,9 @@ class BlockTypeManager {
 		$bt = new AcfRepeaterGallery();
 		$bt->init();
 
+		$bt = new AcfRepeaterTable();
+		$bt->init();
+
 		$bt = new BigHeadline();
 		$bt->init();
 
