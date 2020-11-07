@@ -1,1 +1,3 @@
-<?php print $value; ?>
+<div class="acfg-field-textarea">
+  <?php print $value; ?>
+<div>

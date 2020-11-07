@@ -81,12 +81,13 @@ class AcfField extends BlockType {
 
     print '<' . $wrapTag . '>';
 
-		$tl = new TemplateLoader();
+		$tl = new \AcfEngine\Core\TemplateLoader();
 		$tl->path = 'templates/fields/' . $fieldObject['type'] . '/';
 		$tl->name = 'default';
 		$tl->data = [
-			'field' => $fieldObject,
-			'postId' => $editorPostId
+			'value' 	=> $fieldValue,
+			'field' 	=> $fieldObject,
+			'postId' 	=> $editorPostId
 		];
 
 		//var_dump( $tl );
