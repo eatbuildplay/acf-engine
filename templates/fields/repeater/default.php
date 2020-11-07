@@ -8,6 +8,8 @@ if( have_rows( $field['key'], $postId )):
 
   while ( have_rows( $field['key'], $postId )) :
 
+    print '<div class="acfg-repeater-item">';
+
     the_row();
     foreach( $subfields as $index => $subfield ) {
 
@@ -24,6 +26,8 @@ if( have_rows( $field['key'], $postId )):
       $tl->render();
 
     }
+
+    print '</div>';
 
   endwhile;
 

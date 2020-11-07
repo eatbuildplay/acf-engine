@@ -57,9 +57,7 @@
             "choices": {
                 "single_post": "Single Post",
                 "archive_page": "Archive Page",
-                "loop_post": "Post Loop",
-                "header": "Header",
-                "footer": "Footer"
+                "loop_post": "Post Loop"
             },
             "allow_null": 0,
             "other_choice": 0,
@@ -101,6 +99,24 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
+        },
+        {
+            "key": "field_5fa6dc538e452",
+            "label": "CSS",
+            "name": "css",
+            "type": "acf_code_field",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "mode": "css",
+            "theme": "monokai"
         }
     ],
     "location": [
@@ -120,5 +136,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1604085026
+    "modified": 1604771444
 }

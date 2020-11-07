@@ -42,4 +42,15 @@ print $output;
 
 </div><!-- .acfg-single-content -->
 
+<!-- custom css -->
+<?php
+
+$css = get_field('css', $templateId);
+
+print '<style>';
+print $css;
+print '</style>';
+
+?>
+
 <?php get_footer(); ?>
