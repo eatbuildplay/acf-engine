@@ -5,13 +5,16 @@
  * Plugin Name: ACF Engine
  * Plugin URI: https://eatbuildplay.com/plugins/acfengine/
  * Description: Provides data-driven solutions powered by ACF including custom post types, custom taxonomies, options pages and rendering templates.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Eat/Build/Play
  * Author URI: https://eatbuildplay.com
  * License: GPL3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  *
- * @fs_premium_only /vendor/acf/, /vendor/acf-code-field/, /src/Component.php, /src/ComponentCustom.php, /src/ComponentManager.php, /src/RenderCode.php, /src/RenderCodeCustom.php, /src/RenderCodeManager.php
+ * @fs_premium_only /vendor/acf/
+ * @fs_premium_only /src/Form.php, /src/FormCustom.php, /src/FormManager.php
+ * @fs_premium_only /src/Component.php, /src/ComponentCustom.php, /src/ComponentManager.php
+ * @fs_premium_only /src/RenderCode.php, /src/RenderCodeCustom.php, /src/RenderCodeManager.php
  *
  */
 
