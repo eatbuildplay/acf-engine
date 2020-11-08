@@ -119,6 +119,25 @@
                     "default_value": "fail",
                     "layout": "horizontal",
                     "return_format": "value"
+                },
+                {
+                    "key": "field_5fa7266dd3f9e",
+                    "label": "Notes",
+                    "name": "notes",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": "",
+                    "new_lines": ""
                 }
             ]
         }
@@ -140,5 +159,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1604739777
+    "modified": 1604789891
 }
