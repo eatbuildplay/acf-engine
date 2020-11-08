@@ -90,7 +90,10 @@ class PostTypeManager {
 	      'epMask'    => get_field('ep_mask', $postId),
 	    ];
     } else {
-      $data->rewrite = get_field('rewrite', $postId);
+			$slug = str_replace('_', '-', $data->key);
+      $data->rewrite = [
+				'slug' => $slug,
+			];
     }
 
 		/* update post title */
@@ -113,9 +116,16 @@ class PostTypeManager {
 
   }
 
-  public function registerPostTypes() {
+	public function registerPostTypes() {
 
-    // register our default post types
+		$this->registerInternal();
+		$this->registerDefined();
+
+	}
+
+	public function registerInternal() {
+
+		// register our default post types
     $pt = new PostTypePostType();
     $pt->init();
 
@@ -136,6 +146,10 @@ class PostTypeManager {
 
 		$pt = new PostTypeRenderCode();
     $pt->init();
+
+	}
+
+  public function registerDefined() {
 
     // get all the data files stored and register post types
     $files = $this->findPostTypeDataFiles();
@@ -179,7 +193,7 @@ class PostTypeManager {
 	}
 
 	public function initObject( $data ) {
-		
+
 		$obj = new PostTypeCustom();
 		$obj->setKey( $data->key );
 		$obj->setNameSingular( $data->nameSingular );
@@ -276,8 +290,8 @@ class PostTypeManager {
       $obj->setRewrite( false );
     }
 
-    if( isset($data->rewrite->slug) && !$data->rewrite->slug ) {
-      $obj->setRewriteSlug( false );
+    if( isset($data->rewrite->slug) && $data->rewrite->slug ) {
+      $obj->setRewriteSlug( $data->rewrite->slug );
     }
 
     if( isset($data->rewrite->withFront) && !$data->rewrite->withFront ) {
@@ -292,8 +306,8 @@ class PostTypeManager {
       $obj->setRewritePages( false );
     }
 
-    if( isset($data->rewrite->epMask) && !$data->rewrite->epMask ) {
-      $obj->setRewriteEpMask( false );
+    if( isset($data->rewrite->epMask) && $data->rewrite->epMask ) {
+      $obj->setRewriteEpMask( $data->rewrite->epMask );
     }
 
 		return $obj;
