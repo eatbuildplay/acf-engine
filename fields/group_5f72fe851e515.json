@@ -1020,7 +1020,7 @@
             "key": "field_5fa41742b552b",
             "label": "Slug",
             "name": "slug",
-            "type": "true_false",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": [
@@ -1037,11 +1037,11 @@
                 "class": "",
                 "id": ""
             },
-            "message": "",
-            "default_value": 1,
-            "ui": 1,
-            "ui_on_text": "",
-            "ui_off_text": ""
+            "default_value": "",
+            "placeholder": "defaults to hyphenated form of key such as \"vehicle\" or \"vehicle-type\"",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         },
         {
             "key": "field_5fa41754b552c",
@@ -1263,6 +1263,25 @@
             "ui_off_text": ""
         },
         {
+            "key": "field_5fa861ae70b73",
+            "label": "has_archive_slug",
+            "name": "has_archive_slug",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "Default will match post type key",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_5f7f3005c6ed5",
             "label": "Can Export",
             "name": "can_export",
@@ -1375,5 +1394,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1604623131
+    "modified": 1604870620
 }

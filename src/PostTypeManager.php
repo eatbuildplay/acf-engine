@@ -114,6 +114,10 @@ class PostTypeManager {
 
     \file_put_contents( \AcfEngine\Plugin::dataStoragePath() . 'post-types/' . $data->key . '.json', $postTypeJson );
 
+
+		/* order a permalink refresh that will run later */
+		update_option('acfg_flush_rewrite', 1);
+
   }
 
 	public function registerPostTypes() {

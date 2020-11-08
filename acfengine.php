@@ -112,6 +112,14 @@ class Plugin {
     // add the action delete file json post type or taxonomy
     add_action( 'before_delete_post',[$this, 'acfg_before_delete_post'], 10, 1 );
 
+    /*
+     * Handle rewrite flush if requested
+     */
+    if( get_option( 'acfg_flush_rewrite', 0 ) == 1 ) {
+      flush_rewrite_rules();
+      update_option('acfg_flush_rewrite', 1);
+    }
+
   }
 
   public function acfg_before_delete_post( $id_acfg ) {
