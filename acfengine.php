@@ -193,14 +193,6 @@ class Plugin {
       false
     );
 
-    wp_enqueue_script(
-      'acfg-react',
-      ACF_ENGINE_URL . 'build/index.js',
-      array( 'wp-blocks', 'wp-element', 'wp-polyfill' ),
-      '18a3fbe1ffe108ec652b0df97bee372e',
-      true
-    );
-
     wp_enqueue_style(
       'acfg-css',
       ACF_ENGINE_URL . 'scripts/css/acfg.css',
@@ -209,7 +201,6 @@ class Plugin {
     );
 
     /* splide slider */
-
     wp_enqueue_script(
       'acfg-splide-js',
       ACF_ENGINE_URL . 'vendor/splide/js/splide.min.js',
