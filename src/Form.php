@@ -24,6 +24,9 @@ abstract class Form {
    */
   public function register() {
 
+		$args = $this->args();
+		acf_register_form( $args );
+
 	}
 
 
