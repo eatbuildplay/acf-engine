@@ -133,6 +133,22 @@
             "new_lines": ""
         },
         {
+            "key": "field_5fa8fdc41ba80",
+            "label": "Advanced",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
             "key": "field_5fa8f68379a7d",
             "label": "Show Post Title",
             "name": "post_title",
@@ -209,11 +225,11 @@
             "new_lines": ""
         },
         {
-            "key": "field_5fa8fdc41ba80",
-            "label": "Advanced",
-            "name": "",
-            "type": "tab",
-            "instructions": "",
+            "key": "field_5fa98fbd7603c",
+            "label": "Return",
+            "name": "return",
+            "type": "text",
+            "instructions": "The URL to be redirected to after the form is submitted. Defaults to the current URL with a GET parameter ‘?updated=true’. \r\n\r\nA special placeholder ‘%post_url%’ will be converted to post’s permalink.\r\n\r\nA special placeholder ‘%post_id%’ will be converted to post’s ID.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -221,8 +237,157 @@
                 "class": "",
                 "id": ""
             },
-            "placement": "left",
-            "endpoint": 0
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5fa98ffd4fa41",
+            "label": "HTML Before Fields",
+            "name": "html_before_fields",
+            "type": "textarea",
+            "instructions": "Extra HTML to add before the fields.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_5fa990164fa42",
+            "label": "HTML After Fields",
+            "name": "html_after_fields",
+            "type": "textarea",
+            "instructions": "Extra HTML to add after the fields.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_5fa99057c89e5",
+            "label": "Submit Value",
+            "name": "submit_value",
+            "type": "text",
+            "instructions": "The text displayed on the submit button.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5fa99087825c7",
+            "label": "Updated Message",
+            "name": "updated_message",
+            "type": "textarea",
+            "instructions": "The message displayed above the form after being redirected. Can also be set to false for no message.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_5fa990d857e79",
+            "label": "Label Placement",
+            "name": "label_placement",
+            "type": "button_group",
+            "instructions": "Determines where field labels are places in relation to fields. Defaults to ‘top’. Choices of ‘top’ (above fields) or ‘left’ (beside fields).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "top": "Top",
+                "left": "Left"
+            },
+            "allow_null": 0,
+            "default_value": "top",
+            "layout": "horizontal",
+            "return_format": "value"
+        },
+        {
+            "key": "field_5fa9911c7d101",
+            "label": "Instruction Placement",
+            "name": "instruction_placement",
+            "type": "button_group",
+            "instructions": "Determines where field instructions are placed in relation to fields. Defaults to ‘label’. Choice of ‘label’ (below labels) or ‘field’ (below fields).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "label": "Label",
+                "field": "Field"
+            },
+            "allow_null": 0,
+            "default_value": "label",
+            "layout": "horizontal",
+            "return_format": "value"
+        },
+        {
+            "key": "field_5fa9914d558d8",
+            "label": "Field Element",
+            "name": "form_field_el",
+            "type": "button_group",
+            "instructions": "Determines element used to wrap a field. Defaults to ‘div’. Choices of ‘div’, ‘tr’, ‘td’, ‘ul’, ‘ol’, ‘dl’.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "div": "div",
+                "tr": "tr",
+                "td": "td",
+                "ul": "ul",
+                "ol": "ol",
+                "dl": "dl"
+            },
+            "allow_null": 0,
+            "default_value": "",
+            "layout": "horizontal",
+            "return_format": "value"
         },
         {
             "key": "field_5fa903f513114",
@@ -359,5 +524,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1604912167
+    "modified": 1604951011
 }
