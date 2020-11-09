@@ -215,8 +215,7 @@ class BlockTypeManager {
 		 * Premium only block types
 		 */
 
-		$plugin = new \AcfEngine\Plugin();
-    if ( $plugin->freemius()->is__premium_only() ) :
+    if ( \AcfEngine\Plugin::freemius()->is__premium_only() ) :
 
 			$bt = new PostQueryReport();
 			$bt->init();

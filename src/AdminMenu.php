@@ -43,8 +43,8 @@ class AdminMenu {
       'acfg_options_page',
       'acfg_block_type',
       'acfg_template',
+      'acfg_form',
       'acfg_component',
-      'acfg_render_code'
     ];
 
     if( in_array($current_screen->post_type, $cpts)) {
@@ -115,9 +115,7 @@ class AdminMenu {
      'edit.php?post_type=acfg_template'
    );
 
-   $plugin = new \AcfEngine\Plugin();
-
-   if ( $plugin->freemius()->is__premium_only() ) :
+   if ( \AcfEngine\Plugin::freemius()->is__premium_only() ) :
 
      \add_submenu_page(
        ACF_ENGINE_TEXT_DOMAIN,
@@ -143,6 +141,7 @@ class AdminMenu {
        'edit.php?post_type=acfg_component'
      );
 
+     /*
      \add_submenu_page(
        ACF_ENGINE_TEXT_DOMAIN,
        'Field Groups',
@@ -150,6 +149,7 @@ class AdminMenu {
        'edit_posts',
        'edit.php?post_type=acf-field-group'
      );
+     */
 
    endif;
 

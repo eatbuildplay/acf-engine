@@ -218,7 +218,7 @@ class Plugin {
   }
 
   // Create a helper function for easy SDK access.
-  public function freemius() {
+  public static function freemius() {
 
     global $afcgFreemius;
 
@@ -244,13 +244,12 @@ class Plugin {
           'upgrade'        => false,
         ),
         'secret_key'          => 'sk_rcg1N_(M~ga=dy*_6C<XyrqomrW~K',
-      )
-    );
+      ));
+    }
+
+    return $afcgFreemius;
+
   }
-
-  return $afcgFreemius;
-
-}
 
   public function activation() {
 
