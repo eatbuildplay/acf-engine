@@ -11,6 +11,7 @@ abstract class Form {
   protected $prefix = 'acfg_';
 	protected $postType = 'acfg_form';
   protected	$key;
+	protected $postId;
 
   public function init() {
 		$this->parseArgs();
@@ -41,6 +42,15 @@ abstract class Form {
 
   public function defaultArgs() {
 
+		$args = [
+			'id' 			=> $this->key(),
+			'post_id' => $this->postId()
+		];
+
+
+
+		return $args;
+
   }
 
   public function getPrefixedKey() {
@@ -53,6 +63,14 @@ abstract class Form {
 
 	public function key() {
 		return $this->key;
+	}
+
+	public function setPostId( $v ) {
+		$this->postId = $v;
+	}
+
+	public function postId() {
+		return $this->postId;
 	}
 
 	public function postType() {
