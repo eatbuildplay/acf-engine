@@ -14,7 +14,6 @@
  * @fs_premium_only /vendor/acf/
  * @fs_premium_only /src/Form.php, /src/FormCustom.php, /src/FormManager.php
  * @fs_premium_only /src/Component.php, /src/ComponentCustom.php, /src/ComponentManager.php
- * @fs_premium_only /src/RenderCode.php, /src/RenderCodeCustom.php, /src/RenderCodeManager.php
  *
  */
 
@@ -28,7 +27,7 @@ use AcfEngine\Core\OptionsPageManager;
 use AcfEngine\Core\ComponentManager;
 use AcfEngine\Core\BlockType\BlockTypeManager;
 use AcfEngine\Core\TemplateManager;
-use AcfEngine\Core\RenderCodeManager;
+use AcfEngine\Core\FormManager;
 use AcfEngine\Core\Import;
 
 define( 'ACF_ENGINE_PATH', plugin_dir_path( __FILE__ ) );
@@ -72,35 +71,35 @@ class Plugin {
     $import->init();
 
     // init the post type manager
-    $ptm = new PostTypeManager();
-    $ptm->setup();
+    $m = new PostTypeManager();
+    $m->setup();
 
     // init taxonomy manager
-    $tm = new TaxonomyManager();
-    $tm->setup();
+    $m = new TaxonomyManager();
+    $m->setup();
 
     // init options page manager
-    $opm = new OptionsPageManager();
-    $opm->setup();
+    $m = new OptionsPageManager();
+    $m->setup();
 
     // init block type manager
-    $opm = new BlockTypeManager();
-    $opm->setup();
+    $m = new BlockTypeManager();
+    $m->setup();
 
     // init template manager
-    $opm = new TemplateManager();
-    $opm->setup();
+    $m = new TemplateManager();
+    $m->setup();
 
     /* load pro component managers */
     if ( $this->freemius()->is__premium_only() ) :
 
-      // init component manager
-      $opm = new ComponentManager();
-      $opm->setup();
+      // init form manager
+      $m = new FormManager();
+      $m->setup();
 
-      // init render code manager
-      $rcm = new RenderCodeManager();
-      $rcm->setup();
+      // init component manager
+      $m = new ComponentManager();
+      $m->setup();
 
     endif; /* end load pro component managers */
 

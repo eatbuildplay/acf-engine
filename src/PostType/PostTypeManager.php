@@ -155,9 +155,6 @@ class PostTypeManager {
 		$pt = new PostTypeTemplate();
     $pt->init();
 
-		$pt = new PostTypeRenderCode();
-    $pt->init();
-
 		$pt = new PostTypeForm();
     $pt->init();
 
