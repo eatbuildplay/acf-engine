@@ -121,6 +121,22 @@ class AdminMenu {
 
      \add_submenu_page(
        ACF_ENGINE_TEXT_DOMAIN,
+       'Forms',
+       'Forms',
+       'edit_posts',
+       'edit.php?post_type=acfg_form'
+     );
+
+     \add_submenu_page(
+       ACF_ENGINE_TEXT_DOMAIN,
+       'Queries',
+       'Queries',
+       'edit_posts',
+       'edit.php?post_type=acfg_query'
+     );
+
+     \add_submenu_page(
+       ACF_ENGINE_TEXT_DOMAIN,
        'Render Code',
        'Render Code',
        'edit_posts',
