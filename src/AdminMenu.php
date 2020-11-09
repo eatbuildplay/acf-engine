@@ -137,14 +137,6 @@ class AdminMenu {
 
      \add_submenu_page(
        ACF_ENGINE_TEXT_DOMAIN,
-       'Render Code',
-       'Render Code',
-       'edit_posts',
-       'edit.php?post_type=acfg_render_code'
-     );
-
-     \add_submenu_page(
-       ACF_ENGINE_TEXT_DOMAIN,
        'Components',
        'Components',
        'edit_posts',
