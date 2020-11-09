@@ -63,7 +63,14 @@ class BlockTypeManager {
 
   }
 
-  public function registerBlockTypes() {
+	public function registerBlockTypes() {
+
+		$this->registerInternalBlockTypes();
+		$this->registerDefinedBlockTypes();
+
+	}
+
+	public function registerInternalBlockTypes() {
 
 		/*
 		 * Register internal ACF block types
@@ -82,12 +89,6 @@ class BlockTypeManager {
 		$bt->init();
 
 		$bt = new AcfFieldImage();
-		$bt->init();
-
-		$bt = new AcfRepeaterGallery();
-		$bt->init();
-
-		$bt = new AcfRepeaterTable();
 		$bt->init();
 
 		$bt = new BigHeadline();
@@ -168,16 +169,10 @@ class BlockTypeManager {
 		$bt = new Logo();
 		$bt->init();
 
-		$bt = new Lottie();
-		$bt->init();
-
 		$bt = new Menu();
 		$bt->init();
 
 		$bt = new Posts();
-		$bt->init();
-
-		$bt = new PriceTable();
 		$bt->init();
 
 		$bt = new MenuAnchor();
@@ -204,9 +199,6 @@ class BlockTypeManager {
 		$bt = new Testimonial();
 		$bt->init();
 
-		$bt = new TableOfContents();
-		$bt->init();
-
 		$bt = new Tabs();
 		$bt->init();
 
@@ -219,8 +211,36 @@ class BlockTypeManager {
 		$bt = new Toggle();
 		$bt->init();
 
-		$bt = new PostQueryReport();
-		$bt->init();
+		/*
+		 * Premium only block types
+		 */
+
+		$plugin = new \AcfEngine\Plugin();
+    if ( $plugin->freemius()->is__premium_only() ) :
+
+			$bt = new PostQueryReport();
+			$bt->init();
+
+			$bt = new TableOfContents();
+			$bt->init();
+
+			$bt = new PriceTable();
+			$bt->init();
+
+			$bt = new Lottie();
+			$bt->init();
+
+			$bt = new AcfRepeaterGallery();
+			$bt->init();
+
+			$bt = new AcfRepeaterTable();
+			$bt->init();
+
+		endif;
+
+	}
+
+  public function registerDefinedBlockTypes() {
 
     // get all the data files stored
     $dataFiles = $this->findBlockTypeDataFiles();
