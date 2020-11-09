@@ -1,23 +1,23 @@
 <?php
 
-namespace AcfEngine\Core;
+namespace AcfEngine\Core\PostType;
 
 if (!defined('ABSPATH')) {
 	exit;
 }
 
-class PostTypeBlockType extends PostType {
+class PostTypeComponent extends PostType {
 
   public function key() {
-		return 'block_type';
+		return 'component';
 	}
 
 	public function nameSingular() {
-		return 'Block Type';
+		return 'Component';
 	}
 
 	public function namePlural() {
-		return 'Block Types';
+		return 'Components';
 	}
 
 	public function showInMenu() {

@@ -1,23 +1,23 @@
 <?php
 
-namespace AcfEngine\Core;
+namespace AcfEngine\Core\PostType;
 
 if (!defined('ABSPATH')) {
 	exit;
 }
 
-class PostTypeComponent extends PostType {
+class PostTypeTaxonomy extends PostType {
 
   public function key() {
-		return 'component';
+		return 'taxonomy';
 	}
 
 	public function nameSingular() {
-		return 'Component';
+		return 'Taxonomy';
 	}
 
 	public function namePlural() {
-		return 'Components';
+		return 'Taxonomies';
 	}
 
 	public function showInMenu() {

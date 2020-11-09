@@ -20,9 +20,7 @@
 
 namespace AcfEngine;
 use AcfEngine\Core\AdminMenu;
-use AcfEngine\Core\PostTypePostType;
-use AcfEngine\Core\PostTypeCustom;
-use AcfEngine\Core\PostTypeManager;
+use AcfEngine\Core\PostType\PostTypeManager;
 use AcfEngine\Core\TaxonomyManager;
 use AcfEngine\Core\TaxonomyCustom;
 use AcfEngine\Core\TaxonomyTaxonomy;
@@ -159,7 +157,13 @@ class Plugin {
       }
       $className = 'BlockType/' . $className;
 
-    } else {
+    } elseif( 0 === strpos( $className, 'AcfEngine\Core\PostType' ) ) {
+
+      $className = str_replace('AcfEngine\Core\PostType\\', '', $className);
+      $className = 'PostType/' . $className;
+
+    }
+    else {
 
       $className = str_replace('AcfEngine\Core\\', '', $className);
       $className = str_replace('\\', '/', $className);

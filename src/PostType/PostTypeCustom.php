@@ -1,6 +1,6 @@
 <?php
 
-namespace AcfEngine\Core;
+namespace AcfEngine\Core\PostType;
 
 if (!defined('ABSPATH')) {
 	exit;

@@ -1,23 +1,23 @@
 <?php
 
-namespace AcfEngine\Core;
+namespace AcfEngine\Core\PostType;
 
 if (!defined('ABSPATH')) {
 	exit;
 }
 
-class PostTypeOptionsPage extends PostType {
+class PostTypeRenderCode extends PostType {
 
   public function key() {
-		return 'options_page';
+		return 'render_code';
 	}
 
 	public function nameSingular() {
-		return 'Options Page';
+		return 'Render Code';
 	}
 
 	public function namePlural() {
-		return 'Options Pages';
+		return 'Render Code';
 	}
 
 	public function showInMenu() {
