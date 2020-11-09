@@ -3,7 +3,7 @@
 /**
  *
  * Plugin Name: ACF Engine
- * Plugin URI: https://eatbuildplay.com/plugins/acfengine/
+ * Plugin URI: https://acfengine.com/
  * Description: Provides data-driven solutions powered by ACF including custom post types, custom taxonomies, options pages and rendering templates.
  * Version: 1.0.3
  * Author: Eat/Build/Play
