@@ -23,11 +23,22 @@ All assets that you register with ACF Engine are stored as JSON files and can be
 
 Yes it is modelled after the JetEngine approach and was inspired by the comprehensive building tools provided by JetEngine. However ACF Engine diverges from JetEngine in two primary ways, first by using ACF exclusively as the meta field hander and secondly by taking a Gutenberg block first approach to rendering.
 
+= How does ACF Engine store JSON definitions of objects? =
+
+ACF Engine parses all the data settings for a given object such as a custom post type, converts this into JSON and stores it under the "/acfengine" directory which is located at /wp-content/uploads/acfengine/. If you have 2 sites with ACF Engine running, you should find you can easily drop a JSON object definition file from one site to another and have that object load automatically.
+
 == Screenshots ==
 
 1. Main Menu
+2. ACF Engine Dashboard, provides an overview of all the objects you've created with ACF Engine and links to manage your objects.
 
 == Changelog ==
+
+= 1.0.3 =
+* Fixed incorrect PHP version requirement listing 
+* Added new screenshots for the directory listing
+* Optimized loading of core block types
+* Removed RenderCode objects in favor of focusing on more Template options
 
 = 1.0.2 =
 * Updates Freemius WP API to latest version
