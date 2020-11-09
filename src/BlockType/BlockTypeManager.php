@@ -65,13 +65,6 @@ class BlockTypeManager {
 
   public function registerBlockTypes() {
 
-
-		/*
-		 * Register internal React block types
-		 */
-		new FancyText();
-		new NavBar();
-
 		/*
 		 * Register internal ACF block types
 		 */
@@ -224,6 +217,9 @@ class BlockTypeManager {
 		$bt->init();
 
 		$bt = new Toggle();
+		$bt->init();
+
+		$bt = new PostQueryReport();
 		$bt->init();
 
     // get all the data files stored
