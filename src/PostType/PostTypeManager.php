@@ -158,6 +158,12 @@ class PostTypeManager {
 		$pt = new PostTypeRenderCode();
     $pt->init();
 
+		$pt = new PostTypeForm();
+    $pt->init();
+
+		$pt = new PostTypeQuery();
+    $pt->init();
+
 	}
 
   public function registerDefined() {
