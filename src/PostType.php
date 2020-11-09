@@ -23,7 +23,7 @@ abstract class PostType {
 	protected 	$showUi = true;
 	protected 	$hierarchical = false;
 	protected 	$excludeFromSearch = true;
-	protected 	$showArchive = true;
+	protected 	$hasArchive;
 	protected 	$mapMetaCap  = null; //false
 	protected 	$queryVar   = true;
 	protected 	$deleteWithUser   = null; //false
@@ -35,14 +35,7 @@ abstract class PostType {
 	protected 	$showInNavMenus = true;
 	protected 	$canExport = true;
 	protected 	$showInRest = true; // default true to better support gutenberg
-
-	// rewrite properties
-	protected 	$rewrite = true;
-	protected 	$rewriteSlug;
-	protected 	$rewriteWithFront = true;
-	protected 	$rewriteFeeds = true;
-	protected 	$rewritePages = true;
-	protected 	$rewriteEpMask = EP_PERMALINK;
+	protected 	$rewrite;
 
 	public function init() {
 		$this->parseArgs();
@@ -79,7 +72,7 @@ abstract class PostType {
 			'menu_position'       => $this->menuPosition(),
 			'show_in_admin_bar'   => $this->showInAdminBar(),
 			'can_export'          => $this->canExport(),
-			'has_archive'         => $this->showArchive(),
+			'has_archive'         => $this->hasArchive(),
 			'hierarchical'        => $this->hierarchical(),
 			'map_meta_cap'        => $this->mapMetaCap(),
 			'query_var'           => $this->queryVar(),
@@ -87,13 +80,7 @@ abstract class PostType {
 			'exclude_from_search' => $this->excludeFromSearch(),
 			'show_in_rest'        => $this->showInRest(),
 			'rest_base'           => $this->restBase(),
-			'rewrite'             => array(
-				'slug'       	=> $this->rewriteSlug(),
-				'with_front' 	=> $this->rewriteWithFront(),
-				'feeds' 			=> $this->rewriteFeeds(),
-				'pages' 			=> $this->rewritePages(),
-				'ep_mask' 		=> $this->rewriteEpMask(),
-			)
+			'rewrite'             => $this->rewrite()
 		];
 
 		if( $this->showInNavMenus() ) {
@@ -159,15 +146,24 @@ abstract class PostType {
 	/*
 	 * Default settings
 	 */
-	public function showArchive() {
-		if( is_null( $this->showArchive )) {
+	public function hasArchive() {
+
+		if( is_null( $this->hasArchive ) || !$this->hasArchive ) {
+
 			return false;
+
+		} else {
+
+			// @TODO check here if custom slug set
+
+			return str_replace('_', '-', $this->key);
+
 		}
-		return (bool) $this->showArchive;
+
 	}
 
-    public function setShowArchive( $v ) {
-        $this->showArchive = (bool) $v;
+    public function sethasArchive( $v ) {
+        $this->hasArchive = $v;
     }
 
 	public function excludeFromSearch() {
@@ -224,7 +220,13 @@ abstract class PostType {
 	}
 
 	public function setSupports( $v ) {
-		$this->supports = $v;
+
+		if( is_array( $v ) && empty( $v )) {
+			$this->supports = false; // we must set false instead of empty array for WP to avoid setting defaults
+		} else {
+			$this->supports = $v;
+		}
+		
 	}
 
 	public function supports() {
@@ -344,7 +346,7 @@ abstract class PostType {
     }
 
     public function setRewrite( $v ) {
-      $this->rewrite = (bool) $v;
+      $this->rewrite = $v;
     }
 
 		public function rewriteSlug() {
@@ -386,13 +388,13 @@ abstract class PostType {
     }
 
 		/* end rewrite methods */
-
     public function restBase() {
-        if( is_null( $this->restBase ) ) {
-            return str_replace('sb-', '', $this->key());
-        }
-        return $this->restBase;
+	    if( is_null( $this->restBase ) ) {
+	      return $this->key();
+	    }
+	    return $this->restBase;
     }
+
     public function setRestBase( $v ) {
         $this->restBase = $v;
     }
@@ -483,7 +485,7 @@ abstract class PostType {
   	update_field( 'show_in_admin_bar', $this->showInAdminBar(), $postId );
   	update_field( 'show_in_nav_menus', $this->showInNavMenus(), $postId );
   	update_field( 'can_export', $this->canExport(), $postId );
-  	update_field( 'has_archive', $this->showArchive(), $postId );
+  	update_field( 'has_archive', $this->hasArchive(), $postId );
   	update_field( 'hierarchical', $this->hierarchical(), $postId );
   	update_field( 'map_meta_cap', $this->mapMetaCap(), $postId );
   	update_field( 'query_var', $this->queryVar(), $postId );

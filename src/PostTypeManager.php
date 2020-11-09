@@ -69,7 +69,7 @@ class PostTypeManager {
 		$data->showInAdminBar = get_field('show_in_admin_bar', $postId);
 		$data->showInNavMenus = get_field('show_in_nav_menus', $postId);
 		$data->canExport = get_field('can_export', $postId);
-		$data->showArchive = get_field('has_archive', $postId);
+		$data->hasArchive = get_field('has_archive', $postId);
 		$data->hierarchical = get_field('hierarchical', $postId);
 		$data->mapMetaCap = get_field('map_meta_cap', $postId);
 		$data->queryVar = get_field('query_var', $postId);
@@ -80,20 +80,27 @@ class PostTypeManager {
 		$data->restControllerClass = get_field('rest_controller_class', $postId);
 		$data->publiclyQueryable = get_field('publicly_queryable', $postId);
 		$data->capabilityType = get_field('capability_type', $postId);
-        $data->capabilities = get_field('capabilities', $postId);
+    $data->capabilities = get_field('capabilities', $postId);
+
 		if (get_field('rewrite', $postId)) {
+
+			// set slug
+			if( get_field('slug', $postId) ) {
+				$slug = get_field('slug', $postId);
+			} else {
+				$slug = str_replace('_', '-', $data->key); // default slug
+			}
+
 	    $data->rewrite = [
-	      'slug'          => get_field('slug', $postId),
-	      'withFront'    => get_field('with_front', $postId),
-	      'feeds'    => get_field('feeds', $postId),
-	      'pages'    => get_field('pages', $postId),
-	      'epMask'    => get_field('ep_mask', $postId),
+	      'slug'        => $slug,
+	      'withFront'   => get_field('with_front', $postId),
+	      'feeds'    		=> get_field('feeds', $postId),
+	      'pages'    		=> get_field('pages', $postId),
+	      'epMask'    	=> get_field('ep_mask', $postId),
 	    ];
+
     } else {
-			$slug = str_replace('_', '-', $data->key);
-      $data->rewrite = [
-				'slug' => $slug,
-			];
+      $data->rewrite = false;
     }
 
 		/* update post title */
@@ -250,8 +257,8 @@ class PostTypeManager {
       $obj->setExcludeFromSearch( false );
     }
 
-    if( isset($data->showArchive) && !$data->showArchive ) {
-      $obj->setShowArchive( false );
+    if( isset($data->hasArchive) && $data->hasArchive ) {
+      $obj->setHasArchive( $data->hasArchive );
     }
 
     if( isset($data->mapMetaCap) && $data->mapMetaCap ) {
@@ -282,36 +289,16 @@ class PostTypeManager {
       $obj->setCapabilities( $data->capabilities );
     }
 
-    if( isset($data->showInAdminBar) && !$data->showInAdminBar ) {
-      $obj->setShowInAdminBar( false );
+    if( isset($data->showInAdminBar) ) {
+      $obj->setShowInAdminBar( $data->showInAdminBar );
     }
 
-    if( isset($data->showInNavMenus) && !$data->showInNavMenus ) {
-      $obj->setShowInNavMenus( false );
+    if( isset($data->showInNavMenus) ) {
+      $obj->setShowInNavMenus( $data->showInNavMenus );
     }
 
-    if( isset($data->rewrite) && !$data->rewrite ) {
-      $obj->setRewrite( false );
-    }
-
-    if( isset($data->rewrite->slug) && $data->rewrite->slug ) {
-      $obj->setRewriteSlug( $data->rewrite->slug );
-    }
-
-    if( isset($data->rewrite->withFront) && !$data->rewrite->withFront ) {
-      $obj->setRewriteWithFront( false );
-    }
-
-    if( isset($data->rewrite->feeds) && !$data->rewrite->feeds ) {
-      $obj->setRewriteFeeds( false );
-    }
-
-    if( isset($data->rewrite->pages) && !$data->rewrite->pages ) {
-      $obj->setRewritePages( false );
-    }
-
-    if( isset($data->rewrite->epMask) && $data->rewrite->epMask ) {
-      $obj->setRewriteEpMask( $data->rewrite->epMask );
+    if( isset($data->rewrite) ) {
+      $obj->setRewrite( (array) $data->rewrite );
     }
 
 		return $obj;
