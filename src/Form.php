@@ -84,11 +84,11 @@ abstract class Form {
 		'kses' 					=> $this->kses()
 	];
 
-	if( isset($this->submitValue()) && $this->submitValue() != '' ) {
+	if( $this->submitValue() && $this->submitValue() != '' ) {
 		$args['submit_value'] = __($this->submitValue(), 'acf');
 	}
 
-	if( isset($this->htmlSubmitButton()) && $this->htmlSubmitButton() != '' ) {
+	if( $this->htmlSubmitButton() && $this->htmlSubmitButton() != '' ) {
 		$args['html_submit_button']	= $this->htmlSubmitButton();
 	}
 
