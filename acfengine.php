@@ -5,7 +5,7 @@
  * Plugin Name: ACF Engine
  * Plugin URI: https://acfengine.com/
  * Description: Provides data-driven solutions powered by ACF including custom post types, custom taxonomies, options pages and rendering templates.
- * Version: 1.0.3
+ * Version: 1.0.4
  * Author: Eat/Build/Play
  * Author URI: https://eatbuildplay.com
  * License: GPL3
@@ -32,7 +32,7 @@ use AcfEngine\Core\Import;
 
 define( 'ACF_ENGINE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ACF_ENGINE_URL', plugin_dir_url( __FILE__ ) );
-define( 'ACF_ENGINE_VERSION', '1.0.3' );
+define( 'ACF_ENGINE_VERSION', '1.0.4' );
 define( 'ACF_ENGINE_TEXT_DOMAIN', 'acf-engine');
 
 class Plugin {
@@ -107,7 +107,7 @@ class Plugin {
     add_action('wp_enqueue_scripts', [$this, 'scripts']);
 
     // add the action delete file json post type or taxonomy
-    add_action( 'before_delete_post',[$this, 'acfg_before_delete_post'], 10, 1 );
+    add_action( 'before_delete_post',[$this, 'beforeDeletePost'], 10, 1 );
 
     /*
      * Handle rewrite flush if requested
@@ -119,16 +119,16 @@ class Plugin {
 
   }
 
-  public function acfg_before_delete_post( $id_acfg ) {
-        $acfg_post = get_post($id_acfg);
-        if ($acfg_post->post_type == 'acfg_post_type'){
-            $acfg_key = get_post_meta($id_acfg,'key',true);
-            wp_delete_file(\AcfEngine\Plugin::dataStoragePath() . 'post-types/' . $acfg_key . '.json');
-        }
-        if ($acfg_post->post_type == 'acfg_taxonomy'){
-            $acfg_key = get_post_meta($id_acfg,'key',true);
-            wp_delete_file(\AcfEngine\Plugin::dataStoragePath() . 'taxonomies/' . $acfg_key . '.json');
-        }
+  public function beforeDeletePost( $id_acfg ) {
+    $acfg_post = get_post($id_acfg);
+    if ($acfg_post->post_type == 'acfg_post_type'){
+      $acfg_key = get_post_meta($id_acfg,'key',true);
+      wp_delete_file(\AcfEngine\Plugin::dataStoragePath() . 'post-types/' . $acfg_key . '.json');
+    }
+    if ($acfg_post->post_type == 'acfg_taxonomy'){
+      $acfg_key = get_post_meta($id_acfg,'key',true);
+      wp_delete_file(\AcfEngine\Plugin::dataStoragePath() . 'taxonomies/' . $acfg_key . '.json');
+    }
   }
 
   public function acfSaveLocal( $path ) {
@@ -214,6 +214,9 @@ class Plugin {
       array(),
       true
     );
+
+    // enable scripts for front-end acf forms
+    acf_form_head();
 
   }
 

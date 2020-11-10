@@ -17,6 +17,10 @@ class Import {
 
   public function saveCallback( $id ) {
 
+    if( !is_admin() ) {
+      return;
+    }
+
     $screen = get_current_screen();
 
     /*

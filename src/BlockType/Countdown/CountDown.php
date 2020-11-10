@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
 class CountDown extends BlockType {
 
   public function key() {
-		return 'count_down';
-	}
+    return 'count_down';
+  }
 
   public function title() {
     return 'CountDown';
@@ -26,17 +26,17 @@ class CountDown extends BlockType {
 
   public function callback( $block, $content, $isPreview, $postId ) {
 
-		if( $isPreview ) {
-			$previewPost = $this->getPreviewPost( $postId );
-			$postId = $previewPost->ID;
+    if( $isPreview ) {
+      $previewPost = $this->getPreviewPost( $postId );
+      $postId = $previewPost->ID;
     }
 
-		$this->render( $block, $content, $postId );
+    $this->render( $block, $content, $postId );
 
   }
 
-	protected function render( $block, $content, $postId ) {
-		print 'COUNTDOWN';
-	}
+  protected function render( $block, $content, $postId ) {
+    print 'COUNTDOWN';
+  }
 
 }

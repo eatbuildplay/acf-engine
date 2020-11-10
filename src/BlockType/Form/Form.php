@@ -36,7 +36,12 @@ class Form extends BlockType {
   }
 
 	protected function render( $block, $content, $postId ) {
-		print 'FORM';
+		$formKey = get_field( 'form_key' );
+		if( !$formKey ) {
+			print "Set form key to see form.";
+			return;
+		}
+		acf_form( $formKey );
 	}
 
 }

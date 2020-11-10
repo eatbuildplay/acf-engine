@@ -20,27 +20,6 @@
             "first_day": 1
         },
         {
-            "key": "field_5fa836d130557",
-            "label": "Reps",
-            "name": "reps",
-            "type": "number",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 5,
-            "placeholder": 5,
-            "prepend": "",
-            "append": "reps",
-            "min": 1,
-            "max": 100,
-            "step": ""
-        },
-        {
             "key": "field_5fa836f992efc",
             "label": "Exercise",
             "name": "exercise",
@@ -123,5 +102,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1604964012
+    "modified": 1605033500
 }
