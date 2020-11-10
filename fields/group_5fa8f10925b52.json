@@ -155,7 +155,15 @@
             "type": "text",
             "instructions": "Set to the post type you want to have created. Use the post type key such as \"vehicle\" or \"vehicle_type\".",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5fa8f533f21ae",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -174,7 +182,15 @@
             "type": "text",
             "instructions": "Title of the newly created post.",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5fa8f533f21ae",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -193,7 +209,15 @@
             "type": "textarea",
             "instructions": "Content for the newly created post.",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5fa8f533f21ae",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -212,7 +236,15 @@
             "type": "radio",
             "instructions": "Content for the newly created post.",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5fa8f533f21ae",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -621,5 +653,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1605031295
+    "modified": 1605031608
 }

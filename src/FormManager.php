@@ -54,6 +54,18 @@ class FormManager {
 		$data->htmlSubmitSpinner = get_field('html_submit_spinner', $postId);
 		$data->kses 						= get_field('kses', $postId);
 
+		/*
+		 * Post create field handling
+		 */
+		if( $data->newPost == true ) {
+			$data->newPost = [
+				'post_type' 		=> get_field('create_post_type', $postId),
+				'post_title' 		=> get_field('create_post_title', $postId),
+				'post_content' 	=> get_field('create_post_content', $postId),
+				'post_status' 	=> get_field('create_post_status', $postId),
+			];
+		}
+
 		/* update post title */
 		remove_action( 'save_post', [$this, 'savePost'] );
 		wp_update_post(
