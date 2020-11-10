@@ -148,18 +148,7 @@ abstract class Form {
 	}
 
 	public function newPost() {
-
-		if( !$this->newPost ) {
-			return $this->newPost;
-		}
-
-		return [
-			'post_title' => 'Test 157',
-			'post_type' => 'post',
-			'post_content' => 'Hello testing from 155.',
-			'post_status' => 'publish'
-		];
-
+		return $this->newPost;
 	}
 
 	public function setFieldGroups( $v ) {
