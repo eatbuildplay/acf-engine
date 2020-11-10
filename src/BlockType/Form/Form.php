@@ -36,7 +36,7 @@ class Form extends BlockType {
   }
 
 	protected function render( $block, $content, $postId ) {
-		print 'FORM';
+		acf_form( 'form_1' );
 	}
 
 }

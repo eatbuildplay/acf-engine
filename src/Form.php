@@ -33,7 +33,7 @@ abstract class Form {
   protected $htmlSubmitButton;
   protected $htmlSubmitSpinner;
   protected $kses;
-  
+
   public function init() {
 		$this->parseArgs();
 		$this->register();
@@ -67,13 +67,12 @@ abstract class Form {
 		'id' 					=> $this->key(),
 		'post_id' 	 			=> $this->postId(),
 		'new_post'	 			=> $this->newPost(),
-		'field_groups' 	 		=> $this->fieldGroups(),
+		'field_groups' 	 		=> [$this->fieldGroups()], // temporary fix, value must be array
 		'fields'	 			=> $this->fields(),
 		'post_title' 	 		=> $this->postTitle(),
 		'post_content'	 		=> $this->postContent(),
 		'form' 	 				=> $this->form(),
 		'form_attributes'	 	=> $this->formAttributes(),
-		'submit_value'	 		=> __($this->submitValue(), 'acf'),
 		'updated_message' 		=> __($this->updatedMessage(), 'acf'),
 		'label_placement'	 	=> $this->labelPlacement(),
 		'instruction_placement' => $this->instructionPlacement(),
@@ -81,11 +80,18 @@ abstract class Form {
 		'uploader'	 			=> $this->uploader(),
 		'honeypot' 				=> $this->honeypot(),
 		'html_updated_message' 	=> $this->htmlUpdatedMessage(),
-		'html_submit_button'	=> $this->htmlSubmitButton(),
 		'html_submit_spinner' 	=> $this->htmlSubmitSpinner(),
 		'kses' 					=> $this->kses()
 	];
-	
+
+	if( isset($this->submitValue()) && $this->submitValue() != '' ) {
+		$args['submit_value'] = __($this->submitValue(), 'acf');
+	}
+
+	if( isset($this->htmlSubmitButton()) && $this->htmlSubmitButton() != '' ) {
+		$args['html_submit_button']	= $this->htmlSubmitButton();
+	}
+
 	if( !empty($this->return()) ) {
 		$args['return'] = $this->return();
 	}
@@ -93,7 +99,7 @@ abstract class Form {
 	if( !empty($this->htmlBeforeFields()) ) {
 		$args['html_before_fields'] = $this->htmlBeforeFields();
 	}
-	
+
 	if( !empty($this->htmlAfterFields()) ) {
 		$args['html_after_fields'] = $this->htmlAfterFields();
 	}
@@ -129,7 +135,7 @@ abstract class Form {
 	public function setTitle( $v ) {
 		$this->title = $v;
 	}
-  
+
 	public function title() {
 		return $this->title;
 	}
@@ -137,7 +143,7 @@ abstract class Form {
 	public function setNewPost( $v ) {
 		$this->newPost = $v;
 	}
-  
+
 	public function newPost() {
 		return $this->newPost;
 	}
@@ -145,7 +151,7 @@ abstract class Form {
 	public function setFieldGroups( $v ) {
 		$this->fieldGroups = $v;
 	}
-  
+
 	public function fieldGroups() {
 		return $this->fieldGroups;
 	}
@@ -153,7 +159,7 @@ abstract class Form {
 	public function setFields( $v ) {
 		$this->fields = $v;
 	}
-  
+
 	public function fields() {
 		return $this->fields;
 	}
@@ -161,7 +167,7 @@ abstract class Form {
 	public function setPostTitle( $v ) {
 		$this->postTitle = $v;
 	}
-  
+
 	public function postTitle() {
 		return $this->postTitle;
 	}
@@ -169,7 +175,7 @@ abstract class Form {
 	public function setPostContent( $v ) {
 		$this->postContent = $v;
 	}
-  
+
 	public function postContent() {
 		return $this->postContent;
 	}
@@ -177,7 +183,7 @@ abstract class Form {
 	public function setForm( $v ) {
 		$this->form = $v;
 	}
-  
+
 	public function form() {
 		return $this->form;
 	}
@@ -185,7 +191,7 @@ abstract class Form {
 	public function setFormAttributes( $v ) {
 		$this->formAttributes = $v;
 	}
-  
+
 	public function formAttributes() {
 		return $this->formAttributes;
 	}
@@ -193,7 +199,7 @@ abstract class Form {
 	public function setReturn( $v ) {
 		$this->return = $v;
 	}
-  
+
 	public function return() {
 		return $this->return;
 	}
@@ -201,7 +207,7 @@ abstract class Form {
 	public function setHtmlBeforeFields( $v ) {
 		$this->htmlBeforeFields = $v;
 	}
-  
+
 	public function htmlBeforeFields() {
 		return $this->htmlBeforeFields;
 	}
@@ -209,7 +215,7 @@ abstract class Form {
 	public function setHtmlAfterFields( $v ) {
 		$this->htmlAfterFields = $v;
 	}
-  
+
 	public function htmlAfterFields() {
 		return $this->htmlAfterFields;
 	}
@@ -217,7 +223,7 @@ abstract class Form {
 	public function setSubmitValue( $v ) {
 		$this->submitValue = $v;
 	}
-  
+
 	public function submitValue() {
 		return $this->submitValue;
 	}
@@ -225,7 +231,7 @@ abstract class Form {
 	public function setUpdatedMessage( $v ) {
 		$this->updatedMessage = $v;
 	}
-  
+
 	public function updatedMessage() {
 		return $this->updatedMessage;
 	}
@@ -233,7 +239,7 @@ abstract class Form {
 	public function setLabelPlacement( $v ) {
 		$this->labelPlacement = $v;
 	}
-  
+
 	public function labelPlacement() {
 		return $this->labelPlacement;
 	}
@@ -241,7 +247,7 @@ abstract class Form {
 	public function setInstructionPlacement( $v ) {
 		$this->instructionPlacement = $v;
 	}
-  
+
 	public function instructionPlacement() {
 		return $this->instructionPlacement;
 	}
@@ -249,7 +255,7 @@ abstract class Form {
 	public function setFormFieldEl( $v ) {
 		$this->formFieldEl = $v;
 	}
-  
+
 	public function formFieldEl() {
 		return $this->formFieldEl;
 	}
@@ -257,7 +263,7 @@ abstract class Form {
 	public function setUploader( $v ) {
 		$this->uploader = $v;
 	}
-  
+
 	public function uploader() {
 		return $this->uploader;
 	}
@@ -265,7 +271,7 @@ abstract class Form {
 	public function setHoneypot( $v ) {
 		$this->honeypot = $v;
 	}
-  
+
 	public function honeypot() {
 		return $this->honeypot;
 	}
@@ -273,7 +279,7 @@ abstract class Form {
 	public function setHtmlUpdatedMessage( $v ) {
 		$this->htmlUpdatedMessage = $v;
 	}
-  
+
 	public function htmlUpdatedMessage() {
 		return $this->htmlUpdatedMessage;
 	}
@@ -281,7 +287,7 @@ abstract class Form {
 	public function setHtmlSubmitButton( $v ) {
 		$this->htmlSubmitButton = $v;
 	}
-  
+
 	public function htmlSubmitButton() {
 		return $this->htmlSubmitButton;
 	}
@@ -289,7 +295,7 @@ abstract class Form {
 	public function setHtmlSubmitSpinner( $v ) {
 		$this->htmlSubmitSpinner = $v;
 	}
-  
+
 	public function htmlSubmitSpinner() {
 		return $this->htmlSubmitSpinner;
 	}
@@ -297,11 +303,11 @@ abstract class Form {
 	public function setKses( $v ) {
 		$this->kses = $v;
 	}
-  
+
 	public function kses() {
 		return $this->kses;
 	}
-	
+
 
 	/*
 	 * Make a WP post with meta data from the current properties of this object
