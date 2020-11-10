@@ -215,6 +215,9 @@ class Plugin {
       true
     );
 
+    // enable scripts for front-end acf forms
+    acf_form_head();
+
   }
 
   // Create a helper function for easy SDK access.

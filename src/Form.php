@@ -47,6 +47,9 @@ abstract class Form {
   public function register() {
 
 		$args = $this->args();
+
+		//var_dump( $args );
+
 		acf_register_form( $args );
 
 	}
@@ -145,7 +148,18 @@ abstract class Form {
 	}
 
 	public function newPost() {
-		return $this->newPost;
+
+		if( !$this->newPost ) {
+			return $this->newPost;
+		}
+
+		return [
+			'post_title' => 'Test 157',
+			'post_type' => 'post',
+			'post_content' => 'Hello testing from 155.',
+			'post_status' => 'publish'
+		];
+
 	}
 
 	public function setFieldGroups( $v ) {
@@ -307,7 +321,6 @@ abstract class Form {
 	public function kses() {
 		return $this->kses;
 	}
-
 
 	/*
 	 * Make a WP post with meta data from the current properties of this object
