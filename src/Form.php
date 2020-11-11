@@ -22,16 +22,16 @@ abstract class Form {
   protected $return;
   protected $htmlBeforeFields;
   protected $htmlAfterFields;
-  protected $submitValue;
-  protected $updatedMessage;
+  protected $submitValue = 'Update';
+  protected $updatedMessage = 'Post updated';
   protected $labelPlacement;
   protected $instructionPlacement;
   protected $formFieldEl;
   protected $uploader;
   protected $honeypot;
-  protected $htmlUpdatedMessage;
-  protected $htmlSubmitButton;
-  protected $htmlSubmitSpinner;
+  protected $htmlUpdatedMessage = '<div id="message" class="updated"><p>%s</p></div>';
+  protected $htmlSubmitButton = '<input type="submit" class="acf-button button button-primary button-large" value="%s" />';
+  protected $htmlSubmitSpinner = '<span class="acf-spinner"></span>';
   protected $kses;
 
   public function init() {
@@ -71,25 +71,40 @@ abstract class Form {
 		'post_id' 	 			=> $this->postId(),
 		'new_post'	 			=> $this->newPost(),
 		'field_groups' 	 		=> [$this->fieldGroups()], // temporary fix, value must be array
-		'fields'	 			=> $this->fields(),
 		'post_title' 	 		=> $this->postTitle(),
 		'post_content'	 		=> $this->postContent(),
 		'form' 	 				=> $this->form(),
-		'form_attributes'	 	=> $this->formAttributes(),
-		'updated_message' 		=> __($this->updatedMessage(), 'acf'),
 		'label_placement'	 	=> $this->labelPlacement(),
 		'instruction_placement' => $this->instructionPlacement(),
 		'field_el' 				=> $this->formFieldEl(),
 		'uploader'	 			=> $this->uploader(),
 		'honeypot' 				=> $this->honeypot(),
-		'html_updated_message' 	=> $this->htmlUpdatedMessage(),
-		'html_submit_spinner' 	=> $this->htmlSubmitSpinner(),
 		'kses' 					=> $this->kses()
 	];
+
+    if( $this->fields() && $this->fields() != '' ) {
+    	$args['fields'] = $this->fields();
+    }
+
+    if( $this->formAttributes() && $this->formAttributes() != '' ) {
+    	$args['form_attributes'] = $this->formAttributes();
+    }
+
+    if( $this->updatedMessage() && $this->updatedMessage() != '' ) {
+    	$args['updated_message'] = __($this->updatedMessage(), 'acf');
+    }
 
 	if( $this->submitValue() && $this->submitValue() != '' ) {
 		$args['submit_value'] = __($this->submitValue(), 'acf');
 	}
+
+    if( $this->htmlUpdatedMessage() && $this->htmlUpdatedMessage() != '' ) {
+    	$args['html_updated_message']	= $this->htmlUpdatedMessage();
+    }
+
+    if( $this->htmlSubmitSpinner() && $this->htmlSubmitSpinner() != '' ) {
+    	$args['html_submit_spinner']	= $this->htmlSubmitSpinner();
+    }
 
 	if( $this->htmlSubmitButton() && $this->htmlSubmitButton() != '' ) {
 		$args['html_submit_button']	= $this->htmlSubmitButton();
@@ -224,15 +239,19 @@ abstract class Form {
 	}
 
 	public function setSubmitValue( $v ) {
-		$this->submitValue = $v;
-	}
+    	if ( !empty($v) ){
+        	$this->submitValue = $v;
+    	}
+    }
 
 	public function submitValue() {
 		return $this->submitValue;
 	}
 
 	public function setUpdatedMessage( $v ) {
-		$this->updatedMessage = $v;
+		if ( !empty($v) ){
+			$this->updatedMessage = $v;
+		}
 	}
 
 	public function updatedMessage() {
@@ -280,7 +299,9 @@ abstract class Form {
 	}
 
 	public function setHtmlUpdatedMessage( $v ) {
-		$this->htmlUpdatedMessage = $v;
+		if ($v && $v != '') {
+			$this->htmlUpdatedMessage = $v;
+		}
 	}
 
 	public function htmlUpdatedMessage() {
@@ -288,16 +309,20 @@ abstract class Form {
 	}
 
 	public function setHtmlSubmitButton( $v ) {
-		$this->htmlSubmitButton = $v;
-	}
+        if ($v && $v != ''){
+            $this->htmlSubmitButton = $v;
+        }
+    }
 
 	public function htmlSubmitButton() {
 		return $this->htmlSubmitButton;
 	}
 
 	public function setHtmlSubmitSpinner( $v ) {
-		$this->htmlSubmitSpinner = $v;
-	}
+    	if ($v && $v != '') {
+            $this->htmlSubmitSpinner = $v;
+        }
+    }
 
 	public function htmlSubmitSpinner() {
 		return $this->htmlSubmitSpinner;
