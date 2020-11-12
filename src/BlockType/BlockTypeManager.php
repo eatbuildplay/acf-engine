@@ -226,6 +226,9 @@ class BlockTypeManager {
 			$bt = new PriceTable();
 			$bt->init();
 
+			$bt = new PostsTable();
+			$bt->init();
+
 			$bt = new Lottie();
 			$bt->init();
 

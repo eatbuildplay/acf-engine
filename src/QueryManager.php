@@ -24,13 +24,17 @@ class QueryManager {
     }
 
 		$data = new \stdClass();
-		$data->key 							= get_field('key', $postId);
+		$data->key = get_field('key', $postId);
 
 		if( !$data->key ) {
 			return;
 		}
 
-		$data->title 						= get_field('title', $postId);
+		$data->title = get_field('title', $postId);
+
+		$data->queryPostType 		= get_field('query_post_type', $postId);
+		$data->limit 						= get_field('limit', $postId);
+		$data->author 					= get_field('author', $postId);
 
 		/* update post title */
 		remove_action( 'save_post', [$this, 'savePost'] );
@@ -46,6 +50,17 @@ class QueryManager {
 
   }
 
+	protected function objectInit( $data ) {
+
+		$q = new QueryCustom();
+		$q->setKey( $data->key );
+		$q->setQueryPostType( $data->queryPostType );
+		$q->setLimit( $data->limit );
+		$q->setAuthor( $data->author );
+		return $q;
+
+	}
+
   public function registerQueries() {
 
     // get all the data files stored
@@ -57,9 +72,7 @@ class QueryManager {
 
         $json = file_get_contents( \AcfEngine\Plugin::dataStoragePath() . 'queries/' . $filename );
         $data = json_decode( $json );
-
-        $q = new QueryCustom();
-        $q->setKey( $data->key );
+        $q = $this->objectInit( $data );
         $q->register();
 
       }
@@ -86,5 +99,37 @@ class QueryManager {
     return $files;
 
   }
+
+	public static function load( $key ) {
+
+		$filename = $key . '.json';
+		$json = file_get_contents( \AcfEngine\Plugin::dataStoragePath() . 'queries/' . $filename );
+		$data = json_decode( $json );
+
+		$qm = new QueryManager();
+		return $qm->objectInit( $data );
+
+	}
+
+	public function fetchPostByKey( $key ) {
+
+		$posts = get_posts([
+			'post_type' 	=> 'acfg_query',
+			'numberposts' => -1,
+			'meta_query' => [
+				[
+					'key' 	=> 'key',
+					'value' => $key
+				]
+			]
+		]);
+
+		if( !$posts || empty( $posts )) {
+			return false;
+		}
+
+		return $posts[0];
+
+	}
 
 }

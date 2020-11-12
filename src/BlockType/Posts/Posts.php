@@ -1,6 +1,7 @@
 <?php
 
 namespace AcfEngine\Core\BlockType;
+use AcfEngine\Core\QueryManager;
 
 if (!defined('ABSPATH')) {
 	exit;
@@ -36,7 +37,13 @@ class Posts extends BlockType {
   }
 
 	protected function render( $block, $content, $postId ) {
+
+		$queryKey = get_field('query');
+		$query = QueryManager::load( $queryKey );
+		$posts = $query->run();
+
 		print 'POSTS';
+
 	}
 
 }
