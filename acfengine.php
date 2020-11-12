@@ -24,9 +24,10 @@ use AcfEngine\Core\TaxonomyManager;
 use AcfEngine\Core\TaxonomyCustom;
 use AcfEngine\Core\TaxonomyTaxonomy;
 use AcfEngine\Core\OptionsPageManager;
-use AcfEngine\Core\ComponentManager;
 use AcfEngine\Core\BlockType\BlockTypeManager;
 use AcfEngine\Core\TemplateManager;
+use AcfEngine\Core\QueryManager;
+use AcfEngine\Core\ComponentManager;
 use AcfEngine\Core\FormManager;
 use AcfEngine\Core\Import;
 
@@ -95,6 +96,10 @@ class Plugin {
 
       // init form manager
       $m = new FormManager();
+      $m->setup();
+
+      // init form manager
+      $m = new QueryManager();
       $m->setup();
 
       // init component manager
