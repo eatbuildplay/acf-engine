@@ -152,6 +152,11 @@ abstract class Query {
 
 			$args['meta_query'] = [];
 			foreach( $this->metaQueries() as $mq ) {
+
+				if( $mq->value == '{{CURRENT_POST_ID}}' ) {
+					global $post;
+					$mq->value = $post->ID;
+				}
 				$metaQuery = [];
 				$metaQuery['key'] 			= $mq->key;
 				$metaQuery['value'] 		= $mq->value;

@@ -95,7 +95,9 @@ class PostsTable extends BlockType {
 
     }
 
-		if( $calculations = get_field('calculations') ) {
+		$calculations = get_field('calculations');
+
+		if( !empty($calculations)) {
 			foreach( $calculations as $calculation ) {
 
 				$valueField = $calculation['value_field'];
@@ -128,18 +130,26 @@ class PostsTable extends BlockType {
 			} // end foreach over all calculations
 		}
 
-		print '<tfoot>';
-		print '<tr>';
-		print '<td>';
-		foreach( $result as $index => $value ) {
-			print '<h3>' . $index . ' - ' . $value . '</h3>';
-		}
-		print '</td>';
-		print '</tr>';
-		print '</tfoot>';
+		if( $calculations ) {
 
-    print '</table>';
-    print '</div>';
+			print '<tfoot>';
+			print '<tr>';
+			print '<td>';
+			if( is_array( $result )) {
+				foreach( $result as $index => $value ) {
+					print '<h3>' . $index . ' - ' . $value . '</h3>';
+				}
+			} else {
+					print '<h3>' . $result . '</h3>';
+			}
+			print '</td>';
+			print '</tr>';
+			print '</tfoot>';
+
+		}
+
+		print '</table>';
+		print '</div>';
 
 	}
 
