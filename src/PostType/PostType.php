@@ -96,9 +96,9 @@ abstract class PostType {
 			$args['template_lock'] 	= 'all';
 		}
 
-    if( $this->restControllerClass() ) {
-      $args['rest_controller_class'] 	= $this->restControllerClass();
-    }
+		if( $this->restControllerClass() ) {
+		$args['rest_controller_class'] 	= $this->restControllerClass();
+		}
 
 		if( $this->publiclyQueryable() ) {
 			$args['publicly_queryable'] 	= $this->publiclyQueryable();

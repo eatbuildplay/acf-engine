@@ -8,31 +8,29 @@ if (!defined('ABSPATH')) {
 
 abstract class Taxonomy {
 
-  protected $prefix = 'acfg_';
+	protected $prefix = 'acfg_';
 	protected $postType = 'acfg_taxonomy';
-  protected	$key;
+	protected $key;
 	protected $title;
+	protected $nameSingular;
+	protected $namePlural;
 	protected $labels = [];
-	protected	$description;
+	protected $description;
 	protected $objectType = [];
-	protected $public;
-	protected $publicQueryable;
-	protected $hierarchical;
-	protected $showUi;
-	protected $showInMenu;
-	protected $showInNavMenus;
-	protected $showInRest;
+	protected $public = true;
+	protected $publiclyQueryable = true;
+	protected $hierarchical = false;
+	protected $showUi = true;
+	protected $showInMenu = true;
+	protected $showInNavMenus = true;
+	protected $showInRest = true; // default true to better support gutenberg
 	protected $restBase;
-	protected $restControllerClass;
-	protected $showTagcloud;
-	protected $showInQuickEdit;
-	protected $showAdminColumn;
-	protected $metaBoxCb;
-	protected $metaBoxSanitizeCb;
-	protected $capabilities;
+	protected $restControllerClass = 'WP_REST_Terms_Controller';
+	protected $showTagcloud = true;
+	protected $showInQuickEdit = true;
+	protected $showAdminColumn = false;
+    protected $capabilities = [];
 	protected $rewrite;
-	protected $queryVar;
-	protected $updateCountCallback;
 	protected $defaultTerm;
 
 
@@ -85,14 +83,74 @@ abstract class Taxonomy {
       $this->objectType = 'post';
     }
 
-	}
+    if( !$this->namePlural ) {
+        $this->namePlural = $this->nameSingular() . 's';
+    }
+  }
 
   public function args() {
     return $this->defaultArgs();
   }
 
   public function defaultArgs() {
-    return [];
+	$args = [
+		'description'         => __($this->description(), 'acf-engine'),
+		'labels'              => $this->labels(),
+		'public'              => $this->public(),
+		'hierarchical'        => $this->hierarchical(),
+		'show_ui'             => $this->showUi(),
+		'show_in_menu'        => $this->showInMenu(),
+		'show_in_rest'        => $this->showInRest(),
+		'rest_base'           => $this->restBase(),
+		'show_tagcloud'		  => $this->showTagcloud(),
+		'show_in_quick_edit'  => $this->showInQuickEdit(),
+		'show_admin_column'   => $this->showAdminColumn(),
+		'capabilities'        => $this->capabilities(),
+		'rewrite'             => $this->rewrite(),
+		'default_term'		  => $this->defaultTerm()
+	];
+
+	if( $this->publiclyQueryable() ) {
+		$args['publicly_queryable'] = $this->publiclyQueryable();
+	}
+
+	if( $this->showInNavMenus() ) {
+		$args['show_in_nav_menus'] = $this->showInNavMenus();
+	}
+	if( $this->restControllerClass() ) {
+		$args['rest_controller_class'] 	= $this->restControllerClass();
+	}
+
+	return $args;
+  }
+
+  public function labels() {
+	return $this->defaultLabels();
+  }
+
+  public function defaultLabels() {
+
+	return [
+		'name'                  => $this->nameSingular(),
+		'singular_name'         => $this->nameSingular(),
+		'menu_name'             => $this->nameSingular(),
+		'all_items'             => __('All ', 'acf-engine') . $this->namePlural(),
+        'edit_item'             => __('Edit ', 'acf-engine'). $this->nameSingular(),
+        'view_item'             => __('View ', 'acf-engine'). $this->nameSingular(),
+        'update_item'           => __('Update ', 'acf-engine'). $this->nameSingular(),
+		'add_new_item'          => __('Add New ', 'acf-engine'). $this->nameSingular(),
+        'new_item_name'         => __('New '. $this->nameSingular() .'Name', 'acf-engine'),
+        'parent_item'           => __('Parent ', 'acf-engine') . $this->nameSingular(),
+        'parent_item_colon'     => __('Parent '. $this->nameSingular() .':', 'acf-engine'),
+        'search_items'          => __('Search ', 'acf-engine'). $this->nameSingular(),
+        'popular_items'         => __('Popular ', 'acf-engine'). $this->namePlural(),
+        'separate_items_with_commas' => __('Separate '. $this->namePlural() .' with commas ', 'acf-engine'),
+        'add_or_remove_items'   => __('Add or remove ', 'acf-engine'). $this->namePlural(),
+        'choose_from_most_used' => __('Choose from the most used ', 'acf-engine'). $this->namePlural(),
+        'not_found'             => __('No '. $this->nameSingular() .' found', 'acf-engine'),
+        'back_to_items'         => __('← Back to ', 'acf-engine'). $this->namePlural(),
+	];
+
   }
 
   public function getPrefixedKey() {
@@ -115,9 +173,21 @@ abstract class Taxonomy {
 		return $this->title;
 	}
 
-	public function labels() {
-		return $this->labels;
-	}
+    public function setNameSingular( $v ) {
+        $this->nameSingular = $v;
+    }
+
+    public function nameSingular() {
+        return $this->nameSingular;
+    }
+
+    public function setNamePlural( $v ) {
+        $this->namePlural = $v;
+    }
+
+    public function namePlural() {
+        return $this->namePlural;
+    }
 
 	public function setLabels( $v ) {
 		$this->labels = $v;
@@ -139,12 +209,12 @@ abstract class Taxonomy {
 		return $this->public;
 	}
 
-	public function setPublicQueryable( $v ) {
-		$this->publicQueryable = $v;
+	public function setPubliclyQueryable( $v ) {
+		$this->publiclyQueryable = $v;
 	}
 
-	public function publicQueryable() {
-		return $this->publicQueryable;
+	public function publiclyQueryable() {
+		return $this->publiclyQueryable;
 	}
 
 	public function setHierarchical( $v ) {
@@ -196,11 +266,11 @@ abstract class Taxonomy {
 	}
 
 	public function setRestControllerClass( $v ) {
-		$this->controllerClass = $v;
+		$this->restControllerClass = $v;
 	}
 
 	public function restControllerClass() {
-		return $this->controllerClass;
+		return $this->restControllerClass;
 	}
 
 	public function setShowTagcloud( $v ) {
@@ -227,28 +297,12 @@ abstract class Taxonomy {
 		return $this->showAdminColumn;
 	}
 
-	public function setMetaBoxCb( $v ) {
-		$this->metaBoxCb = $v;
-	}
-
-	public function metaBoxCb() {
-		return $this->metaBoxCb;
-	}
-
-	public function setMetaBoxSanitizeCb( $v ) {
-		$this->metaBoxSanitizeCb = $v;
-	}
-
-	public function metaBoxSanitizeCb() {
-		return $this->metaBoxSanitizeCb;
-	}
-
 	public function setCapabilities( $v ) {
-		$this->capabilities = $v;
+		$this->capabilities = [$v];
 	}
 
 	public function capabilities() {
-		return $this->capabilities;
+		return [$this->capabilities];
 	}
 
 	public function setRewrite( $v ) {
@@ -257,22 +311,6 @@ abstract class Taxonomy {
 
 	public function rewrite() {
 		return $this->rewrite;
-	}
-
-	public function setQueryVar( $v ) {
-		$this->queryVar = $v;
-	}
-
-	public function queryVar() {
-		return $this->queryVar;
-	}
-
-	public function setUpdateCountCallback( $v ) {
-		$this->updateCountCallback = $v;
-	}
-
-	public function updateCountCallback() {
-		return $this->updateCountCallback;
 	}
 
 	public function setDefaultTerm( $v ) {
@@ -308,7 +346,7 @@ abstract class Taxonomy {
 		update_field( 'description', $this->description(), $postId );
 		update_field( 'object_type', $this->objectType(), $postId );
 		update_field( 'public', $this->public(), $postId );
-		update_field( 'public_queryable', $this->publicQueryable(), $postId );
+		update_field( 'publicly_queryable', $this->publiclyQueryable(), $postId );
 		update_field( 'hierarchical', $this->hierarchical(), $postId );
 		update_field( 'show_ui', $this->showUi(), $postId );
 		update_field( 'show_in_menu', $this->showInMenu(), $postId );
@@ -319,12 +357,8 @@ abstract class Taxonomy {
 		update_field( 'show_tagcloud', $this->showTagcloud(), $postId );
 		update_field( 'show_in_quick_edit', $this->showInQuickEdit(), $postId );
 		update_field( 'show_admin_column', $this->showAdminColumn(), $postId );
-		update_field( 'meta_box_cb', $this->metaBoxCb(), $postId );
-		update_field( 'meta_box_sanitize_cb', $this->metaBoxSanitizeCb(), $postId );
 		update_field( 'capabilities', $this->capabilities(), $postId );
 		update_field( 'rewrite', $this->rewrite(), $postId );
-		update_field( 'query_var', $this->queryVar(), $postId );
-		update_field( 'update_count_callback', $this->updateCountCallback(), $postId );
 		update_field( 'default_term', $this->defaultTerm(), $postId );
 
  		return $postId;
