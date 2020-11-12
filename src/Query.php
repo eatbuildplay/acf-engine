@@ -84,6 +84,14 @@ abstract class Query {
 		return $this->author;
 	}
 
+	public function setMetaQueries( $v ) {
+		$this->metaQueries = $v;
+	}
+
+	public function metaQueries() {
+		return $this->metaQueries;
+	}
+
 	/*
 	 * Make a WP post with meta data from the current properties of this object
 	 */
@@ -114,11 +122,17 @@ abstract class Query {
 	 */
 	public function run() {
 
+		/*
+		 * Basic arguments
+		 */
 		$args = [
 			'post_type' 	=> $this->queryPostType(),
 			'numberposts' => $this->limit()
 		];
 
+		/*
+		 * Author handling
+		 */
 		if( $this->author() ) {
 
 			if( $this->author() == '{{CurrentUser}}' ) {
@@ -131,6 +145,22 @@ abstract class Query {
 
 		}
 
+		/*
+		 * Meta queries
+		 */
+		if( $this->metaQueries() ) {
+
+			$args['meta_query'] = [];
+			foreach( $this->metaQueries() as $mq ) {
+				$metaQuery = [];
+				$metaQuery['key'] 			= $mq->key;
+				$metaQuery['value'] 		= $mq->value;
+				$metaQuery['compare'] 	= $mq->compare;
+				$metaQuery['type'] 	= $mq->type;
+				$args['meta_query'][] = $metaQuery;
+			}
+
+		}
 
 		$posts = get_posts( $args );
 		return $posts;

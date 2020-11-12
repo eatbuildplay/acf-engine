@@ -66,8 +66,19 @@ class PostsTable extends BlockType {
 
 			foreach( $columnFieldKeys as $fieldKey ) {
 
+				$fieldObject = get_field_object( $fieldKey, $post->ID );
+				$tl = new \AcfEngine\Core\TemplateLoader();
+				$tl->path = 'templates/fields/' . $fieldObject['type'] . '/';
+				$tl->name = 'default';
+				$tl->data = [
+					'field'  => $fieldObject,
+					'value'  => $fieldObject['value'],
+					'postId' => $post->ID
+				];
+				$content = $tl->get();
+
 				print '<td>';
-	      print get_field( $fieldKey, $post->ID );
+	      print $content;
 	      print '</td>';
 
 			}
@@ -83,6 +94,50 @@ class PostsTable extends BlockType {
       print '</tr>';
 
     }
+
+		if( $calculations = get_field('calculations') ) {
+			foreach( $calculations as $calculation ) {
+
+				$valueField = $calculation['value_field'];
+				$groupingField = $calculation['grouping_field'];
+				$type = get_field('type', $post->ID);
+
+				if(!$groupingField) {
+					$result = 0;
+				} else {
+					$result = [];
+				}
+				foreach( $posts as $post ) {
+
+					if(!$groupingField) {
+						// singular calculation
+						$result += (int) get_field($valueField, $post->ID);
+					} else {
+						// grouped calculations
+						$group = get_field($groupingField, $post->ID);
+						if( !isset( $result[$group] )) {
+							$result[$group] = 0;
+						}
+						$result[$group] += (int) get_field($valueField, $post->ID);
+					}
+
+				}
+
+
+
+			} // end foreach over all calculations
+		}
+
+		print '<tfoot>';
+		print '<tr>';
+		print '<td>';
+		foreach( $result as $index => $value ) {
+			print '<h3>' . $index . ' - ' . $value . '</h3>';
+		}
+		print '</td>';
+		print '</tr>';
+		print '</tfoot>';
+
     print '</table>';
     print '</div>';
 

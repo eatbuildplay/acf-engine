@@ -35,6 +35,7 @@ class QueryManager {
 		$data->queryPostType 		= get_field('query_post_type', $postId);
 		$data->limit 						= get_field('limit', $postId);
 		$data->author 					= get_field('author', $postId);
+		$data->metaQueries 			= get_field('meta_queries', $postId);
 
 		/* update post title */
 		remove_action( 'save_post', [$this, 'savePost'] );
@@ -57,6 +58,7 @@ class QueryManager {
 		$q->setQueryPostType( $data->queryPostType );
 		$q->setLimit( $data->limit );
 		$q->setAuthor( $data->author );
+		$q->setMetaQueries( $data->metaQueries );
 		return $q;
 
 	}
