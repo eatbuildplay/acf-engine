@@ -47,9 +47,6 @@ abstract class Form {
   public function register() {
 
 		$args = $this->args();
-
-		//var_dump( $args );
-
 		acf_register_form( $args );
 
 	}
@@ -68,7 +65,6 @@ abstract class Form {
 
 	$args = [
 		'id' 					=> $this->key(),
-		'post_id' 	 			=> $this->postId(),
 		'new_post'	 			=> $this->newPost(),
 		'field_groups' 	 		=> [$this->fieldGroups()], // temporary fix, value must be array
 		'fields'	 			=> $this->fields(),
@@ -86,6 +82,10 @@ abstract class Form {
 		'html_submit_spinner' 	=> $this->htmlSubmitSpinner(),
 		'kses' 					=> $this->kses()
 	];
+
+	if( $this->postId() && $this->postId() != '' ) {
+		$args['post_id'] = $this->postId();
+	}
 
 	if( $this->submitValue() && $this->submitValue() != '' ) {
 		$args['submit_value'] = __($this->submitValue(), 'acf');
