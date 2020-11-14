@@ -38,12 +38,39 @@ class StarRating extends BlockType {
 		} else {
 			$rating = get_field('rating');
 		}
+		ob_start(); ?>
 
+			<div class="acfg-star-rating" style="--rating: <?= $rating ?>;" aria-label="Rating of this product is 0 out of 5.">
+			<style>
+				:root {
+					--star-size: 40px;
+					--star-color: #cdcdcd;
+					--star-background: #fc0;
+				}
+				.acfg-star-rating {
+					--percent: calc(var(--rating) / 5 * 100%);
 
-		print '<div class="acfg-star-rating">';
-    print $rating;
-		print '</div>';
-
+					display: inline-block;
+					font-size: var(--star-size);
+					font-family: Times; /* make sure ★ appears correctly */
+					line-height: 1;
+					height: ;
+				}
+				.acfg-star-rating::before {
+					content: "★★★★★";
+					letter-spacing: 3px;
+					background: linear-gradient(
+					90deg,
+					var(--star-background) var(--percent),
+					var(--star-color) var(--percent)
+					);
+					-webkit-background-clip: text;
+					-webkit-text-fill-color: transparent;
+				}
+			</style>
+			
+		<?php
+		print ob_get_clean();
 	}
 
 }
