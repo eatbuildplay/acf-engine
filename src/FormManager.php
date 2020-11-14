@@ -11,7 +11,7 @@ class FormManager {
   public function setup() {
 
     add_action('save_post', [$this, 'savePost'], 10, 3);
-    add_action('init', [$this, 'registerForms']);
+    add_action('wp', [$this, 'registerForms']);
 
   }
 
