@@ -158,6 +158,9 @@ class PostTypeManager {
 		$pt = new PostTypeForm();
     $pt->init();
 
+		$pt = new PostTypeFilter();
+    $pt->init();
+
 		$pt = new PostTypeQuery();
     $pt->init();
 
