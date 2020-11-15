@@ -122,6 +122,11 @@ class Plugin {
       update_option('acfg_flush_rewrite', 1);
     }
 
+    /*
+     * Set Ajax Url
+     */
+
+
   }
 
   public function beforeDeletePost( $id_acfg ) {
@@ -192,7 +197,7 @@ class Plugin {
     wp_enqueue_script(
       'acfg-js',
       ACF_ENGINE_URL . 'scripts/js/acfg.js',
-      array( 'jquery' ),
+      array( 'jquery', 'wp-util' ),
       '1.0.0',
       false
     );

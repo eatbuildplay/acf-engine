@@ -238,6 +238,9 @@ class BlockTypeManager {
 			$bt = new AcfRepeaterTable();
 			$bt->init();
 
+			$bt = new SinglePageApp();
+			$bt->init();
+
 		endif;
 
 	}

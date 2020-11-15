@@ -169,6 +169,13 @@
                 "operator": "==",
                 "value": "acf\/acfg-posts-table"
             }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/acfg-single-page-app"
+            }
         ]
     ],
     "menu_order": 0,
@@ -179,5 +186,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1605155119
+    "modified": 1605383975
 }

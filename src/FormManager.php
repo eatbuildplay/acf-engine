@@ -87,6 +87,8 @@ class FormManager {
 
     if( !empty( $dataFiles )) {
 
+			$formsRegistered = [];
+
       foreach( $dataFiles as $filename ) {
 
         $json = file_get_contents( \AcfEngine\Plugin::dataStoragePath() . 'forms/' . $filename );
@@ -119,9 +121,14 @@ class FormManager {
 				$f->setKses( $data->kses );
         $f->register();
 
+				// stash registered form object
+				$formsRegistered[ $data->key ] = $f;
+
       }
 
     }
+
+		return $formsRegistered;
 
   }
 
