@@ -95,7 +95,7 @@ abstract class Form {
 		$args['html_submit_button']	= $this->htmlSubmitButton();
 	}
 
-	if( !empty($this->return()) ) {
+	if( null !== $this->return() ) {
 		$args['return'] = $this->return();
 	}
 

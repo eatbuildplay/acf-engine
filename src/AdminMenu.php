@@ -135,6 +135,14 @@ class AdminMenu {
 
      \add_submenu_page(
        ACF_ENGINE_TEXT_DOMAIN,
+       'Filters',
+       'Filters',
+       'edit_posts',
+       'edit.php?post_type=acfg_filter'
+     );
+
+     \add_submenu_page(
+       ACF_ENGINE_TEXT_DOMAIN,
        'Components',
        'Components',
        'edit_posts',

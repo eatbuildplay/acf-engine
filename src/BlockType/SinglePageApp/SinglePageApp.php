@@ -20,7 +20,13 @@ class SinglePageApp extends BlockType {
       $editFormKey = $_POST['formKey'];
       $form = $registeredForms[ $editFormKey ];
       $form->setPostId( $postId );
+
+
+			$currentUrl = 'http://exercise-tracker.dev.cc/spa-test';
+			$form->setReturn( $currentUrl );
       $formArgs = $form->args();
+
+			//var_dump( $formArgs ); die();
 
       ob_start();
         print '<div class="acfg-spa-edit-form" data-form-key="' . $editFormKey . '">';

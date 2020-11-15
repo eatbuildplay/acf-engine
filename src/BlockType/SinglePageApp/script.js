@@ -23,6 +23,7 @@ jQuery(document).ready(function( $ ) {
           */
         $('.acfg-posts-table').prepend( response.formMarkup );
         acf.do_action('append', $('.acfg-posts-table'));
+         $(document).trigger('acf/setup_fields', $('.acfg-posts-table'));
 
       }
     ).fail(
