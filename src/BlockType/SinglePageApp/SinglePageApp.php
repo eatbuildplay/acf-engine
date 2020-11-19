@@ -41,16 +41,7 @@ class SinglePageApp extends BlockType {
       wp_send_json_success( $response );
 
     });
-
-		add_action('wp_ajax_acfg_spa_load_data', function() {
-
-			$filterVal = $_POST['filterVal'];
-			$response = new \stdClass;
-      $response->code = 200;
-      wp_send_json_success( $response );
-
-		});
-
+		
   }
 
   public function key() {
@@ -123,6 +114,7 @@ class SinglePageApp extends BlockType {
 
   public function postsTable() {
 
+		// https://support.advancedcustomfields.com/forums/topic/getting-get_field-outside-block-loop/
     $columns = get_field('columns');
 
 		if( !$columns ) {

@@ -31,7 +31,7 @@ jQuery(document).ready(function( $ ) {
          /*
           * Place results into table
           */
-        $('body').append('HELLO THIS IS REPLACE 34 FILTERRRRRR.');
+        $('.acfg-posts-table').html('REPLACEMENT POSTS!!');
 
       }
     ).fail(
