@@ -42,6 +42,15 @@ class SinglePageApp extends BlockType {
 
     });
 
+		add_action('wp_ajax_acfg_spa_load_data', function() {
+
+			$filterVal = $_POST['filterVal'];
+			$response = new \stdClass;
+      $response->code = 200;
+      wp_send_json_success( $response );
+
+		});
+
   }
 
   public function key() {

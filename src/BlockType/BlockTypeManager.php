@@ -241,6 +241,9 @@ class BlockTypeManager {
 			$bt = new SinglePageApp();
 			$bt->init();
 
+			$bt = new Filter();
+			$bt->init();
+
 		endif;
 
 	}
