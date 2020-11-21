@@ -5,12 +5,14 @@ jQuery(document).ready(function( $ ) {
   $('.acfg-posts-table td a').on('click', function(e) {
 
     e.preventDefault();
+    $('.acfg-spa-create-form').hide();
 
     let formKey = $('.acfg-spa-edit-form-data').data('form-key');
+    let postId = $(this).data('post-id');
 
     var data = {
       formKey: formKey,
-      postId: 251
+      postId: postId
     }
     wp.ajax.post( 'acfg_spa_edit_form', data ).done(
       function( response ) {
@@ -21,9 +23,10 @@ jQuery(document).ready(function( $ ) {
          /*
           * Place form into dom
           */
-        $('.acfg-posts-table').prepend( response.formMarkup );
-        acf.do_action('append', $('.acfg-posts-table'));
-         $(document).trigger('acf/setup_fields', $('.acfg-posts-table'));
+        $('#edit-form-wrap').html( response.formMarkup );
+        acf.do_action('append', $('#edit-form-wrap'));
+        $(document).trigger('acf/setup_fields', $('#edit-form-wrap'));
+        $('#edit-form-wrap').show();
 
       }
     ).fail(
@@ -38,6 +41,7 @@ jQuery(document).ready(function( $ ) {
    * Create form click
    */
   $('.create-button').on('click', function(e) {
+    $('#edit-form-wrap').hide();
     $('.acfg-spa-create-form').show();
     $(this).hide();
   })

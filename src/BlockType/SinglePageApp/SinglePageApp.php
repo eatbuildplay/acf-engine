@@ -41,7 +41,7 @@ class SinglePageApp extends BlockType {
       wp_send_json_success( $response );
 
     });
-		
+
   }
 
   public function key() {
@@ -81,7 +81,6 @@ class SinglePageApp extends BlockType {
 
 	protected function render( $block, $content, $postId ) {
 
-
     /*
      * Create form
      */
@@ -90,9 +89,15 @@ class SinglePageApp extends BlockType {
 			print "Set create form key to see create form.";
 			return;
 		}
+		print '<button class="create-button">CREATE</button>';
     print '<div class="acfg-spa-create-form">';
 		acf_form( $createFormKey );
     print '</div>';
+
+		/*
+		 * Edit form wrap (placement position for JS)
+		 */
+		print '<div id="edit-form-wrap"></div>';
 
     /*
      * Posts table
@@ -144,6 +149,10 @@ class SinglePageApp extends BlockType {
 			foreach( $columnFieldKeys as $fieldKey ) {
 
 				$fieldObject = get_field_object( $fieldKey, $post->ID );
+				if( !$fieldObject || $fieldObject['type'] == '' ) {
+					print '<td>--&nbsp;</td>';
+					continue;
+				}
 				$tl = new \AcfEngine\Core\TemplateLoader();
 				$tl->path = 'templates/fields/' . $fieldObject['type'] . '/';
 				$tl->name = 'default';
@@ -163,7 +172,7 @@ class SinglePageApp extends BlockType {
 			if( get_field('management_column') == 1 ) {
 
 				print '<td>';
-				print '<a href="' . get_edit_post_link( $post ) . '">Edit</a>';
+				print '<a data-post-id="' . $post->ID . '" href="' . get_edit_post_link( $post ) . '">Edit</a>';
 				print '</td>';
 
 			}

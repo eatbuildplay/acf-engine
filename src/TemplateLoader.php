@@ -20,6 +20,11 @@ class TemplateLoader {
     if( is_array( $this->data ) && !empty( $this->data )) {
       extract( $this->data );
     }
+
+		if( !$this->name || !$this->path ) {
+			return '';
+		}
+
     ob_start();
     require( ACF_ENGINE_PATH . $this->path . $this->name . '.php' );
     $content = ob_get_contents();

@@ -67,6 +67,11 @@ class PostsTable extends BlockType {
 			foreach( $columnFieldKeys as $fieldKey ) {
 
 				$fieldObject = get_field_object( $fieldKey, $post->ID );
+				if( !$fieldObject || $fieldObject['type'] == '' ) {
+					print '<td>--&nbsp;</td>';
+					continue;
+				}
+
 				$tl = new \AcfEngine\Core\TemplateLoader();
 				$tl->path = 'templates/fields/' . $fieldObject['type'] . '/';
 				$tl->name = 'default';
