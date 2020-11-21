@@ -63,16 +63,7 @@ class Filter extends BlockType {
 
 	protected function render( $block, $content, $postId ) {
 
-    $metaKey = get_field_object('metakey');
-
-    // var_dump( $metaKey );
-
-    // load query
-    $queryKey = get_field('query');
-		$query = QueryManager::load( $queryKey );
-		$posts = $query->run();
-
-    // var_dump( $query );
+    $filterKey = get_field_object('key');
 
     $posts = get_posts([
       'post_type' => 'acfg_exercise',
@@ -86,8 +77,6 @@ class Filter extends BlockType {
       $option->name = $post->post_title;
       $options[] = $option;
     }
-
-    // $query->queryPostType()
 
     print '<select class="acfg-filter">';
     foreach( $options as $option ) {

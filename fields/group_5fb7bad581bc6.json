@@ -1,10 +1,29 @@
 {
-    "key": "group_5fb4a431923f6",
-    "title": "ACF Engine > Block Types > Filter",
+    "key": "group_5fb7bad581bc6",
+    "title": "ACF Engine > Filter",
     "fields": [
         {
-            "key": "field_5fb4a458dff84",
-            "label": "Filter Key",
+            "key": "field_5fb7badd1061b",
+            "label": "Title",
+            "name": "title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5fb7bae21061c",
+            "label": "Key",
             "name": "key",
             "type": "text",
             "instructions": "",
@@ -22,10 +41,10 @@
             "maxlength": ""
         },
         {
-            "key": "field_5fb4abd4a9d9d",
-            "label": "Query",
-            "name": "query",
-            "type": "text",
+            "key": "field_5fb7bb10bef6d",
+            "label": "Type",
+            "name": "type",
+            "type": "button_group",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -34,19 +53,21 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "choices": {
+                "post_meta": "Post Meta Filter"
+            },
+            "allow_null": 0,
+            "default_value": "post_meta",
+            "layout": "horizontal",
+            "return_format": "value"
         }
     ],
     "location": [
         [
             {
-                "param": "block",
+                "param": "post_type",
                 "operator": "==",
-                "value": "acf\/acfg-filter"
+                "value": "acfg_filter"
             }
         ]
     ],
@@ -58,5 +79,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1605877130
+    "modified": 1605876529
 }

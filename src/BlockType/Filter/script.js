@@ -12,34 +12,22 @@ jQuery(document).ready(function( $ ) {
 
     $filterEls.on('change', function() {
       var filterVal = $(this).val();
-      applyFilter( filterVal );
+      sendFilterRequest( filterVal );
     });
 
 
   }
 
-  function applyFilter( filterVal ) {
+  function sendFilterRequest( filterVal ) {
 
-    var data = {
-      filter: filterVal
-    }
-    wp.ajax.post( 'acfg_spa_load_data', data ).done(
-      function( response ) {
-
-         console.log( response );
-
-         /*
-          * Place results into table
-          */
-        $('.acfg-posts-table').html('REPLACEMENT POSTS!!');
-
-      }
-    ).fail(
-      function() {
-        console.log('failed')
+    $(document).trigger(
+      'acfg_data_refresh',
+      {
+        filterVal: filterVal
       }
     );
-    console.log('apply filter here')
+
+    console.log('filter sent!!! ' + filterVal);
 
   }
 

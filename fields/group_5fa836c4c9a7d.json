@@ -20,6 +20,22 @@
             "first_day": 1
         },
         {
+            "key": "field_5fb7bc728c826",
+            "label": "Time",
+            "name": "time",
+            "type": "time_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "g:i a",
+            "return_format": "g:i a"
+        },
+        {
             "key": "field_5fa836f992efc",
             "label": "Exercise",
             "name": "exercise",
@@ -102,5 +118,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1605149545
+    "modified": 1605876887
 }
