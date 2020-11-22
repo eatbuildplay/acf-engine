@@ -91,6 +91,9 @@ class BlockTypeManager {
 		$bt = new AcfFieldImage();
 		$bt->init();
 
+		$bt = new AcfFieldText();
+		$bt->init();
+
 		$bt = new BigHeadline();
 		$bt->init();
 
