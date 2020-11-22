@@ -1,0 +1,13 @@
+.acfg-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.acfg-grid-item {
+  text-align: center;
+  cursor: pointer;
+}
+
+.acfg-grid-item:hover img {
+  opacity: 0.85;
+}

@@ -14,6 +14,10 @@ abstract class Query {
 
 	protected $queryPostType;
 	protected $limit;
+	protected $metaQueries;
+	protected $order;
+	protected $orderby;
+	protected $metaKey;
 
   public function init() {
 		$this->parseArgs();
@@ -92,6 +96,30 @@ abstract class Query {
 		return $this->metaQueries;
 	}
 
+	public function setOrder( $v ) {
+		$this->order = $v;
+	}
+
+	public function order() {
+		return $this->order;
+	}
+
+	public function setOrderby( $v ) {
+		$this->orderby = $v;
+	}
+
+	public function orderby() {
+		return $this->orderby;
+	}
+
+	public function setMetaKey( $v ) {
+		$this->metaKey = $v;
+	}
+
+	public function metaKey() {
+		return $this->metaKey;
+	}
+
 	/*
 	 * Make a WP post with meta data from the current properties of this object
 	 */
@@ -127,7 +155,7 @@ abstract class Query {
 		 */
 		$args = [
 			'post_type' 	=> $this->queryPostType(),
-			'numberposts' => $this->limit()
+			'numberposts' => $this->limit(),
 		];
 
 		/*
@@ -165,6 +193,18 @@ abstract class Query {
 				$args['meta_query'][] = $metaQuery;
 			}
 
+		}
+
+		/*
+		 * Ordering
+		 */
+		if( $this->order() ) {
+			$args['order'] = $this->order();
+			$args['orderby'] = $this->orderby();
+
+			if( $this->orderby() == 'meta_value' || $this->orderby() == 'meta_value_num' ) {
+				$args['meta_key'] = $this->metaKey();
+			}
 		}
 
 		$posts = get_posts( $args );

@@ -87,6 +87,13 @@
                         "operator": "==",
                         "value": "archive_page"
                     }
+                ],
+                [
+                    {
+                        "field": "field_5f8046d402124",
+                        "operator": "==",
+                        "value": "loop_post"
+                    }
                 ]
             ],
             "wrapper": {
@@ -136,5 +143,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1604771444
+    "modified": 1606047569
 }

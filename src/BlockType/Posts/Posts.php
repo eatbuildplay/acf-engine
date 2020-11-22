@@ -57,6 +57,8 @@ class Posts extends BlockType {
 
 		global $post;
 
+		print '<div class="acfg-grid">';
+
 		foreach( $data as $item ) {
 
 			$post = $item;
@@ -64,14 +66,24 @@ class Posts extends BlockType {
 
 			print '<div class="acfg-grid-item">';
 
+				print '<a href="' . get_permalink( $post ) . '">';
+
 				foreach ($blocks as $block) {
 					echo render_block($block);
 				}
+
+				print '</a>';
 
 			print '</div>';
 
 		}
 
+		print '</div>';
+
 	}
+
+	public function enqueueStyle() {
+    return ACF_ENGINE_URL . 'src/BlockType/Posts/styles.css';
+  }
 
 }

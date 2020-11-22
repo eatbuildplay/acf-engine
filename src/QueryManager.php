@@ -36,6 +36,9 @@ class QueryManager {
 		$data->limit 						= get_field('limit', $postId);
 		$data->author 					= get_field('author', $postId);
 		$data->metaQueries 			= get_field('meta_queries', $postId);
+		$data->order 						= get_field('order', $postId);
+		$data->orderby 					= get_field('orderby', $postId);
+		$data->metaKey 					= get_field('meta_key', $postId);
 
 		/* update post title */
 		remove_action( 'save_post', [$this, 'savePost'] );
@@ -59,6 +62,9 @@ class QueryManager {
 		$q->setLimit( $data->limit );
 		$q->setAuthor( $data->author );
 		$q->setMetaQueries( $data->metaQueries );
+		$q->setOrder( $data->order );
+		$q->setOrderby( $data->orderby );
+		$q->setMetaKey( $data->metaKey );
 		return $q;
 
 	}
