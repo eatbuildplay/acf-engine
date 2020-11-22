@@ -12,6 +12,21 @@ class SinglePageApp extends BlockType {
 
   public function __construct() {
 
+		add_action('wp_ajax_acfg_spa_load_data', function() {
+
+			$filterVal = $_POST['filterVal'];
+
+			$queryKey = get_field('query');
+			$query = QueryManager::load( 'sets_by_exercise' );
+			$posts = $query->run();
+
+			$response = new \stdClass;
+      $response->code = 200;
+			$response->posts = $posts;
+      wp_send_json_success( $response );
+
+		});
+
     add_action('wp_ajax_acfg_spa_edit_form', function() {
 
       $formManager = new FormManager();
@@ -102,7 +117,10 @@ class SinglePageApp extends BlockType {
     /*
      * Posts table
      */
+		$this->renderColumnJsonData();
+		print '<div id="acfg-data-display">';
     $this->postsTable();
+		print '</div>';
 
     /*
      * Edit form
@@ -117,7 +135,15 @@ class SinglePageApp extends BlockType {
 
 	}
 
-  public function postsTable() {
+	public function renderColumnJsonData() {
+
+		$columns = get_field('columns');
+		print 'var window.acfgColumnData = ';
+		print json_encode( $columns );
+
+	}
+
+  public function postsTable( $queryKey = false ) {
 
 		// https://support.advancedcustomfields.com/forums/topic/getting-get_field-outside-block-loop/
     $columns = get_field('columns');
@@ -132,7 +158,10 @@ class SinglePageApp extends BlockType {
 			$columnFieldKeys[] = $row['column_field_key'];
 		}
 
-		$queryKey = get_field('query');
+		if( !$queryKey ) {
+			$queryKey = get_field('query');
+		}
+
 		$query = QueryManager::load( $queryKey );
 		$posts = $query->run();
 

@@ -11,20 +11,7 @@ class Filter extends BlockType {
 
 	public function __construct() {
 
-		add_action('wp_ajax_acfg_spa_load_data', function() {
-
-			$filterVal = $_POST['filterVal'];
-
-			$queryKey = get_field('query');
-			$query = QueryManager::load( 'sets_by_exercise' );
-			$posts = $query->run();
-
-			$response = new \stdClass;
-      $response->code = 200;
-			$response->posts = $posts;
-      wp_send_json_success( $response );
-
-		});
+		
 
 	}
 

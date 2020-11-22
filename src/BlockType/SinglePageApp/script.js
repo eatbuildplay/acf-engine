@@ -1,7 +1,32 @@
-console.log('what up from SPA')
-
 jQuery(document).ready(function( $ ) {
 
+  $(document).on('acfg_data_refresh', function( e, data ) {
+
+    // need meta key passed in data also
+
+    let filterVal = data.filterVal;
+
+    // do post request for data here
+
+
+    wp.ajax.post( 'acfg_spa_load_data', data ).done(
+      function( response ) {
+
+         /*
+          * Place content into table
+          */
+        $('.acfg-posts-table').html(
+          'TABLE DATA HERE'
+        );
+
+      }
+    )
+
+  })
+
+  /*
+   * Edit link click and edit form loading
+   */
   $('.acfg-posts-table td a').on('click', function(e) {
 
     e.preventDefault();
