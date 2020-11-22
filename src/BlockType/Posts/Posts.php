@@ -2,6 +2,7 @@
 
 namespace AcfEngine\Core\BlockType;
 use AcfEngine\Core\QueryManager;
+use AcfEngine\Core\TemplateManager;
 
 if (!defined('ABSPATH')) {
 	exit;
@@ -42,7 +43,34 @@ class Posts extends BlockType {
 		$query = QueryManager::load( $queryKey );
 		$posts = $query->run();
 
-		print 'POSTS';
+		$data = [];
+		foreach( $posts as $post ) {
+
+			$post->name = get_field('name', $post->ID );
+			$data[] = $post;
+
+		}
+
+		$templateKey = get_field('item_template');
+		$tm = new TemplateManager();
+		$templatePost = $tm->fetchByKey( $templateKey );
+
+		global $post;
+
+		foreach( $data as $item ) {
+
+			$post = $item;
+			$blocks = parse_blocks( $templatePost->post_content );
+
+			print '<div class="acfg-grid-item">';
+
+				foreach ($blocks as $block) {
+					echo render_block($block);
+				}
+
+			print '</div>';
+
+		}
 
 	}
 

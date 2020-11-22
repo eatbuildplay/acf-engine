@@ -53,7 +53,6 @@ class AcfField extends BlockType {
 
 			// live render
 			$postId = $editorPostId;
-
 			$fieldKey = get_field('meta_key');
 	    $fieldPostId = get_field('post_id');
 
