@@ -274,7 +274,8 @@ class Plugin {
       'post-types',
       'render-code',
       'taxonomies',
-      'templates'
+      'templates',
+      'queries'
     ];
 
     $dataPath = self::dataStoragePath();
