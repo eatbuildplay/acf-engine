@@ -84,10 +84,9 @@ class FormManager {
 
     // get all the data files stored
     $dataFiles = $this->findFormDataFiles();
+    $formsRegistered = [];
 
     if( !empty( $dataFiles )) {
-
-			$formsRegistered = [];
 
       foreach( $dataFiles as $filename ) {
 
