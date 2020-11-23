@@ -1,13 +1,37 @@
 .acfg-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px;
+  margin: 30px 0;
 }
 
 .acfg-grid-item {
   text-align: center;
   cursor: pointer;
+  background: #f1f1f1;
+  border: solid 1px #d9d9d9;
 }
 
+.acfg-grid-item:hover {
+  background: #f5f5f5;
+}
 .acfg-grid-item:hover img {
   opacity: 0.85;
 }
+
+.acfg-image-wrap {
+   width: 200px;
+   height: 200px;
+   position: relative;
+   margin: 0 auto;
+ }
+ .acfg-image-wrap img {
+   width: 100%;
+   height: auto;
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   transform: translate(-50%, -50%);
+   border-radius: 50%;
+   border: 1px solid #AAA;
+ }

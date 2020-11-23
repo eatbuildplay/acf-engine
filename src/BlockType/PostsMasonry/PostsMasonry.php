@@ -8,14 +8,14 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-class Posts extends BlockType {
+class PostsMasonry extends BlockType {
 
   public function key() {
-		return 'posts';
+		return 'posts_masonry';
 	}
 
   public function title() {
-    return 'Posts';
+    return 'Posts Masonry';
   }
 
   public function description() {
@@ -93,7 +93,7 @@ class Posts extends BlockType {
 	}
 
 	public function enqueueStyle() {
-    return ACF_ENGINE_URL . 'src/BlockType/Posts/styles.css?test=232132';
+    return ACF_ENGINE_URL . 'src/BlockType/PostsMasonry/styles.css?test=232132';
   }
 
 }

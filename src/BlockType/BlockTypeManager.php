@@ -247,6 +247,9 @@ class BlockTypeManager {
 			$bt = new Filter();
 			$bt->init();
 
+			$bt = new PostsMasonry();
+			$bt->init();
+
 		endif;
 
 	}
