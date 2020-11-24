@@ -75,15 +75,18 @@ class Login extends BlockType {
                 margin: auto;
             }
             .acfg-login-title {
-                margin: 0 !important;
-                padding-top: 20px;
-                padding-bottom: 25px;
-                font-size: 1.3em;
+                margin: <?= get_field('login_text_group')['margin'] ?>px !important;
+                padding: <?= get_field('login_text_group')['padding'] ?>px;
+                font-size: <?= get_field('login_text_group')['font_size'] ?>px;
+                color: <?= get_field('login_text_group')['color'] ?>;
             }
             .acfg-login-form label {
                 font-family: "Roboto", sans-serif;
-                font-size: 14px;
-                text-align: left;
+                font-size: <?= get_field('login_labels_group')['font_size'] ?>px;
+                color: <?= get_field('login_labels_group')['color'] ?>;
+                margin: <?= get_field('login_labels_group')['margin'] ?>px;
+                padding: <?= get_field('login_labels_group')['padding'] ?>px;
+                text-align: <?= get_field('login_labels_group')['text_align'] ?>;
             }
             .acfg-login-form input[type="checkbox"],
             .acfg-login-form label[for="acfg-remember-me"] {
