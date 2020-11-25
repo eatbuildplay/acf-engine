@@ -37,46 +37,46 @@ class IconList extends BlockType {
 
 	protected function render( $block, $content, $postId ) {
         ob_start();
-        $boxedWidth = get_field( 'boxed_width' );
+        $boxedWidth = get_field( 'boxed_width_icon_list' );
         ?>
 
-        <div class="acfg-icon-box">
-            <div class="acfg-iconbox">
-                <span class="dashicons <?= get_field( 'icon' ) ?>"></span>
+        <div class="acfg-icon-list">
+            <div class="acfg-iconlist">
+                <span class="dashicons <?= get_field( 'icon_list' ) ?>"></span>
             </div>
             <div class="acfg-text">
-                <span class="acfg-box"><?= get_field( 'text' ) ?></span>
+                <span class="acfg-list"><?= get_field( 'text_icon_list' ) ?></span>
             </div>
         </div>
 
         <style>
-            .acfg-icon-box .acfg-iconbox .dashicons {
-                font-size: <?= get_field( 'width' ) ?>px;
-                width: <?= get_field( 'width' ) ?>px;
-                height: <?= get_field( 'height' ) ?>px;
-                color: <?= get_field( 'color' ) ?>;
+            .acfg-icon-list .acfg-iconlist .dashicons {
+                font-size: <?= get_field( 'width_icon_list' ) ?>px;
+                width: <?= get_field( 'width_icon_list' ) ?>px;
+                height: <?= get_field( 'height_icon_list' ) ?>px;
+                color: <?= get_field( 'color_icon_list' ) ?>;
             }
             <?php if  ($boxedWidth) { ?>
-            .acfg-icon-box {
-                max-width: <?= get_field( 'max_width' ) ?>px !important;
+            .acfg-icon-list {
+                max-width: <?= get_field( 'max_width_icon_list' ) ?>px !important;
                 margin-right: auto;
                 margin-left: auto;
             }
             <?php } ?>
-            .acfg-icon-box {
+            .acfg-icon-list {
                 text-align: left;
                 display: flex;
                 align-items: center;
             }
-            .acfg-icon-box .acfg-text {
-                padding: <?= get_field('box')['padding'] ?>px;
-                margin: <?= get_field('box')['margin'] ?>px;
+            .acfg-icon-list .acfg-text {
+                padding: <?= get_field('icon_list_group')['padding'] ?>px;
+                margin: <?= get_field('icon_list_group')['margin'] ?>px;
                 line-height: 1.5;
             }
-            .acfg-icon-box .acfg-text .acfg-box {
-                font-size: <?= get_field('box')['font_size'] ?>px;
-                font-weight: <?= get_field('box')['font_weight'] ?>;
-                color: <?= get_field('box')['color'] ?>;
+            .acfg-icon-list .acfg-text .acfg-list {
+                font-size: <?= get_field('icon_list_group')['font_size'] ?>px;
+                font-weight: <?= get_field('icon_list_group')['font_weight'] ?>;
+                color: <?= get_field('icon_list_group')['color'] ?>;
             }
         </style>
 

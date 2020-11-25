@@ -5,7 +5,7 @@
         {
             "key": "field_5fa4fae00b8b2",
             "label": "Icon",
-            "name": "icon",
+            "name": "icon_box",
             "type": "text",
             "instructions": "Enter a dashicon icon string.",
             "required": 0,
@@ -24,7 +24,7 @@
         {
             "key": "field_5fa505d70a031",
             "label": "Color",
-            "name": "color",
+            "name": "color_icon_box",
             "type": "color_picker",
             "instructions": "",
             "required": 0,
@@ -39,7 +39,7 @@
         {
             "key": "field_5fa4fae00bc7a",
             "label": "Width",
-            "name": "width",
+            "name": "width_icon_box",
             "type": "number",
             "instructions": "",
             "required": 0,
@@ -60,7 +60,7 @@
         {
             "key": "field_5fa4fae00c104",
             "label": "Height",
-            "name": "height",
+            "name": "height_icon_box",
             "type": "number",
             "instructions": "",
             "required": 0,
@@ -81,7 +81,7 @@
         {
             "key": "field_5fa4fe43b5ac6",
             "label": "Boxed Width",
-            "name": "boxed_width",
+            "name": "boxed_width_icon_box",
             "type": "true_false",
             "instructions": "Used to constrain the block to a maximum width, with equal margin left and right to center the block in \"boxed format\". This is most useful if the page template does not offer boxing or max-width and as a result the default is for blocks to be full-screen without margins.",
             "required": 0,
@@ -100,7 +100,7 @@
         {
             "key": "field_5fa4fe73b5ac7",
             "label": "Max Width",
-            "name": "max_width",
+            "name": "max_width_icon_box",
             "type": "number",
             "instructions": "",
             "required": 0,
@@ -129,7 +129,7 @@
         {
             "key": "field_5fa4feb1b5ac8",
             "label": "Alignment",
-            "name": "alignment",
+            "name": "alignment_icon_box",
             "type": "button_group",
             "instructions": "",
             "required": 0,
@@ -152,7 +152,7 @@
         {
             "key": "field_5fa4fb337704b",
             "label": "Text",
-            "name": "text",
+            "name": "text_icon_box",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -171,7 +171,7 @@
         {
             "key": "field_5fa4faf47704a",
             "label": "Box",
-            "name": "box",
+            "name": "icon_box_group",
             "type": "group",
             "instructions": "",
             "required": 0,
@@ -301,5 +301,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1604650487
+    "modified": 1606313497
 }

@@ -5,7 +5,7 @@
         {
             "key": "field_5fa5090ecc61d",
             "label": "Icon",
-            "name": "icon",
+            "name": "icon_list",
             "type": "text",
             "instructions": "Enter a dashicon icon string.",
             "required": 0,
@@ -24,7 +24,7 @@
         {
             "key": "field_5fa5090ecca4c",
             "label": "Color",
-            "name": "color",
+            "name": "color_icon_list",
             "type": "color_picker",
             "instructions": "",
             "required": 0,
@@ -39,7 +39,7 @@
         {
             "key": "field_5fa5090ecd077",
             "label": "Width",
-            "name": "width",
+            "name": "width_icon_list",
             "type": "number",
             "instructions": "",
             "required": 0,
@@ -60,7 +60,7 @@
         {
             "key": "field_5fa5090ecd1f4",
             "label": "Height",
-            "name": "height",
+            "name": "height_icon_list",
             "type": "number",
             "instructions": "",
             "required": 0,
@@ -81,7 +81,7 @@
         {
             "key": "field_5fa5090ecd690",
             "label": "Boxed Width",
-            "name": "boxed_width",
+            "name": "boxed_width_icon_list",
             "type": "true_false",
             "instructions": "Used to constrain the block to a maximum width, with equal margin left and right to center the block in \"boxed format\". This is most useful if the page template does not offer boxing or max-width and as a result the default is for blocks to be full-screen without margins.",
             "required": 0,
@@ -100,7 +100,7 @@
         {
             "key": "field_5fa5090ecda06",
             "label": "Max Width",
-            "name": "max_width",
+            "name": "max_width_icon_list",
             "type": "number",
             "instructions": "",
             "required": 0,
@@ -129,7 +129,7 @@
         {
             "key": "field_5fa5090ece1f2",
             "label": "Text",
-            "name": "text",
+            "name": "text_icon_list",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -148,7 +148,7 @@
         {
             "key": "field_5fa5090ece5d1",
             "label": "Box",
-            "name": "box",
+            "name": "icon_list_group",
             "type": "group",
             "instructions": "",
             "required": 0,
@@ -278,5 +278,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1604651522
+    "modified": 1606313834
 }

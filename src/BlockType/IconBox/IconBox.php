@@ -37,43 +37,43 @@ class IconBox extends BlockType {
 
 	protected function render( $block, $content, $postId ) {
         ob_start();
-        $boxedWidth = get_field( 'boxed_width' );
+        $boxedWidth = get_field( 'boxed_width_icon_box' );
         ?>
 
         <div class="acfg-icon-box">
             <div class="acfg-iconbox">
-                <span class="dashicons <?= get_field( 'icon' ) ?>"></span>
+                <span class="dashicons <?= get_field( 'icon_box' ) ?>"></span>
             </div>
             <div class="acfg-text">
-                <span class="acfg-box"><?= get_field( 'text' ) ?></span>
+                <span class="acfg-box"><?= get_field( 'text_icon_box' ) ?></span>
             </div>
         </div>
 
         <style>
             .acfg-iconbox .dashicons {
-                font-size: <?= get_field( 'width' ) ?>px;
-                width: <?= get_field( 'width' ) ?>px;
-                height: <?= get_field( 'height' ) ?>px;
-                color: <?= get_field( 'color' ) ?>;
+                font-size: <?= get_field( 'width_icon_box' ) ?>px;
+                width: <?= get_field( 'width_icon_box' ) ?>px;
+                height: <?= get_field( 'height_icon_box' ) ?>px;
+                color: <?= get_field( 'color_icon_box' ) ?>;
             }
             <?php if  ($boxedWidth) { ?>
                 .acfg-icon-box {
-                    max-width: <?= get_field( 'max_width' ) ?>px !important;
+                    max-width: <?= get_field( 'max_width_icon_box' ) ?>px !important;
                     margin-right: auto;
                     margin-left: auto;
                 }
             <?php } ?>
             .acfg-icon-box {
-                text-align: <?= get_field( 'alignment' ) ?>;
+                text-align: <?= get_field( 'alignment_icon_box' ) ?>;
             }
             .acfg-text {
-                padding: <?= get_field('box')['padding'] ?>px;
-                margin: <?= get_field('box')['margin'] ?>px;
+                padding: <?= get_field('icon_box_group')['padding'] ?>px;
+                margin: <?= get_field('icon_box_group')['margin'] ?>px;
             }
             .acfg-text .acfg-box {
-                font-size: <?= get_field('box')['font_size'] ?>px;
-                font-weight: <?= get_field('box')['font_weight'] ?>;
-                color: <?= get_field('box')['color'] ?>;
+                font-size: <?= get_field('icon_box_group')['font_size'] ?>px;
+                font-weight: <?= get_field('icon_box_group')['font_weight'] ?>;
+                color: <?= get_field('icon_box_group')['color'] ?>;
             }
         </style>
 
