@@ -45,6 +45,7 @@ class ImageCarousel extends BlockType {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
         <!--  Style CDN Slick-Lightbox  -->
         <link rel="stylesheet" href="https://mreq.github.io/slick-lightbox/dist/slick-lightbox.css">
+
         <style>
             .acfg-image_carousel {
                 width: 90%;
@@ -54,6 +55,7 @@ class ImageCarousel extends BlockType {
                 display: block;
                 height: <?= get_field( 'image_carousel_height_image' ) ?>px;
                 object-fit: cover;
+                margin: auto;
             }
             .acfg-image_carousel .slick-slide {
                 margin: 0px 20px;
@@ -78,18 +80,29 @@ class ImageCarousel extends BlockType {
         </style>
 
         <div class="acfg-image_carousel">
-            <?php foreach ($images as $image){ ?>
-            <div>
-                <a href="<?= wp_get_attachment_image_src( $image['image'], $size )[0] ?>">
-                    <?= wp_get_attachment_image( $image['image'], $size ) ?>
-                </a>
-            </div>
-            <?php } ?>
+            <?php
+            if ( !empty($images) ){
+            foreach ($images as $image){
+                if ( $image['image'] ){ ?>
+                    <div>
+                        <a href="<?= wp_get_attachment_image_src( $image['image'], $size )[0] ?>">
+                            <?= wp_get_attachment_image( $image['image'], $size ) ?>
+                        </a>
+                    </div>
+            <?php } } } ?>
         </div>
+        <?php
+            /* register js to backend previews */
+            wp_register_script('slick', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.js', array('jquery'), '1', true );
+            wp_enqueue_script('slick');
+            wp_register_script('slick-lightbox', 'https://mreq.github.io/slick-lightbox/dist/slick-lightbox.js', array('jquery','slick'), '1', true );
+            wp_enqueue_script('slick-lightbox');
+        ?>
         <!--  script CDN Slick  -->
         <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.js"></script>
         <!--  script CDN Slick-Lightbox  -->
         <script src="https://mreq.github.io/slick-lightbox/dist/slick-lightbox.js"></script>
+        <?php if ( !empty($images) ){ ?>
         <script>
             jQuery(document).ready(function() {
                 jQuery(".acfg-image_carousel").slick({
@@ -105,6 +118,7 @@ class ImageCarousel extends BlockType {
                 navigateByKeyboard  : true
             });
         </script>
+        <?php } ?>
         <?php
         print ob_get_clean();
 	}
