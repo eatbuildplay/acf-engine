@@ -37,7 +37,7 @@ class Gallery extends BlockType {
 
 	protected function render( $block, $content, $postId ) {
     $images = get_field( 'gallery_images' );
-    $size = 'full';
+    $size = get_field('gallery_images_size_image');
     $colums = get_field('gallery_images_columns');
     $fr = '';
     for ($i = 0 ; $i < $colums ; $i++ ) {
@@ -67,11 +67,13 @@ class Gallery extends BlockType {
             .acfg_image_gallery {
                 display: grid;
                 grid-template-columns: <?= $fr ?>;
-                grid-gap: 20px;
+                grid-gap: <?= get_field( 'gallery_images_image_gap' ) ?>px;
             }
             .acfg_image_gallery img{
                 height: <?= get_field( 'gallery_images_height' ) ?>px;
                 object-fit: cover;
+                margin: auto;
+                width: 100%;
             }
         </style>
 
